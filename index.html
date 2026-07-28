@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>LIFE por Paloma Moraes — Pare de tentar sozinha</title>
+<meta name="description" content="O app fitness 100% para mulheres. Aulas, treinos por nível e planos alimentares calculados por objetivo: um caminho pronto para organizar alimentação, treino e rotina.">
+<link rel="icon" type="image/png" href="https://palomamoraesnutri.com.br/wp-content/uploads/2024/03/cropped-Logotipo-principal-sem-fundo-Life-metodo-plm-192x192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.weserv.nl">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400;1,600&family=Figtree:wght@400;700;800&display=swap" rel="stylesheet">
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','4244623215802769');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=4244623215802769&ev=PageView&noscript=1"></noscript>
+<!-- End Meta Pixel -->
+<style>
+:root{
+  --pink:#D6336C; --pink-deep:#A61E4D; --pink-soft:#F06595;
+  --plum:#3D1B2C; --plum-dark:#1C0E16; --plum-black:#141014;
+  --rose:#F3D7DF; --rose-soft:#FAE9EE;
+  --bg:#FCF4F6; --surface:#FFFFFF;
+  --ink:#33131F; --ink-soft:#7A5261;
+  --ink-dark-soft:#C9A3B2; --ink-dark-dim:#B08E9C;
+  --green:#2B8A6E; --line:#EDD5DC;
+  --shadow-card:0 10px 30px rgba(61,27,44,.08);
+  --shadow-cta:0 8px 24px rgba(214,51,108,.35);
+  --radius-card:20px;
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --font-d:"Fraunces",Georgia,serif;
+  --font-b:"Figtree",-apple-system,BlinkMacSystemFont,sans-serif;
+  --gutter:22px;
+  --edge:max(var(--gutter), calc((100vw - 1200px)/2 + var(--gutter)));
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-b); background:var(--bg); color:var(--ink);
+  font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;border:none;background:none;cursor:pointer}
+.wrap{max-width:1200px;margin:0 auto;padding:0 var(--gutter)}
+.narrow{max-width:760px}
+
+h1,h2,h3{font-family:var(--font-d);line-height:1.1;text-wrap:balance;font-weight:600}
+.eyebrow{
+  font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--pink);margin-bottom:14px;
+}
+.h2{font-size:clamp(28px,4.6vw,44px);margin-bottom:14px}
+.lead{color:var(--ink-soft);max-width:62ch}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-weight:800;font-size:15px;letter-spacing:.03em;
+  border-radius:999px;padding:17px 34px;min-height:52px;
+  background:var(--pink);color:#fff;box-shadow:var(--shadow-cta);
+  transition:transform .18s var(--ease-out),background .18s,box-shadow .18s;
+  cursor:pointer;text-align:center;
+}
+.btn:hover{background:var(--pink-deep);transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+.btn.ghost{
+  background:transparent;color:var(--rose);box-shadow:none;
+  border:1.5px solid rgba(243,215,223,.45);
+}
+.btn.ghost:hover{background:rgba(243,215,223,.08);color:#fff}
+.btn:focus-visible{outline:3px solid var(--pink-soft);outline-offset:3px}
+
+.rv{opacity:0;transform:translateY(26px);transition:opacity .55s var(--ease-out),transform .55s var(--ease-out)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- microanimações sutis ---------- */
+@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-7px) rotate(3deg)}}
+.brand img{animation:float 7s ease-in-out infinite}
+.final img.bfly{animation:float 8s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.8}50%{opacity:1}}
+.hero::after{animation:breathe 9s ease-in-out infinite}
+@keyframes softpulse{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+.rv.in .dia{animation:softpulse 1s var(--ease-out) .5s 1}
+@keyframes shine{to{left:135%}}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{transition:opacity .2s;transform:none}
+  .hero-anim{animation:none!important;opacity:1!important;transform:none!important}
+  .brand img,.final img.bfly,.hero::after,.rv.in .dia{animation:none!important}
+  .rv.in .badge::after{animation:none!important;display:none}
+  .feat .ic{transform:none;opacity:1;transition:none}
+}
+
+.hero{position:relative;background:var(--plum-black);color:#F6E7EC;overflow:hidden}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(52% 42% at 72% 42%,rgba(214,51,108,.16),transparent 70%);
+}
+.hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;min-height:100svh}
+.hero-top{display:flex;align-items:center;justify-content:space-between;padding:18px 0 6px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-d);font-size:22px;color:#fff}
+.brand img{width:30px;height:30px}
+.brand small{font-family:var(--font-b);font-size:10px;letter-spacing:.24em;color:var(--ink-dark-soft);font-weight:700;text-transform:uppercase;margin-top:8px}
+.hero-top .mini{
+  font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--rose);
+  border:1px solid rgba(243,215,223,.35);border-radius:999px;padding:9px 18px;
+  transition:background .18s;
+}
+.hero-top .mini:hover{background:rgba(243,215,223,.1)}
+
+.hero-grid{flex:1;display:flex;flex-direction:column;justify-content:center}
+.hero-photo{position:relative;margin:6px 0 0;display:flex;justify-content:center}
+.hero-photo img{display:block;width:auto;max-width:min(74%,290px);height:auto;
+  filter:drop-shadow(0 26px 54px rgba(0,0,0,.55))}
+.hero-photo::after{display:none}
+.hero-copy{padding:6px 0 22px}
+.hero-copy .eyebrow{color:var(--pink-soft)}
+.hero-copy h1{font-size:clamp(37px,9.6vw,64px);color:#fff;margin-bottom:18px;letter-spacing:-.01em}
+.hero-copy h1 em{font-style:italic;color:var(--pink-soft);position:relative;white-space:nowrap}
+.hero-copy h1 em svg{position:absolute;left:0;right:0;bottom:-.18em;width:100%;height:.28em;overflow:visible}
+.hero-copy h1 em path{stroke:var(--pink);stroke-width:7;fill:none;stroke-linecap:round;
+  stroke-dasharray:320;stroke-dashoffset:320;animation:draw .7s .9s var(--ease-out) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero-copy .sub{color:var(--ink-dark-soft);font-size:17.5px;max-width:54ch;margin-bottom:26px}
+.hero-copy .sub strong{color:#F6E7EC;font-weight:700}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hero-note{font-size:13.5px;color:var(--ink-dark-dim);margin-top:12px}
+.hero-stats{
+  display:flex;gap:8px;border-top:1px solid rgba(243,215,223,.16);
+  padding:18px 0 24px;margin-top:24px;
+}
+.hero-stats div{flex:1;text-align:center}
+.hero-stats b{font-family:var(--font-d);font-size:clamp(20px,4.6vw,30px);font-weight:600;color:#fff;display:block;line-height:1.1;font-variant-numeric:tabular-nums}
+.hero-stats span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dark-dim);font-weight:700;white-space:nowrap}
+
+.hero-anim{opacity:0;transform:translateY(22px);animation:heroIn .7s var(--ease-out) forwards}
+@keyframes heroIn{to{opacity:1;transform:none}}
+.d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.28s}
+.d4{animation-delay:.4s}.d5{animation-delay:.52s}.d6{animation-delay:.66s}
+
+@media (min-width:980px){
+  .hero-inner{min-height:88vh}
+  .hero-grid{flex-direction:row;align-items:center;gap:36px}
+  .hero-copy{flex:1 1 55%;padding:60px 0}
+  .hero-photo{flex:1 1 45%;margin:0;order:2}
+  .hero-photo img{max-width:100%;max-height:82vh;border-radius:0}
+  .hero-photo::after{display:none}
+  .hero-stats{max-width:520px}
+  .hero-stats div{text-align:left}
+}
+
+section{padding:60px 0}
+@media(min-width:980px){section{padding:92px 0}}
+
+.quotes{display:grid;gap:14px;margin:30px 0 22px}
+.quote{
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  padding:22px 24px;font-size:16.5px;color:var(--ink);box-shadow:var(--shadow-card);
+}
+.quote em{font-family:var(--font-d);font-style:italic;font-size:18px}
+.quote:nth-child(odd){transform:rotate(-.5deg)}
+.quote:nth-child(even){transform:rotate(.5deg)}
+.sec-close{font-family:var(--font-d);font-style:italic;font-size:21px;color:var(--pink-deep);text-align:center;margin-top:8px}
+@media(min-width:760px){.quotes{grid-template-columns:1fr 1fr}}
+
+.solucao{background:var(--surface)}
+.sol-grid{display:flex;flex-direction:column;gap:32px}
+.sol-media{position:relative}
+.sol-media img{
+  width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 50%;
+  border-radius:24px;box-shadow:var(--shadow-card);background:#2a1220;
+}
+.sol-media .tag{
+  position:absolute;top:14px;left:14px;background:rgba(255,255,255,.94);
+  color:var(--pink-deep);font-size:11px;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;border-radius:999px;padding:8px 14px;
+}
+.sol-copy p{margin-bottom:16px;color:var(--ink-soft)}
+.sol-copy p strong{color:var(--ink)}
+.transparencia{
+  border-left:3px solid var(--pink);background:var(--rose-soft);
+  border-radius:0 14px 14px 0;padding:16px 20px;font-size:15px;color:var(--ink);
+  margin-top:6px;
+}
+.transparencia b{color:var(--pink-deep)}
+@media(min-width:980px){
+  .sol-grid{flex-direction:row;align-items:center;gap:64px}
+  .sol-media{flex:0 0 400px}
+  .sol-copy{flex:1}
+}
+
+/* ---------- 4 · entregáveis (bloco escuro) ---------- */
+.dentro{background:var(--plum-dark);position:relative;overflow:hidden}
+.dentro::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(46% 40% at 14% 0%,rgba(214,51,108,.14),transparent 70%);
+}
+.dentro .wrap{position:relative;z-index:2}
+.dentro .eyebrow{color:var(--pink-soft)}
+.dentro .h2{color:#fff}
+.dentro .lead{color:var(--ink-dark-soft)}
+.feats{display:grid;gap:14px;margin-top:34px}
+.feat{
+  background:rgba(255,255,255,.05);border:1px solid rgba(243,215,223,.14);
+  border-radius:var(--radius-card);
+  padding:26px;transition:transform .25s var(--ease-out),border-color .25s,background .25s;
+}
+.feat:hover{transform:translateY(-4px);border-color:rgba(214,51,108,.55);background:rgba(255,255,255,.08)}
+.feat .ic{
+  width:44px;height:44px;border-radius:50%;background:rgba(214,51,108,.2);
+  display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+  transform:scale(.5);opacity:0;
+  transition:transform .6s cubic-bezier(.34,1.56,.64,1) .18s,opacity .4s .18s;
+}
+.rv.in .ic{transform:scale(1);opacity:1}
+.feat .ic svg{width:22px;height:22px;stroke:var(--pink-soft);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.feat h3{font-family:var(--font-b);font-weight:700;font-size:17px;margin-bottom:6px;color:#fff}
+.feat p{font-size:14.5px;color:var(--ink-dark-soft)}
+@media(min-width:700px){.feats{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.feats{grid-template-columns:repeat(3,1fr);gap:18px}}
+
+/* ---------- 5 · objetivos (continua o bloco escuro) ---------- */
+.objs{background:var(--plum-dark);position:relative;overflow:hidden;padding-top:0}
+.objs::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(46% 40% at 88% 100%,rgba(214,51,108,.12),transparent 70%);
+}
+.objs>*{position:relative;z-index:2}
+.objs .eyebrow{color:var(--pink-soft)}
+.objs .h2{color:#fff}
+.objs .lead{color:var(--ink-dark-soft)}
+.obj-track{
+  display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:30px var(--edge) 10px;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.obj-track::-webkit-scrollbar{display:none}
+.obj{
+  flex:0 0 240px;scroll-snap-align:start;scroll-margin-left:var(--edge);
+  background:rgba(255,255,255,.05);border:1px solid rgba(243,215,223,.14);
+  border-radius:var(--radius-card);
+  padding:24px;transition:border-color .2s,transform .25s var(--ease-out),background .25s;
+}
+.obj:hover{transform:translateY(-4px);border-color:rgba(214,51,108,.55);background:rgba(255,255,255,.08)}
+.obj .n{font-family:var(--font-d);font-size:15px;font-style:italic;color:var(--pink-soft);display:block;margin-bottom:10px}
+.obj h3{font-family:var(--font-b);font-weight:800;font-size:18px;margin-bottom:6px;color:#fff}
+.obj p{font-size:14px;color:var(--ink-dark-soft)}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:16px}
+.dots i{width:6px;height:6px;border-radius:3px;background:var(--line);transition:all .25s}
+.dots i.on{width:20px;background:var(--pink)}
+.objs .dots i{background:rgba(243,215,223,.25)}
+.objs .dots i.on{background:var(--pink-soft)}
+.objs .transparencia{
+  background:rgba(214,51,108,.14);border-left-color:var(--pink-soft);color:#F6E7EC;
+}
+.objs .transparencia b{color:var(--pink-soft)}
+@media(min-width:1024px){
+  .obj-track{display:grid;grid-template-columns:repeat(5,1fr);overflow:visible;
+    max-width:1200px;margin:0 auto;padding:34px var(--gutter) 0;gap:16px}
+  .obj{flex:none}
+  #objDots{display:none}
+}
+
+.passos{background:var(--surface)}
+.steps{position:relative;display:grid;gap:30px;margin-top:36px}
+.step{display:flex;gap:20px;align-items:flex-start}
+.step .num{
+  font-family:var(--font-d);font-size:34px;font-weight:600;color:var(--pink);
+  flex:0 0 52px;height:52px;border:1.5px solid var(--line);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;background:var(--surface);
+  position:relative;z-index:2;
+}
+.step h3{font-family:var(--font-b);font-weight:700;font-size:18px;margin-bottom:4px}
+.step p{color:var(--ink-soft);font-size:15.5px}
+.steps::before{content:"";position:absolute;left:26px;top:30px;bottom:30px;width:1.5px;background:var(--line)}
+@media(min-width:900px){
+  .steps{grid-template-columns:repeat(3,1fr);gap:26px}
+  .steps::before{left:8%;right:8%;top:26px;bottom:auto;width:auto;height:1.5px}
+  .step{flex-direction:column}
+}
+
+.transf-track{
+  display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:30px var(--edge) 10px;scrollbar-width:none;
+}
+.transf-track::-webkit-scrollbar{display:none}
+.transf{
+  flex:0 0 82%;max-width:420px;scroll-snap-align:start;scroll-margin-left:var(--edge);
+  border-radius:var(--radius-card);overflow:hidden;background:var(--surface);
+  border:1px solid var(--line);box-shadow:var(--shadow-card);
+}
+.transf img{width:100%;aspect-ratio:9/10;object-fit:cover;background:var(--rose-soft)}
+.transf figcaption{
+  display:flex;align-items:center;gap:8px;
+  padding:14px 18px;font-size:13.5px;font-weight:700;color:var(--pink-deep);
+}
+.transf figcaption::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pink);flex-shrink:0}
+@media(min-width:900px){.transf{flex:0 0 360px}}
+
+.preco{background:var(--plum-dark);color:#F6E7EC;position:relative;overflow:hidden}
+.preco::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(46% 34% at 50% 0%,rgba(214,51,108,.18),transparent 70%);
+}
+.preco .wrap{position:relative;z-index:2}
+.preco .eyebrow{color:var(--pink-soft)}
+.preco .h2{color:#fff}
+.preco .lead{color:var(--ink-dark-soft)}
+.plans{display:grid;gap:22px;margin-top:44px}
+.plan{border-radius:24px;padding:32px 28px;position:relative}
+.plan.anual{
+  background:#fff;color:var(--ink);border:1.5px solid var(--pink);
+  box-shadow:0 18px 48px rgba(214,51,108,.25);
+}
+.plan .badge{
+  position:absolute;top:-14px;left:28px;background:var(--pink);color:#fff;
+  font-size:11px;font-weight:800;letter-spacing:.14em;border-radius:999px;
+  padding:7px 16px;text-transform:uppercase;overflow:hidden;
+}
+.rv.in .badge::after{
+  content:"";position:absolute;top:0;left:-60%;width:45%;height:100%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);
+  animation:shine 1.1s .9s var(--ease-out) 1 forwards;
+}
+.plan .tipo{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--pink-deep)}
+.plan .preco-num{font-family:var(--font-d);font-size:44px;font-weight:600;line-height:1.05;margin:10px 0 2px;font-variant-numeric:tabular-nums}
+.plan .preco-num small{font-size:19px;font-weight:600}
+.plan .preco-sub{font-size:13.5px;color:var(--ink-soft)}
+.plan .avista{font-size:13.5px;color:var(--ink-soft);margin-top:2px}
+.plan .avista s{opacity:.65}
+.plan .dia{
+  display:inline-block;background:var(--rose-soft);color:var(--pink-deep);
+  font-size:12.5px;font-weight:800;border-radius:999px;padding:6px 14px;margin:12px 0 16px;
+}
+.plan ul{list-style:none;display:grid;gap:9px;margin-bottom:24px}
+.plan li{display:flex;gap:10px;font-size:14.5px;line-height:1.45;align-items:flex-start}
+.plan li svg{flex:0 0 17px;width:17px;height:17px;margin-top:2px;stroke:var(--green);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.plan .grupo{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--pink);margin:12px 0 2px}
+.plan .btn{width:100%}
+.plan.mensal{background:transparent;border:1.5px solid rgba(243,215,223,.22);color:#F6E7EC}
+.plan.mensal .tipo{color:var(--pink-soft)}
+.plan.mensal .preco-num{color:#fff;font-size:32px}
+.plan.mensal .preco-sub{color:var(--ink-dark-dim);margin-bottom:18px}
+.plan.mensal li{color:var(--ink-dark-soft)}
+.plan.mensal li svg{stroke:#63C7A6}
+.garantia{
+  display:flex;align-items:center;gap:16px;justify-content:center;
+  margin-top:34px;text-align:left;max-width:560px;margin-left:auto;margin-right:auto;
+  background:rgba(43,138,110,.12);border:1px solid rgba(99,199,166,.3);
+  border-radius:16px;padding:18px 22px;
+}
+.garantia svg{flex:0 0 38px;width:38px;height:38px;stroke:#63C7A6;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.garantia b{color:#fff;display:block;font-size:15px}
+.garantia span{font-size:13.5px;color:var(--ink-dark-soft)}
+@media(min-width:900px){
+  .plans{grid-template-columns:380px 480px;justify-content:center;align-items:center}
+  .plan.mensal{order:1}
+  .plan.anual{order:2;padding:40px 36px}
+}
+
+.faq-list{max-width:760px;margin:32px auto 0;display:grid;gap:10px}
+.faq{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.faq button{
+  width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:19px 22px;font-size:16px;font-weight:700;color:var(--ink);text-align:left;min-height:52px;
+}
+.faq button .pm{
+  flex:0 0 26px;height:26px;border-radius:50%;background:var(--rose);
+  color:var(--pink-deep);font-size:17px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .25s var(--ease-out);
+}
+.faq.open button .pm{transform:rotate(45deg)}
+.faq .resp{display:grid;grid-template-rows:0fr;transition:grid-template-rows .28s var(--ease-out)}
+.faq.open .resp{grid-template-rows:1fr}
+.faq .resp>div{overflow:hidden}
+.faq .resp p{padding:0 22px 20px;font-size:15px;color:var(--ink-soft)}
+
+.final{background:var(--plum-black);color:#F6E7EC;text-align:center;position:relative;overflow:hidden}
+.final::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(50% 40% at 50% 100%,rgba(214,51,108,.15),transparent 70%);
+}
+.final .wrap{position:relative;z-index:2}
+.final h2{font-size:clamp(30px,6vw,52px);color:#fff;max-width:20ch;margin:0 auto 14px}
+.final h2 em{font-style:italic;color:var(--pink-soft)}
+.final p{color:var(--ink-dark-soft);margin-bottom:28px}
+.final img.bfly{width:64px;margin:0 auto 22px;opacity:.9}
+.final .alt{display:block;margin-top:18px;font-size:14px;font-weight:700;color:var(--ink-dark-soft);text-decoration:underline;text-underline-offset:4px}
+.final .alt:hover{color:#fff}
+.final .selo-mini{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;font-size:13px;color:var(--ink-dark-dim)}
+.final .selo-mini svg{width:16px;height:16px;stroke:#63C7A6;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+footer{
+  background:var(--plum-black);color:var(--ink-dark-dim);font-size:12.5px;
+  border-top:1px solid rgba(243,215,223,.12);padding:30px 0 110px;
+}
+footer .wrap{display:flex;flex-direction:column;gap:8px;text-align:center}
+footer a{color:var(--ink-dark-soft)}
+@media(min-width:900px){footer{padding-bottom:36px}}
+
+.sticky-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  background:rgba(255,255,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-top:1px solid var(--line);
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  display:flex;align-items:center;gap:12px;
+  transform:translateY(110%);transition:transform .3s var(--ease-out);
+}
+.sticky-cta.show{transform:none}
+.sticky-cta .p{font-size:12px;color:var(--ink-soft);line-height:1.3;white-space:nowrap}
+.sticky-cta .p b{display:block;font-size:14.5px;color:var(--ink);font-variant-numeric:tabular-nums}
+.sticky-cta .btn{flex:1;padding:13px 18px;min-height:48px;font-size:13.5px;box-shadow:none}
+@media(min-width:900px){.sticky-cta{display:none}}
+</style>
+<noscript><style>.rv{opacity:1;transform:none}.feat .ic{opacity:1;transform:none}</style></noscript>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-top hero-anim d1">
+      <span class="brand">
+        <img src="https://palomamoraesnutri.com.br/wp-content/uploads/2024/02/Simbolo-sem-fundo-Life-metodo-plm.png" alt="" width="30" height="30">
+        life <small>método plm</small>
+      </span>
+      <a class="mini" href="#planos">entrar pro time</a>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow hero-anim d2">O app fitness 100% para mulheres</p>
+        <h1>
+          <span class="hero-anim d2" style="display:block">Pare de tentar</span>
+          <span class="hero-anim d3" style="display:block"><em>sozinha<svg viewBox="0 0 300 24" aria-hidden="true"><path d="M4 16 C 60 6, 150 20, 296 10"/></svg></em>.</span>
+          <span class="hero-anim d4" style="display:block">Seu corpo precisa de direção.</span>
+        </h1>
+        <p class="sub hero-anim d5">Aulas, treinos por nível e <strong>planos alimentares calculados por objetivo</strong>: um caminho pronto para você organizar alimentação, treino e rotina, com comunidade e suporte do seu lado.</p>
+        <div class="hero-ctas hero-anim d6">
+          <a class="btn" href="#planos">QUERO MEU ACESSO</a>
+          <a class="btn ghost" href="#dentro">ver o que tem dentro</a>
+        </div>
+        <p class="hero-note hero-anim d6">a partir de 12× R$ 49,90 · 7 dias de garantia</p>
+        <div class="hero-stats hero-anim d6">
+          <div><b data-count="2600" data-prefix="+">+2.600</b><span>alunas ativas</span></div>
+          <div><b data-count="3" data-prefix="" data-suffix="+">3+</b><span>anos de LIFE</span></div>
+          <div><b>7 dias</b><span>garantia</span></div>
+        </div>
+      </div>
+      <div class="hero-photo hero-anim d3">
+        <picture>
+          <source type="image/webp" srcset="img/hero-app.webp">
+          <img src="img/hero-app.png" alt="App LIFE aberto no celular" fetchpriority="high" width="666" height="1000">
+        </picture>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap narrow">
+    <p class="eyebrow rv">você se reconhece?</p>
+    <h2 class="h2 rv">Se você já tentou de tudo, você não falhou. <em style="color:var(--pink)">Faltou um caminho.</em></h2>
+    <div class="quotes">
+      <div class="quote rv"><em>“Começo a dieta na segunda e desisto na quinta.”</em></div>
+      <div class="quote rv"><em>“Sou magra de roupa, mas não gosto do que vejo sem.”</em></div>
+      <div class="quote rv"><em>“Treino, mas não sei se estou fazendo certo.”</em></div>
+      <div class="quote rv"><em>“Minha rotina é corrida demais pra planejar tudo.”</em></div>
+    </div>
+    <p class="sec-close rv">O LIFE existe exatamente pra isso. ↓</p>
+  </div>
+</section>
+
+<section class="solucao">
+  <div class="wrap sol-grid">
+    <div class="sol-media rv">
+      <img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2024/08/topo-site-pc-2.png&amp;cx=1100&amp;cy=140&amp;cw=760&amp;ch=900&amp;output=webp&amp;q=78"
+           onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2024/08/topo-site-pc-2-1024x576.png';this.style.objectPosition='100% 78%'"
+           width="760" height="900" alt="Telas do app LIFE mostrando aulas e guias de alimentação" loading="lazy">
+      <span class="tag">por dentro do app</span>
+    </div>
+    <div class="sol-copy">
+      <p class="eyebrow rv">o que é o LIFE</p>
+      <h2 class="h2 rv">Não é mais uma dieta. É a <em style="color:var(--pink)">estrutura</em> que faltava.</h2>
+      <p class="rv">O LIFE é a plataforma da <strong>Paloma Moraes</strong> que reúne tudo o que você precisa em um lugar só: aulas novas toda semana, treinos por nível, planos alimentares calculados por objetivo, listas de substituição, receitas, comunidade e suporte.</p>
+      <p class="rv">Há mais de 3 anos no ar, o LIFE já é o caminho de <strong>mais de 2.600 alunas ativas</strong>. Chega de colecionar tentativas e informação solta: aqui você entra, escolhe seu caminho e segue com <strong>direção, constância e o Time LIFE inteiro junto com você</strong>.</p>
+      <div class="transparencia rv"><b>Transparência:</b> o LIFE não é consulta individual. São planos estruturados e calculados por objetivo (cardápios, quantidades e substituições) para você seguir com clareza, no seu ritmo.</div>
+    </div>
+  </div>
+</section>
+
+<section class="dentro" id="dentro">
+  <div class="wrap">
+    <p class="eyebrow rv">o que te espera lá dentro</p>
+    <h2 class="h2 rv">Uma estrutura completa, não conteúdo solto</h2>
+    <p class="lead rv">Assinou, entrou, tem tudo isso na palma da mão. No app, no seu horário.</p>
+    <div class="feats">
+      <div class="feat rv">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+        <h3>Aulas novas toda semana</h3><p>Mais de 100 aulas gravadas sobre nutrição, treino, rotina, disciplina, saúde mental e estilo de vida. E conteúdo novo chegando sempre.</p>
+      </div>
+      <div class="feat rv">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M6.5 6.5h11v11h-11z"/><path d="M3 10V3h7M21 14v7h-7"/></svg></div>
+        <h3>12 módulos completos</h3><p>Nutrição, treinos, saúde da mulher, gestão de peso, beleza e autoestima, saúde intestinal, suplementação, sono e mais.</p>
+      </div>
+      <div class="feat rv">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h4"/></svg></div>
+        <h3>Planos alimentares por objetivo</h3><p>Calculados com refeições, quantidades e cardápios + listas de substituição pra ter liberdade sem sair do plano.</p>
+      </div>
+      <div class="feat rv">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M6.5 2v6M10 2v6M8.25 8v14M17 2c-1.5 2-2 4-2 6 0 2 .8 3 2 3s2-1 2-3c0-2-.5-4-2-6zM17 11v11"/></svg></div>
+        <h3>Guia de receitas</h3><p>Receitas práticas e gostosas que cabem na rotina real, sem neura e sem passar fome.</p>
+      </div>
+      <div class="feat rv">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg></div>
+        <h3>Planners e check-lists</h3><p>Ferramentas de organização pra rotina, treino e alimentação saírem do papel de verdade.</p>
+      </div>
+      <div class="feat rv">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Comunidade + suporte</h3><p>O Time LIFE junto com você todos os dias. Constância em grupo é muito mais fácil.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="objs">
+  <div class="wrap">
+    <p class="eyebrow rv">qual é o seu objetivo?</p>
+    <h2 class="h2 rv">Tem um plano esperando por você</h2>
+    <p class="lead rv">Você não precisa adivinhar o que fazer: escolhe o plano com o nome do seu objetivo e segue.</p>
+  </div>
+  <div class="obj-track" id="objTrack">
+    <div class="obj"><span class="n">nº 01</span><h3>Emagrecimento</h3><p>Déficit bem feito, sem sofrimento e sem radicalismo.</p></div>
+    <div class="obj"><span class="n">nº 02</span><h3>Falsa magra</h3><p>Definição e tônus pra quem é magra de roupa.</p></div>
+    <div class="obj"><span class="n">nº 03</span><h3>Bulking</h3><p>Ganhar massa com qualidade, sem virar “inchada”.</p></div>
+    <div class="obj"><span class="n">nº 04</span><h3>Low carb</h3><p>Menos carbo com estratégia, sem perder energia.</p></div>
+    <div class="obj"><span class="n">nº 05</span><h3>Protocolo intestinal</h3><p>Intestino em dia pra destravar o resto.</p></div>
+    <div class="obj"><span class="n">nº 06</span><h3>Clean label</h3><p>Comida de verdade, menos ultraprocessados.</p></div>
+    <div class="obj"><span class="n">nº 07</span><h3>Jejum intermitente</h3><p>Janela alimentar com segurança e direção.</p></div>
+    <div class="obj"><span class="n">nº 08</span><h3>Gestante</h3><p>Nutrição pra essa fase tão especial.</p></div>
+    <div class="obj"><span class="n">nº 09</span><h3>Vegetariana</h3><p>Proteína e equilíbrio sem carne.</p></div>
+    <div class="obj"><span class="n">nº 10</span><h3>Detox</h3><p>Um reset leve pra retomar o foco.</p></div>
+  </div>
+  <div class="dots" id="objDots" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="transparencia rv" style="max-width:640px;margin:24px auto 0"><b>✦</b> São planos estruturados e calculados por objetivo, não consulta individual. Você escolhe o seu e segue com clareza, com listas de substituição pra adaptar ao seu dia a dia.</div>
+  </div>
+</section>
+
+<section class="passos">
+  <div class="wrap">
+    <p class="eyebrow rv">simples assim</p>
+    <h2 class="h2 rv">Como funciona na prática</h2>
+    <div class="steps">
+      <div class="step rv"><span class="num">1</span><div><h3>Entre pro time</h3><p>Assinou, recebeu o acesso no e-mail e baixou o app. Em 5 minutos você está dentro.</p></div></div>
+      <div class="step rv"><span class="num">2</span><div><h3>Escolha seu caminho</h3><p>Plano alimentar pelo seu objetivo, treino pelo seu nível, em casa ou na academia.</p></div></div>
+      <div class="step rv"><span class="num">3</span><div><h3>Siga acompanhada</h3><p>Aulas novas toda semana, comunidade e suporte pra você nunca mais tentar sozinha.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow rv">time life na real</p>
+    <h2 class="h2 rv">Elas pararam de tentar sozinhas</h2>
+    <p class="lead rv">São mais de 2.600 alunas ativas construindo resultado há mais de 3 anos. Transformações reais de quem entrou pro Time LIFE e seguiu no próprio ritmo.</p>
+  </div>
+  <!-- TODO PRODUÇÃO: substituir legendas por nome + plano seguido + 1 frase de cada aluna (com autorização arquivada). -->
+  <div class="transf-track" id="transfTrack">
+    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-100.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-100.png'" width="720" height="800" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption>Transformação real · Time LIFE</figcaption></figure>
+    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-200.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-200.png'" width="720" height="800" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption>Transformação real · Time LIFE</figcaption></figure>
+    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-201.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-201.png'" width="720" height="800" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption>Transformação real · Time LIFE</figcaption></figure>
+    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-202.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-202.png'" width="720" height="800" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption>Transformação real · Time LIFE</figcaption></figure>
+    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-203.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-203.png'" width="720" height="800" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption>Transformação real · Time LIFE</figcaption></figure>
+  </div>
+  <div class="dots" id="transfDots" aria-hidden="true"></div>
+</section>
+
+<section class="preco" id="planos">
+  <div class="wrap">
+    <p class="eyebrow rv">escolha seu acesso</p>
+    <h2 class="h2 rv">Menos que um lanche por semana</h2>
+    <p class="lead rv">Entre pro time com o plano que faz sentido pra você, com 7 dias de garantia incondicional.</p>
+
+    <div class="plans">
+      <div class="plan anual rv">
+        <span class="badge">plano mais vendido</span>
+        <p class="tipo">Anual · acesso por 365 dias</p>
+        <p class="preco-num">12× R$ 49,90</p>
+        <p class="preco-sub">no cartão, sem comprometer seu limite total</p>
+        <p class="avista">ou à vista: de <s>R$ 838,80</s> por <strong>R$ 598,80</strong> (30% de desconto)</p>
+        <span class="dia">sai menos de R$ 1,64 por dia</span>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Tudo do LIFE por 1 ano:</strong> aulas semanais, +100 gravadas, 12 módulos, planos alimentares, receitas e comunidade</span></li>
+          <li class="grupo" style="list-style:none">exclusivo do anual</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Módulos Shape Slim, Corrida, Yoga e Pilates</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Saúde mental e Psicologia · Foco e Produtividade</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Endocrinologia e Dermatologia</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>MasterClass exclusivas</li>
+        </ul>
+        <a class="btn" data-cta="anual" href="https://chk.eduzz.com/2457306?utm_source=lp-teste&utm_content=card-anual" rel="noopener">QUERO 365 DIAS DE MUDANÇA</a>
+      </div>
+
+      <div class="plan mensal rv">
+        <p class="tipo">Mensal · acesso por 30 dias</p>
+        <p class="preco-num">R$ 69,90<small>/mês</small></p>
+        <p class="preco-sub">pra experimentar no seu ritmo · renove quando quiser</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Acesso à base do LIFE por 30 dias</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Aulas, 12 módulos, planos alimentares e comunidade</li>
+        </ul>
+        <a class="btn ghost" data-cta="mensal" style="width:100%" href="https://chk.eduzz.com/2457307?utm_source=lp-teste&utm_content=card-mensal" rel="noopener">começar pelo mensal</a>
+      </div>
+    </div>
+
+    <div class="garantia rv">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      <div><b>7 dias de garantia incondicional</b><span>Entrou e sentiu que não é pra você? A gente devolve 100% do valor, sem burocracia.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <p class="eyebrow rv" style="text-align:center">perguntas frequentes</p>
+    <h2 class="h2 rv" style="text-align:center">Ficou alguma dúvida, gata?</h2>
+    <div class="faq-list">
+      <div class="faq open rv"><button aria-expanded="true">O plano é personalizado?<span class="pm">+</span></button>
+        <div class="resp"><div><p>Sendo bem transparente: o LIFE não é uma consulta individual com dieta feita do zero só pra você. Lá dentro você encontra planos alimentares calculados por objetivo, com cardápios, quantidades e listas de substituição, além de treinos por nível, aulas, comunidade e suporte. É um caminho pronto e organizado pra você parar de tentar sozinha.</p></div></div></div>
+      <div class="faq rv"><button aria-expanded="false">Como sei qual plano seguir?<span class="pm">+</span></button>
+        <div class="resp"><div><p>Dentro do app você encontra o plano com o nome do seu objetivo (emagrecimento, falsa magra, bulking, low carb e mais) e aulas que te ajudam a escolher com segurança. E se bater dúvida, o suporte e a comunidade estão lá pra isso.</p></div></div></div>
+      <div class="faq rv"><button aria-expanded="false">Serve pra quem tem rotina corrida?<span class="pm">+</span></button>
+        <div class="resp"><div><p>Foi feito exatamente pra isso: planos práticos com listas de substituição, receitas rápidas, treinos que cabem no seu tempo e planners pra organizar a semana sem complicação.</p></div></div></div>
+      <div class="faq rv"><button aria-expanded="false">Não gosto de academia. Dá pra treinar em casa?<span class="pm">+</span></button>
+        <div class="resp"><div><p>Dá! Os treinos são organizados por nível e por realidade: tem opção pra treinar em casa e pra academia. Você escolhe o que encaixa na sua vida.</p></div></div></div>
+      <div class="faq rv"><button aria-expanded="false">E se eu pagar e não usar?<span class="pm">+</span></button>
+        <div class="resp"><div><p>Você tem 7 dias de garantia incondicional pra conhecer tudo por dentro. E depois, a comunidade e as aulas semanais existem justamente pra te manter constante. É bem diferente de tentar sozinha.</p></div></div></div>
+      <div class="faq rv"><button aria-expanded="false">Preciso ter o limite total no cartão?<span class="pm">+</span></button>
+        <div class="resp"><div><p>Não! No plano anual o parcelamento em 12× de R$ 49,90 é feito sem comprometer o limite total do seu cartão.</p></div></div></div>
+      <div class="faq rv"><button aria-expanded="false">Qual a diferença entre mensal e anual?<span class="pm">+</span></button>
+        <div class="resp"><div><p>O mensal dá acesso por 30 dias à base do LIFE. O anual dá acesso por 365 dias a tudo, incluindo módulos exclusivos (Shape Slim, Corrida, Yoga, Pilates, Psicologia e mais), MasterClass e 30% de desconto no valor. Por isso é o mais vendido.</p></div></div></div>
+      <div class="faq rv"><button aria-expanded="false">Tem suporte? Consigo cancelar?<span class="pm">+</span></button>
+        <div class="resp"><div><p>Tem suporte sim, e você nunca fica sem resposta. E pode cancelar quando quiser, além dos 7 dias de garantia incondicional com devolução de 100% do valor.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <img class="bfly rv" src="https://palomamoraesnutri.com.br/wp-content/uploads/2024/02/Simbolo-sem-fundo-Life-metodo-plm.png" alt="" width="64" height="64">
+    <h2 class="rv">Daqui a 1 ano, você vai querer ter <em>começado hoje</em>.</h2>
+    <p class="rv">Vem pro Time LIFE, gata. Seu caminho já está pronto.</p>
+    <a class="btn rv" data-cta="anual" href="https://chk.eduzz.com/2457306?utm_source=lp-teste&utm_content=cta-final" rel="noopener">QUERO 365 DIAS DE MUDANÇA</a>
+    <a class="alt rv" href="#planos">comparar os planos</a>
+    <div class="selo-mini rv">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      compra segura · 7 dias de garantia incondicional
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>LIFE · Método PLM · por Paloma Moraes</span>
+    <span>Este produto não substitui acompanhamento médico ou nutricional individual.</span>
+    <span><a href="https://palomamoraesnutri.com.br" rel="noopener">palomamoraesnutri.com.br</a></span>
+    <span style="opacity:.55">página de teste · redesign 2026</span>
+  </div>
+</footer>
+
+<div class="sticky-cta" id="stickyCta">
+  <div class="p"><b>12× R$ 49,90</b>no plano anual</div>
+  <a class="btn" href="#planos">QUERO MEU ACESSO</a>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.15, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv').forEach(function(el,i){
+    el.style.transitionDelay = (i%6)*0.06+'s';
+    io.observe(el);
+  });
+
+  var sticky = document.getElementById('stickyCta');
+  var hero = document.querySelector('.hero');
+  var planos = document.getElementById('planos');
+  var pastHero=false, onPrice=false;
+  function upd(){ sticky.classList.toggle('show', pastHero && !onPrice); }
+  new IntersectionObserver(function(es){ pastHero = !es[0].isIntersecting; upd(); },{threshold:0}).observe(hero);
+  new IntersectionObserver(function(es){ onPrice = es[0].isIntersecting; upd(); },{threshold:.12}).observe(planos);
+
+  document.querySelectorAll('.faq button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var item = btn.closest('.faq'), open = item.classList.contains('open');
+      document.querySelectorAll('.faq.open').forEach(function(o){ o.classList.remove('open'); o.querySelector('button').setAttribute('aria-expanded','false'); });
+      if(!open){ item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+    });
+  });
+
+  function dots(trackId,dotsId){
+    var track=document.getElementById(trackId), box=document.getElementById(dotsId);
+    if(!track||!box) return;
+    function build(){
+      box.innerHTML='';
+      if(track.scrollWidth <= track.clientWidth + 4) return;
+      var items=track.children.length;
+      for(var i=0;i<items;i++){ box.appendChild(document.createElement('i')); }
+      sync();
+    }
+    function sync(){
+      var ds=box.children, items=ds.length;
+      if(!items) return;
+      var idx=Math.round(track.scrollLeft/(track.scrollWidth-track.clientWidth)*(items-1))||0;
+      idx=Math.max(0,Math.min(items-1,idx));
+      for(var i=0;i<items;i++) ds[i].classList.toggle('on',i===idx);
+    }
+    track.addEventListener('scroll',function(){ requestAnimationFrame(sync); },{passive:true});
+    window.addEventListener('resize',build);
+    build();
+  }
+  dots('objTrack','objDots');
+  dots('transfTrack','transfDots');
+
+  document.querySelectorAll('[data-count]').forEach(function(counter){
+    if(reduce) return;
+    new IntersectionObserver(function(es,obs){
+      if(!es[0].isIntersecting) return; obs.disconnect();
+      var end=+counter.dataset.count, pre=counter.dataset.prefix||'', suf=counter.dataset.suffix||'', t0=null;
+      function tick(t){ if(!t0)t0=t; var p=Math.min((t-t0)/900,1);
+        var v=Math.round(end*(0.3+0.7*p));
+        counter.textContent=pre+v.toLocaleString('pt-BR')+suf;
+        if(p<1) requestAnimationFrame(tick); }
+      requestAnimationFrame(tick);
+    },{threshold:.5}).observe(counter);
+  });
+
+  document.querySelectorAll('[data-cta]').forEach(function(a){
+    a.addEventListener('click',function(){
+      if(typeof window.fbq==='function'){
+        window.fbq('track','InitiateCheckout',{content_name:'life-'+a.dataset.cta});
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
