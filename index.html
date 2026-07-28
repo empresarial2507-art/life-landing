@@ -120,10 +120,10 @@ h1,h2,h3{font-family:var(--font-d);line-height:1.1;text-wrap:balance;font-weight
 .hero-top .mini:hover{background:rgba(243,215,223,.1)}
 
 .hero-grid{flex:1;display:flex;flex-direction:column;justify-content:center}
-.hero-photo{position:relative;margin:0 0 22px;display:flex;justify-content:center;order:-1}
-.hero-photo img{display:block;width:auto;max-width:min(92%,380px);height:auto;
-  filter:drop-shadow(0 26px 54px rgba(0,0,0,.55))}
+.hero-photo{position:relative;display:none;justify-content:center}
 .hero-photo::after{display:none}
+.hero-media-mobile{display:flex;justify-content:center;margin:22px 0 26px}
+.hero-media-mobile img{display:block;width:auto;max-width:min(92%,380px);height:auto;filter:drop-shadow(0 22px 44px rgba(0,0,0,.5))}
 .hero-copy{padding:6px 0 22px}
 .hero-copy .eyebrow{color:var(--pink-soft)}
 .hero-copy h1{font-size:clamp(37px,9.6vw,64px);color:#fff;margin-bottom:18px;letter-spacing:-.01em}
@@ -153,7 +153,8 @@ h1,h2,h3{font-family:var(--font-d);line-height:1.1;text-wrap:balance;font-weight
   .hero-inner{min-height:88vh}
   .hero-grid{flex-direction:row;align-items:center;gap:36px}
   .hero-copy{flex:1 1 55%;padding:60px 0}
-  .hero-photo{flex:1 1 50%;margin:0;order:2}
+  .hero-photo{display:flex;flex:1 1 50%;margin:0;order:2}
+  .hero-media-mobile{display:none}
   .hero-photo img{max-width:100%;max-height:88vh;border-radius:0}
   .hero-photo::after{display:none}
   .hero-stats{max-width:520px}
@@ -496,6 +497,12 @@ footer a{color:var(--ink-dark-soft)}
           <span class="hero-anim d3" style="display:block"><em>sozinha<svg viewBox="0 0 300 24" aria-hidden="true"><path d="M4 16 C 60 6, 150 20, 296 10"/></svg></em>.</span>
           <span class="hero-anim d4" style="display:block">Seu corpo precisa de direção.</span>
         </h1>
+        <div class="hero-media-mobile hero-anim d4">
+          <picture>
+            <source type="image/webp" srcset="img/iPhone-Mockup.webp">
+            <img src="img/iPhone-Mockup.webp" alt="App LIFE aberto no celular" fetchpriority="high" width="596" height="789">
+          </picture>
+        </div>
         <p class="sub hero-anim d5">Aulas, treinos por nível e <strong>planos alimentares calculados por objetivo</strong>. Um caminho pronto pra você organizar alimentação, treino e rotina, com comunidade e o Time LIFE do seu lado.</p>
         <div class="hero-ctas hero-anim d6">
           <a class="btn" href="#planos">QUERO MEU ACESSO</a>
