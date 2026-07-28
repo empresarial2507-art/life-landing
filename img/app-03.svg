@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 1170" role="img" aria-label="Placeholder: TREINOS">
+<rect width="540" height="1170" fill="#1C0E16"/>
+<rect x="1" y="1" width="538" height="1168" fill="none" stroke="#D6336C" stroke-opacity="0.5" stroke-width="2" stroke-dasharray="10 10"/>
+<circle cx="270" cy="150" r="34" fill="#D6336C" fill-opacity="0.18"/>
+<path d="M256 150l10 10 20-22" fill="none" stroke="#F06595" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="270" y="540" text-anchor="middle" fill="#F3D7DF" font-family="Georgia, serif" font-style="italic" font-size="30" opacity="0.8">tela do app</text>
+<text x="270" y="600" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-weight="800" font-size="52">TREINOS</text>
+<text x="270" y="648" text-anchor="middle" fill="#C9A3B2" font-family="Arial, sans-serif" font-size="24">por nível, com vídeo</text>
+<rect x="140" y="980" width="260" height="52" rx="26" fill="#D6336C" fill-opacity="0.22"/>
+<text x="270" y="1014" text-anchor="middle" fill="#F06595" font-family="Arial, sans-serif" font-weight="700" font-size="22" letter-spacing="2">SUBSTITUIR POR PRINT</text>
+</svg>

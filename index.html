@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>LIFE por Paloma Moraes — Pare de tentar sozinha</title>
-<meta name="description" content="O app fitness 100% para mulheres. Aulas, treinos por nível e planos alimentares calculados por objetivo: um caminho pronto para organizar alimentação, treino e rotina.">
+<title>LIFE por Paloma Moraes | O app fitness pra mulheres pararem de tentar sozinhas</title>
+<meta name="description" content="Aulas, treinos por nível e planos alimentares calculados por objetivo. Um caminho pronto pra organizar alimentação, treino e rotina, com a Paloma e o Time LIFE do seu lado. 7 dias de garantia.">
 <link rel="icon" type="image/png" href="https://palomamoraesnutri.com.br/wp-content/uploads/2024/03/cropped-Logotipo-principal-sem-fundo-Life-metodo-plm-192x192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -422,6 +422,57 @@ footer a{color:var(--ink-dark-soft)}
 .sticky-cta .p b{display:block;font-size:14.5px;color:var(--ink);font-variant-numeric:tabular-nums}
 .sticky-cta .btn{flex:1;padding:13px 18px;min-height:48px;font-size:13.5px;box-shadow:none}
 @media(min-width:900px){.sticky-cta{display:none}}
+
+/* ===== seções da revisão de copy (v2) ===== */
+.hero-direto{display:inline-block;margin-top:14px;font-size:14px;font-weight:700;color:var(--pink-soft);text-decoration:underline;text-underline-offset:4px}
+.hero-direto:hover{color:#fff}
+.ph{color:var(--pink-deep);background:rgba(214,51,108,.08);border:1px dashed rgba(214,51,108,.5);border-radius:6px;padding:0 6px;font-style:normal;font-weight:600}
+
+/* por dentro do app */
+.appdentro .lead{max-width:52ch}
+.app-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:34px var(--edge) 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.app-track::-webkit-scrollbar{display:none}
+.app-screen{flex:0 0 210px;scroll-snap-align:start;scroll-margin-left:var(--edge);text-align:center}
+.app-phone{border-radius:30px;padding:7px;background:#150a10;border:1px solid rgba(214,51,108,.35);box-shadow:0 22px 44px -20px rgba(61,27,44,.55)}
+.app-phone img{width:100%;aspect-ratio:540/1170;object-fit:cover;border-radius:24px;display:block;background:#1C0E16}
+.app-screen figcaption{margin-top:16px}
+.app-screen figcaption b{display:block;font-family:var(--font-b);font-weight:800;font-size:15.5px;color:var(--ink)}
+.app-screen figcaption span{font-size:13.5px;color:var(--ink-soft)}
+@media(min-width:1024px){
+  .app-track{justify-content:center;overflow:visible;max-width:1200px;margin:0 auto;padding:34px var(--gutter) 0}
+  #appDots{display:none}
+}
+
+/* autoridade da Paloma */
+.autoridade{background:var(--surface)}
+.auth-grid{display:flex;flex-direction:column;gap:28px}
+.auth-photo{position:relative;flex:0 0 auto}
+.auth-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:24px;box-shadow:var(--shadow-card);background:#3D1B2C}
+.auth-photo .tag{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.94);color:var(--pink-deep);font-size:12px;font-weight:800;letter-spacing:.1em;border-radius:999px;padding:8px 16px}
+.auth-copy p{color:var(--ink-soft);margin-bottom:18px}
+.auth-copy p strong{color:var(--ink)}
+.auth-selo{display:flex;flex-wrap:wrap;gap:10px}
+.auth-selo span{font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--pink-deep);background:var(--rose-soft);border-radius:999px;padding:9px 16px}
+@media(min-width:900px){
+  .auth-grid{flex-direction:row;align-items:center;gap:56px}
+  .auth-photo{flex:0 0 360px}
+  .auth-copy{flex:1}
+}
+
+/* depoimentos */
+.depoimentos{display:grid;gap:16px;margin-top:26px}
+.depo{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow-card)}
+.depo p{font-family:var(--font-d);font-style:italic;font-size:17px;color:var(--ink);margin-bottom:12px;line-height:1.5}
+.depo cite{font-style:normal;font-size:13.5px;font-weight:800;color:var(--pink-deep)}
+.depo-nota{text-align:center;font-size:13px;color:var(--ink-soft);margin-top:18px;opacity:.8}
+@media(min-width:760px){.depoimentos{grid-template-columns:1fr 1fr}}
+
+/* urgência + garantia no card + empurrão do mensal */
+.urgencia{display:inline-flex;align-items:center;gap:8px;margin:8px 0 0;background:rgba(214,51,108,.16);color:#fff;border:1px solid rgba(240,101,149,.4);border-radius:999px;padding:10px 20px;font-size:14px;font-weight:700}
+.urgencia strong{color:var(--pink-soft)}
+.card-garantia{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--ink-soft);margin:-8px 0 16px}
+.card-garantia svg{flex:0 0 16px;width:16px;height:16px;stroke:var(--green);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+.mensal-nudge{font-size:13px;color:var(--ink-dark-soft);background:rgba(214,51,108,.12);border-radius:12px;padding:12px 14px;margin-bottom:16px;line-height:1.4}
 </style>
 <noscript><style>.rv{opacity:1;transform:none}.feat .ic{opacity:1;transform:none}</style></noscript>
 </head>
@@ -445,12 +496,13 @@ footer a{color:var(--ink-dark-soft)}
           <span class="hero-anim d3" style="display:block"><em>sozinha<svg viewBox="0 0 300 24" aria-hidden="true"><path d="M4 16 C 60 6, 150 20, 296 10"/></svg></em>.</span>
           <span class="hero-anim d4" style="display:block">Seu corpo precisa de direção.</span>
         </h1>
-        <p class="sub hero-anim d5">Aulas, treinos por nível e <strong>planos alimentares calculados por objetivo</strong>: um caminho pronto para você organizar alimentação, treino e rotina, com comunidade e suporte do seu lado.</p>
+        <p class="sub hero-anim d5">Aulas, treinos por nível e <strong>planos alimentares calculados por objetivo</strong>. Um caminho pronto pra você organizar alimentação, treino e rotina, com comunidade e o Time LIFE do seu lado.</p>
         <div class="hero-ctas hero-anim d6">
           <a class="btn" href="#planos">QUERO MEU ACESSO</a>
-          <a class="btn ghost" href="#dentro">ver o que tem dentro</a>
+          <a class="btn ghost" href="#appdentro">ver por dentro do app</a>
         </div>
-        <p class="hero-note hero-anim d6">a partir de 12× R$ 49,90 · 7 dias de garantia</p>
+        <a class="hero-direto hero-anim d6" data-cta="anual" href="https://chk.eduzz.com/2457306?utm_source=lp-teste&utm_content=hero-direto" rel="noopener">já decidi, quero o anual &rarr;</a>
+        <p class="hero-note hero-anim d6">12x de R$ 49,90, ou R$ 598,80 à vista (30% off). 7 dias de garantia.</p>
         <div class="hero-stats hero-anim d6">
           <div><b data-count="2600" data-prefix="+">+2.600</b><span>alunas ativas</span></div>
           <div><b data-count="3" data-prefix="" data-suffix="+">3+</b><span>anos de LIFE</span></div>
@@ -472,10 +524,10 @@ footer a{color:var(--ink-dark-soft)}
     <p class="eyebrow rv">você se reconhece?</p>
     <h2 class="h2 rv">Se você já tentou de tudo, você não falhou. <em style="color:var(--pink)">Faltou um caminho.</em></h2>
     <div class="quotes">
-      <div class="quote rv"><em>“Começo a dieta na segunda e desisto na quinta.”</em></div>
+      <div class="quote rv"><em>“Começo a dieta na segunda e largo na quinta.”</em></div>
       <div class="quote rv"><em>“Sou magra de roupa, mas não gosto do que vejo sem.”</em></div>
-      <div class="quote rv"><em>“Treino, mas não sei se estou fazendo certo.”</em></div>
-      <div class="quote rv"><em>“Minha rotina é corrida demais pra planejar tudo.”</em></div>
+      <div class="quote rv"><em>“Treino, mas nunca sei se tô fazendo certo.”</em></div>
+      <div class="quote rv"><em>“Minha rotina é corrida demais pra planejar tudo sozinha.”</em></div>
     </div>
     <p class="sec-close rv">O LIFE existe exatamente pra isso. ↓</p>
   </div>
@@ -492,18 +544,34 @@ footer a{color:var(--ink-dark-soft)}
     <div class="sol-copy">
       <p class="eyebrow rv">o que é o LIFE</p>
       <h2 class="h2 rv">Não é mais uma dieta. É a <em style="color:var(--pink)">estrutura</em> que faltava.</h2>
-      <p class="rv">O LIFE é a plataforma da <strong>Paloma Moraes</strong> que reúne tudo o que você precisa em um lugar só: aulas novas toda semana, treinos por nível, planos alimentares calculados por objetivo, listas de substituição, receitas, comunidade e suporte.</p>
-      <p class="rv">Há mais de 3 anos no ar, o LIFE já é o caminho de <strong>mais de 2.600 alunas ativas</strong>. Chega de colecionar tentativas e informação solta: aqui você entra, escolhe seu caminho e segue com <strong>direção, constância e o Time LIFE inteiro junto com você</strong>.</p>
-      <div class="transparencia rv"><b>Transparência:</b> o LIFE não é consulta individual. São planos estruturados e calculados por objetivo (cardápios, quantidades e substituições) para você seguir com clareza, no seu ritmo.</div>
+      <p class="rv">O LIFE é a plataforma da <strong>Paloma Moraes</strong> que junta tudo num lugar só: aulas novas toda semana, treinos por nível, planos alimentares calculados por objetivo, listas de substituição, receitas, comunidade e suporte.</p>
+      <p class="rv">Há mais de 3 anos no ar, já é o caminho de <strong>mais de 2.600 mulheres</strong>. Você entra, escolhe seu objetivo e segue com <strong>direção, constância e o Time LIFE inteiro do seu lado</strong>.</p>
+      <div class="transparencia rv"><b>Por que funciona:</b> em vez de esperar semanas por uma consulta individual, você entra hoje num caminho pronto e testado, calculado por objetivo (cardápios, quantidades e substituições). Direção na hora, no seu ritmo. É por não ser consulta individual que você consegue começar agora.</div>
     </div>
   </div>
+</section>
+
+<section class="appdentro" id="appdentro">
+  <div class="wrap">
+    <p class="eyebrow rv">por dentro do app</p>
+    <h2 class="h2 rv">Veja como é simples por dentro</h2>
+    <p class="lead rv">Tudo organizadinho, na palma da mão, no seu horário.</p>
+  </div>
+  <div class="app-track" id="appTrack">
+    <figure class="app-screen rv"><div class="app-phone"><img src="img/app-01.svg" alt="Tela do app LIFE: home" loading="lazy"></div><figcaption><b>Sua home, tudo num lugar só</b><span>aulas, planos e treinos sem você se perder</span></figcaption></figure>
+    <figure class="app-screen rv"><div class="app-phone"><img src="img/app-02.svg" alt="Tela do app LIFE: plano alimentar" loading="lazy"></div><figcaption><b>Seu plano alimentar por objetivo</b><span>cardápio, quantidades e lista de substituição</span></figcaption></figure>
+    <figure class="app-screen rv"><div class="app-phone"><img src="img/app-03.svg" alt="Tela do app LIFE: treinos" loading="lazy"></div><figcaption><b>Treinos por nível</b><span>em casa ou na academia, com vídeo</span></figcaption></figure>
+    <figure class="app-screen rv"><div class="app-phone"><img src="img/app-04.svg" alt="Tela do app LIFE: aulas" loading="lazy"></div><figcaption><b>Aulas novas toda semana</b><span>nutrição, treino, saúde da mulher e mente</span></figcaption></figure>
+    <figure class="app-screen rv"><div class="app-phone"><img src="img/app-05.svg" alt="Tela do app LIFE: comunidade" loading="lazy"></div><figcaption><b>Comunidade: o Time LIFE junto</b><span>constância em grupo é muito mais fácil</span></figcaption></figure>
+  </div>
+  <div class="dots" id="appDots" aria-hidden="true"></div>
 </section>
 
 <section class="dentro" id="dentro">
   <div class="wrap">
     <p class="eyebrow rv">o que te espera lá dentro</p>
     <h2 class="h2 rv">Uma estrutura completa, não conteúdo solto</h2>
-    <p class="lead rv">Assinou, entrou, tem tudo isso na palma da mão. No app, no seu horário.</p>
+    <p class="lead rv">Assinou, entrou, tá tudo na palma da mão. No app, no seu horário.</p>
     <div class="feats">
       <div class="feat rv">
         <div class="ic"><svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
@@ -536,8 +604,8 @@ footer a{color:var(--ink-dark-soft)}
 <section class="objs">
   <div class="wrap">
     <p class="eyebrow rv">qual é o seu objetivo?</p>
-    <h2 class="h2 rv">Tem um plano esperando por você</h2>
-    <p class="lead rv">Você não precisa adivinhar o que fazer: escolhe o plano com o nome do seu objetivo e segue.</p>
+    <h2 class="h2 rv">Tem um plano com o nome do que você quer</h2>
+    <p class="lead rv">Você não precisa adivinhar. Escolhe o plano do seu objetivo e segue.</p>
   </div>
   <div class="obj-track" id="objTrack">
     <div class="obj"><span class="n">nº 01</span><h3>Emagrecimento</h3><p>Déficit bem feito, sem sofrimento e sem radicalismo.</p></div>
@@ -545,16 +613,13 @@ footer a{color:var(--ink-dark-soft)}
     <div class="obj"><span class="n">nº 03</span><h3>Bulking</h3><p>Ganhar massa com qualidade, sem virar “inchada”.</p></div>
     <div class="obj"><span class="n">nº 04</span><h3>Low carb</h3><p>Menos carbo com estratégia, sem perder energia.</p></div>
     <div class="obj"><span class="n">nº 05</span><h3>Protocolo intestinal</h3><p>Intestino em dia pra destravar o resto.</p></div>
-    <div class="obj"><span class="n">nº 06</span><h3>Clean label</h3><p>Comida de verdade, menos ultraprocessados.</p></div>
+    <div class="obj"><span class="n">nº 06</span><h3>Clean label</h3><p>Comida de verdade, menos ultraprocessado.</p></div>
     <div class="obj"><span class="n">nº 07</span><h3>Jejum intermitente</h3><p>Janela alimentar com segurança e direção.</p></div>
     <div class="obj"><span class="n">nº 08</span><h3>Gestante</h3><p>Nutrição pra essa fase tão especial.</p></div>
     <div class="obj"><span class="n">nº 09</span><h3>Vegetariana</h3><p>Proteína e equilíbrio sem carne.</p></div>
     <div class="obj"><span class="n">nº 10</span><h3>Detox</h3><p>Um reset leve pra retomar o foco.</p></div>
   </div>
   <div class="dots" id="objDots" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="transparencia rv" style="max-width:640px;margin:24px auto 0"><b>✦</b> São planos estruturados e calculados por objetivo, não consulta individual. Você escolhe o seu e segue com clareza, com listas de substituição pra adaptar ao seu dia a dia.</div>
-  </div>
 </section>
 
 <section class="passos">
@@ -562,9 +627,24 @@ footer a{color:var(--ink-dark-soft)}
     <p class="eyebrow rv">simples assim</p>
     <h2 class="h2 rv">Como funciona na prática</h2>
     <div class="steps">
-      <div class="step rv"><span class="num">1</span><div><h3>Entre pro time</h3><p>Assinou, recebeu o acesso no e-mail e baixou o app. Em 5 minutos você está dentro.</p></div></div>
-      <div class="step rv"><span class="num">2</span><div><h3>Escolha seu caminho</h3><p>Plano alimentar pelo seu objetivo, treino pelo seu nível, em casa ou na academia.</p></div></div>
-      <div class="step rv"><span class="num">3</span><div><h3>Siga acompanhada</h3><p>Aulas novas toda semana, comunidade e suporte pra você nunca mais tentar sozinha.</p></div></div>
+      <div class="step rv"><span class="num">1</span><div><h3>Entre pro time</h3><p>Assinou, recebeu o acesso no e-mail e baixou o app. Em 5 minutos você tá dentro.</p></div></div>
+      <div class="step rv"><span class="num">2</span><div><h3>Escolha seu caminho</h3><p>Plano pelo seu objetivo, treino pelo seu nível, em casa ou na academia.</p></div></div>
+      <div class="step rv"><span class="num">3</span><div><h3>Siga acompanhada</h3><p>Aulas novas toda semana, comunidade e suporte pra nunca mais tentar sozinha.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="autoridade" id="paloma">
+  <div class="wrap auth-grid">
+    <div class="auth-photo rv">
+      <img src="img/paloma.svg" alt="Paloma Moraes, nutricionista e criadora do LIFE" loading="lazy">
+      <span class="tag">Paloma Moraes</span>
+    </div>
+    <div class="auth-copy">
+      <p class="eyebrow rv">quem te guia</p>
+      <h2 class="h2 rv">A Paloma vai com você o caminho todo</h2>
+      <p class="rv">Nutricionista e criadora do LIFE, a Paloma construiu o Método PLM pra mulheres cansadas de tentar sozinhas. <span class="ph">[confirmar: anos de experiência, formação/CRN e 1 frase da história dela]</span>. Hoje ela guia <strong>mais de 2.600 mulheres</strong> dentro do LIFE, todo dia, com a mesma linguagem próxima e sem neura de sempre.</p>
+      <div class="auth-selo rv"><span>nutricionista</span><span>criadora do Método PLM</span><span>+2.600 alunas</span></div>
     </div>
   </div>
 </section>
@@ -573,30 +653,42 @@ footer a{color:var(--ink-dark-soft)}
   <div class="wrap">
     <p class="eyebrow rv">time life na real</p>
     <h2 class="h2 rv">Elas pararam de tentar sozinhas</h2>
-    <p class="lead rv">São mais de 2.600 alunas ativas construindo resultado há mais de 3 anos. Transformações reais de quem entrou pro Time LIFE e seguiu no próprio ritmo.</p>
+    <p class="lead rv">Mais de 2.600 mulheres construindo resultado há mais de 3 anos, cada uma no seu ritmo.</p>
   </div>
   <!-- TODO PRODUÇÃO: substituir legendas por nome + plano seguido + 1 frase de cada aluna (com autorização arquivada). -->
   <div class="transf-track" id="transfTrack">
-    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-100.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-100.png'" width="720" height="800" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption>Transformação real · Time LIFE</figcaption></figure>
-    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-200.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-200.png'" width="720" height="800" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption>Transformação real · Time LIFE</figcaption></figure>
-    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-201.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-201.png'" width="720" height="800" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption>Transformação real · Time LIFE</figcaption></figure>
-    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-202.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-202.png'" width="720" height="800" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption>Transformação real · Time LIFE</figcaption></figure>
-    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-203.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-203.png'" width="720" height="800" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption>Transformação real · Time LIFE</figcaption></figure>
+    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-100.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-100.png'" width="720" height="800" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption><span class="ph">[nome], plano [objetivo], [tempo] de LIFE</span></figcaption></figure>
+    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-200.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-200.png'" width="720" height="800" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption><span class="ph">[nome], plano [objetivo], [tempo] de LIFE</span></figcaption></figure>
+    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-201.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-201.png'" width="720" height="800" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption><span class="ph">[nome], plano [objetivo], [tempo] de LIFE</span></figcaption></figure>
+    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-202.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-202.png'" width="720" height="800" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption><span class="ph">[nome], plano [objetivo], [tempo] de LIFE</span></figcaption></figure>
+    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-203.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-203.png'" width="720" height="800" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption><span class="ph">[nome], plano [objetivo], [tempo] de LIFE</span></figcaption></figure>
   </div>
   <div class="dots" id="transfDots" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="depoimentos">
+      <blockquote class="depo rv"><p class="ph">[depoimento real da aluna aqui, 1 a 2 frases, com autorização]</p><cite class="ph">[nome] · plano [objetivo]</cite></blockquote>
+      <blockquote class="depo rv"><p class="ph">[depoimento real da aluna aqui, 1 a 2 frases, com autorização]</p><cite class="ph">[nome] · plano [objetivo]</cite></blockquote>
+      <blockquote class="depo rv"><p class="ph">[depoimento real da aluna aqui, 1 a 2 frases, com autorização]</p><cite class="ph">[nome] · plano [objetivo]</cite></blockquote>
+      <blockquote class="depo rv"><p class="ph">[depoimento real da aluna aqui, 1 a 2 frases, com autorização]</p><cite class="ph">[nome] · plano [objetivo]</cite></blockquote>
+    </div>
+    <p class="depo-nota">Dica: print de conversa ou comentário real (WhatsApp/Instagram) converte muito bem aqui.</p>
+  </div>
 </section>
 
 <section class="preco" id="planos">
   <div class="wrap">
     <p class="eyebrow rv">escolha seu acesso</p>
-    <h2 class="h2 rv">Menos que um lanche por semana</h2>
-    <p class="lead rv">Entre pro time com o plano que faz sentido pra você, com 7 dias de garantia incondicional.</p>
+    <h2 class="h2 rv">Menos de R$ 1,64 por dia pra parar de tentar sozinha</h2>
+    <p class="lead rv">Entra pro time com 7 dias de garantia incondicional. Se sentir que não é pra você, devolvemos 100%, sem burocracia.</p>
+
+    <!-- URGÊNCIA: troque por um mecanismo REAL quando você definir (bônus com prazo, ou data-limite do 30% off). Sem prazo real, mantém a linha honesta abaixo. -->
+    <p class="urgencia rv">✦ Plano anual com <strong>30% de desconto</strong> e 7 dias de garantia</p>
 
     <div class="plans">
       <div class="plan anual rv">
         <span class="badge">plano mais vendido</span>
         <p class="tipo">Anual · acesso por 365 dias</p>
-        <p class="preco-num">12× R$ 49,90</p>
+        <p class="preco-num">12x R$ 49,90</p>
         <p class="preco-sub">no cartão, sem comprometer seu limite total</p>
         <p class="avista">ou à vista: de <s>R$ 838,80</s> por <strong>R$ 598,80</strong> (30% de desconto)</p>
         <span class="dia">sai menos de R$ 1,64 por dia</span>
@@ -608,17 +700,19 @@ footer a{color:var(--ink-dark-soft)}
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Endocrinologia e Dermatologia</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>MasterClass exclusivas</li>
         </ul>
+        <p class="card-garantia"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>7 dias de garantia. Experimentar já é o próprio anual, sem risco.</p>
         <a class="btn" data-cta="anual" href="https://chk.eduzz.com/2457306?utm_source=lp-teste&utm_content=card-anual" rel="noopener">QUERO 365 DIAS DE MUDANÇA</a>
       </div>
 
       <div class="plan mensal rv">
         <p class="tipo">Mensal · acesso por 30 dias</p>
         <p class="preco-num">R$ 69,90<small>/mês</small></p>
-        <p class="preco-sub">pra experimentar no seu ritmo · renove quando quiser</p>
+        <p class="preco-sub">Só a base do LIFE, por 30 dias. Sem os módulos exclusivos e sem o desconto do anual.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Acesso à base do LIFE por 30 dias</li>
-          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Aulas, 12 módulos, planos alimentares e comunidade</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Base do LIFE por 30 dias</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Aulas, 12 módulos, planos e comunidade</li>
         </ul>
+        <p class="mensal-nudge">A maioria escolhe o anual: sai quase pela metade do preço por mês e ainda leva os módulos exclusivos.</p>
         <a class="btn ghost" data-cta="mensal" style="width:100%" href="https://chk.eduzz.com/2457307?utm_source=lp-teste&utm_content=card-mensal" rel="noopener">começar pelo mensal</a>
       </div>
     </div>
@@ -659,7 +753,7 @@ footer a{color:var(--ink-dark-soft)}
   <div class="wrap">
     <img class="bfly rv" src="https://palomamoraesnutri.com.br/wp-content/uploads/2024/02/Simbolo-sem-fundo-Life-metodo-plm.png" alt="" width="64" height="64">
     <h2 class="rv">Daqui a 1 ano, você vai querer ter <em>começado hoje</em>.</h2>
-    <p class="rv">Vem pro Time LIFE, gata. Seu caminho já está pronto.</p>
+    <p class="rv">Vem pro Time LIFE, gata. Seu caminho já tá pronto.</p>
     <a class="btn rv" data-cta="anual" href="https://chk.eduzz.com/2457306?utm_source=lp-teste&utm_content=cta-final" rel="noopener">QUERO 365 DIAS DE MUDANÇA</a>
     <a class="alt rv" href="#planos">comparar os planos</a>
     <div class="selo-mini rv">
@@ -679,8 +773,8 @@ footer a{color:var(--ink-dark-soft)}
 </footer>
 
 <div class="sticky-cta" id="stickyCta">
-  <div class="p"><b>12× R$ 49,90</b>no plano anual</div>
-  <a class="btn" href="#planos">QUERO MEU ACESSO</a>
+  <div class="p"><b>12x R$ 49,90</b>no plano anual</div>
+  <a class="btn" data-cta="anual" href="https://chk.eduzz.com/2457306?utm_source=lp-teste&utm_content=sticky" rel="noopener">QUERO O ANUAL</a>
 </div>
 
 <script>
@@ -732,6 +826,7 @@ footer a{color:var(--ink-dark-soft)}
     window.addEventListener('resize',build);
     build();
   }
+  dots('appTrack','appDots');
   dots('objTrack','objDots');
   dots('transfTrack','transfDots');
 
