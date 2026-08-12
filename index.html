@@ -209,8 +209,10 @@ section{padding:60px 0}
 .solucao{background:var(--surface)}
 .sol-grid{display:flex;flex-direction:column;gap:32px}
 .sol-media{position:relative}
+/* sem aspect-ratio nem object-fit: a imagem manda na própria altura,
+   então ela aparece inteira, na proporção original, sem corte */
 .sol-media img{
-  width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 50%;
+  width:100%;height:auto;display:block;
   border-radius:24px;box-shadow:var(--shadow-card);background:#2a1220;
 }
 .sol-media .tag{
@@ -647,9 +649,8 @@ footer a{color:var(--ink-dark-soft)}
 <section class="solucao">
   <div class="wrap sol-grid">
     <div class="sol-media rv">
-      <img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2024/08/topo-site-pc-2.png&amp;cx=1100&amp;cy=140&amp;cw=760&amp;ch=900&amp;output=webp&amp;q=78"
-           onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2024/08/topo-site-pc-2-1024x576.png';this.style.objectPosition='100% 78%'"
-           width="760" height="900" alt="Telas do app LIFE mostrando aulas e guias de alimentação" loading="lazy">
+      <img src="img/por-dentro-do-app.webp" width="800" height="1000"
+           alt="Telas do app LIFE mostrando aulas e guias de alimentação" loading="lazy" decoding="async">
       <span class="tag">por dentro do app</span>
     </div>
     <div class="sol-copy">
