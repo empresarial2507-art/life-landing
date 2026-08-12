@@ -24,6 +24,27 @@ fbq('track','PageView');
 <noscript><img height="1" width="1" style="display:none" alt=""
 src="https://www.facebook.com/tr?id=4244623215802769&ev=PageView&noscript=1"></noscript>
 <!-- End Meta Pixel -->
+
+<!-- ===================================================================
+     SLOTS DE IMAGEM · como funciona
+     Cada espaço de foto do site espera um arquivo dentro da pasta img/.
+     - Se o arquivo existir  -> a foto aparece.
+     - Se NÃO existir        -> depende do modo (atributo data-modo no <body>):
+         data-modo="montagem"  -> mostra um retângulo tracejado com o nome
+                                  do arquivo que falta (pra você saber o que subir)
+         data-modo="live"      -> esconde o espaço vazio, como se não existisse
+     PRA PUBLICAR PRO PÚBLICO: troque montagem por live lá embaixo no <body>.
+     =================================================================== -->
+<script>
+function slotVazio(img){
+  var s = img.parentNode;
+  s.classList.add('vazio');
+  if(document.body && document.body.getAttribute('data-modo') === 'live'){
+    var card = s.closest('.mod,.aula,.print') || s;
+    card.setAttribute('hidden','');
+  }
+}
+</script>
 <style>
 :root{
   --pink:#D6336C; --pink-deep:#A61E4D; --pink-soft:#F06595;
@@ -476,10 +497,113 @@ footer a{color:var(--ink-dark-soft)}
 .card-garantia{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--ink-soft);margin:-8px 0 16px}
 .card-garantia svg{flex:0 0 16px;width:16px;height:16px;stroke:var(--green);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
 .mensal-nudge{font-size:13px;color:var(--ink-dark-soft);background:rgba(214,51,108,.12);border-radius:12px;padding:12px 14px;margin-bottom:16px;line-height:1.4}
+
+/* ===================================================================
+   v6 · CAMADA VISUAL (mobile-first)
+   SLOTS DE IMAGEM: cada .slot espera um arquivo dentro de img/.
+   Se o arquivo existir, a imagem aparece. Se não existir, o slot vira
+   um retângulo tracejado mostrando o NOME DO ARQUIVO que falta subir.
+   Pra preencher: suba o arquivo em img/ com esse nome exato. Só isso.
+   =================================================================== */
+[hidden]{display:none!important}
+.slot{position:relative;display:block;overflow:hidden;border-radius:16px;background:var(--rose-soft)}
+.slot img{width:100%;height:100%;object-fit:cover;display:block}
+.slot.vazio{
+  display:flex;align-items:center;justify-content:center;
+  border:1.5px dashed rgba(214,51,108,.45);
+  background:repeating-linear-gradient(45deg,rgba(214,51,108,.05) 0 10px,transparent 10px 20px),var(--rose-soft);
+}
+.slot.vazio img{display:none}
+.slot.vazio::after{
+  content:attr(data-hint);white-space:pre-line;text-align:center;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:10.5px;line-height:1.6;color:var(--pink-deep);
+  padding:12px;max-width:94%;opacity:.85;
+}
+/* slots sobre fundo escuro */
+.mods .slot{background:rgba(255,255,255,.06)}
+.mods .slot.vazio{
+  border-color:rgba(240,101,149,.42);
+  background:repeating-linear-gradient(45deg,rgba(240,101,149,.07) 0 10px,transparent 10px 20px),rgba(255,255,255,.04);
+}
+.mods .slot.vazio::after{color:var(--pink-soft)}
+
+/* --- capas dos módulos --- */
+.mods{background:var(--plum-dark);position:relative;overflow:hidden;padding-top:0}
+.mods::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(44% 38% at 92% 12%,rgba(214,51,108,.12),transparent 70%);
+}
+.mods>*{position:relative;z-index:2}
+.mods .eyebrow{color:var(--pink-soft)}
+.mods .h2{color:#fff}
+.mods .lead{color:var(--ink-dark-soft)}
+.mod-track{
+  display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:30px var(--edge) 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.mod-track::-webkit-scrollbar{display:none}
+.mod{flex:0 0 158px;scroll-snap-align:start;scroll-margin-left:var(--edge)}
+.mod .slot{aspect-ratio:4/5;border-radius:18px}
+.mod h3{font-family:var(--font-b);font-weight:800;font-size:14.5px;color:#fff;margin-top:12px;line-height:1.25}
+.mod p{font-size:12.5px;color:var(--ink-dark-soft);line-height:1.4;margin-top:3px}
+.mod .exc{
+  display:inline-block;margin-top:8px;font-size:9px;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--pink-soft);border:1px solid rgba(240,101,149,.4);
+  border-radius:999px;padding:3px 9px;
+}
+@media(min-width:1024px){
+  .mod-track{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));
+    overflow:visible;max-width:1200px;margin:0 auto;padding:34px var(--gutter) 0;gap:18px}
+  .mod{flex:none}
+  #modDots{display:none}
+}
+
+/* --- amostra das aulas (thumbs 16:9) --- */
+.aulas{background:var(--surface)}
+.aula-grid{display:grid;gap:18px;margin-top:30px}
+.aula{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow-card)}
+.aula .slot{aspect-ratio:16/9;border-radius:0}
+.aula .play{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:48px;height:48px;border-radius:50%;background:rgba(214,51,108,.92);
+  display:flex;align-items:center;justify-content:center;pointer-events:none;
+  box-shadow:0 8px 22px rgba(61,27,44,.35);
+}
+.aula .play svg{width:15px;height:15px;fill:#fff;margin-left:3px}
+.slot.vazio .play{display:none}
+.aula .cap{padding:14px 16px 16px}
+.aula .cap b{display:block;font-family:var(--font-b);font-weight:800;font-size:15px;margin-bottom:2px}
+.aula .cap span{font-size:13px;color:var(--ink-soft)}
+@media(min-width:760px){.aula-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1100px){.aula-grid{grid-template-columns:repeat(4,1fr);gap:16px}}
+
+/* --- prints de feedback das alunas --- */
+.prints-track{
+  display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:26px var(--edge) 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.prints-track::-webkit-scrollbar{display:none}
+.print{
+  flex:0 0 72%;max-width:300px;scroll-snap-align:start;scroll-margin-left:var(--edge);
+  background:var(--surface);border:1px solid var(--line);border-radius:18px;
+  padding:9px 9px 2px;box-shadow:var(--shadow-card);
+}
+.print .slot{aspect-ratio:9/14;border-radius:11px;background:#F4EAEE}
+.print .slot img{object-fit:contain;background:#fff}
+.print figcaption{font-size:11.5px;font-weight:700;color:var(--ink-soft);text-align:center;padding:11px 4px 10px}
+@media(min-width:900px){.print{flex:0 0 244px}}
+
+/* --- faixa extra de fotos da Paloma --- */
+.auth-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
+.auth-strip .slot{aspect-ratio:1/1;border-radius:14px}
+.auth-strip .slot.vazio::after{font-size:9px;padding:8px}
+.auth-legenda{font-size:12.5px;color:var(--ink-soft);text-align:center;margin-top:10px;opacity:.85}
 </style>
 <noscript><style>.rv{opacity:1;transform:none}.feat .ic{opacity:1;transform:none}</style></noscript>
 </head>
-<body>
+<!-- data-modo: "montagem" mostra os espaços de foto vazios · "live" esconde -->
+<body data-modo="montagem">
 
 <header class="hero">
   <div class="wrap hero-inner">
@@ -576,6 +700,33 @@ footer a{color:var(--ink-dark-soft)}
   <div class="dots" id="appDots" aria-hidden="true"></div>
 </section>
 
+<!-- ===== AMOSTRA DAS AULAS · 4 slots 16:9 (img/aula-01..04.webp) ===== -->
+<section class="aulas" id="aulas">
+  <div class="wrap">
+    <p class="eyebrow rv">as aulas por dentro</p>
+    <h2 class="h2 rv">Uma amostra do que você assiste lá dentro</h2>
+    <p class="lead rv">Aula nova toda semana, além de mais de 100 já gravadas esperando por você.</p>
+    <div class="aula-grid">
+      <article class="aula rv">
+        <span class="slot" data-hint="img/aula-01.webp&#10;16:9 · 1280×720"><img src="img/aula-01.webp" alt="Aula do LIFE sobre nutrição" loading="lazy" decoding="async" width="1280" height="720" onerror="slotVazio(this)"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
+        <div class="cap"><b class="ph">[título da aula]</b><span>Nutrição</span></div>
+      </article>
+      <article class="aula rv">
+        <span class="slot" data-hint="img/aula-02.webp&#10;16:9 · 1280×720"><img src="img/aula-02.webp" alt="Aula do LIFE sobre treino" loading="lazy" decoding="async" width="1280" height="720" onerror="slotVazio(this)"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
+        <div class="cap"><b class="ph">[título da aula]</b><span>Treino</span></div>
+      </article>
+      <article class="aula rv">
+        <span class="slot" data-hint="img/aula-03.webp&#10;16:9 · 1280×720"><img src="img/aula-03.webp" alt="Aula do LIFE sobre saúde da mulher" loading="lazy" decoding="async" width="1280" height="720" onerror="slotVazio(this)"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
+        <div class="cap"><b class="ph">[título da aula]</b><span>Saúde da mulher</span></div>
+      </article>
+      <article class="aula rv">
+        <span class="slot" data-hint="img/aula-04.webp&#10;16:9 · 1280×720"><img src="img/aula-04.webp" alt="Aula do LIFE sobre rotina e mente" loading="lazy" decoding="async" width="1280" height="720" onerror="slotVazio(this)"><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></span>
+        <div class="cap"><b class="ph">[título da aula]</b><span>Rotina e mente</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="dentro" id="dentro">
   <div class="wrap">
     <p class="eyebrow rv">o que te espera lá dentro</p>
@@ -608,6 +759,35 @@ footer a{color:var(--ink-dark-soft)}
       </div>
     </div>
   </div>
+</section>
+
+<!-- ===== CAPAS DOS MÓDULOS · 16 slots (img/modulo-01..16.webp, 4:5 · 800×1000) ===== -->
+<section class="mods" id="modulos">
+  <div class="wrap">
+    <p class="eyebrow rv">os módulos</p>
+    <h2 class="h2 rv">Cada tema no seu lugar, do jeito que você precisa</h2>
+    <p class="lead rv">São 12 módulos na base do LIFE, mais os exclusivos que entram no plano anual. Você abre o app e já sabe onde clicar.</p>
+    <p class="lead rv" style="margin-top:8px"><span class="ph">[confirmar: nome e descrição exatos de cada módulo, e quais são exclusivos do anual]</span></p>
+  </div>
+  <div class="mod-track" id="modTrack">
+    <article class="mod"><span class="slot" data-hint="img/modulo-01.webp&#10;4:5 · 800×1000"><img src="img/modulo-01.webp" alt="Capa do módulo de Nutrição" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Nutrição</h3><p>Planos por objetivo, cardápios e substituições.</p></article>
+    <article class="mod"><span class="slot" data-hint="img/modulo-02.webp&#10;4:5 · 800×1000"><img src="img/modulo-02.webp" alt="Capa do módulo de Treinos" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Treinos</h3><p>Por nível, em casa ou na academia.</p></article>
+    <article class="mod"><span class="slot" data-hint="img/modulo-03.webp&#10;4:5 · 800×1000"><img src="img/modulo-03.webp" alt="Capa do módulo de Saúde da mulher" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Saúde da mulher</h3><p>Ciclo, hormônios e energia no dia a dia.</p></article>
+    <article class="mod"><span class="slot" data-hint="img/modulo-04.webp&#10;4:5 · 800×1000"><img src="img/modulo-04.webp" alt="Capa do módulo de Gestão de peso" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Gestão de peso</h3><p>O que fazer quando a balança trava.</p></article>
+    <article class="mod"><span class="slot" data-hint="img/modulo-05.webp&#10;4:5 · 800×1000"><img src="img/modulo-05.webp" alt="Capa do módulo de Beleza e autoestima" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Beleza e autoestima</h3><p>Pele, cabelo, unhas e como você se enxerga.</p></article>
+    <article class="mod"><span class="slot" data-hint="img/modulo-06.webp&#10;4:5 · 800×1000"><img src="img/modulo-06.webp" alt="Capa do módulo de Saúde intestinal" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Saúde intestinal</h3><p>Intestino em dia pra destravar o resto.</p></article>
+    <article class="mod"><span class="slot" data-hint="img/modulo-07.webp&#10;4:5 · 800×1000"><img src="img/modulo-07.webp" alt="Capa do módulo de Suplementação" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Suplementação</h3><p>O que serve de verdade e o que é enrolação.</p></article>
+    <article class="mod"><span class="slot" data-hint="img/modulo-08.webp&#10;4:5 · 800×1000"><img src="img/modulo-08.webp" alt="Capa do módulo de Sono e rotina" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Sono e rotina</h3><p>Dormir bem muda todo o resto.</p></article>
+    <article class="mod"><span class="slot" data-hint="img/modulo-09.webp&#10;4:5 · 800×1000"><img src="img/modulo-09.webp" alt="Capa de módulo do LIFE" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3 class="ph">[módulo 09]</h3><p class="ph">[descrição]</p></article>
+    <article class="mod"><span class="slot" data-hint="img/modulo-10.webp&#10;4:5 · 800×1000"><img src="img/modulo-10.webp" alt="Capa de módulo do LIFE" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3 class="ph">[módulo 10]</h3><p class="ph">[descrição]</p></article>
+    <article class="mod"><span class="slot" data-hint="img/modulo-11.webp&#10;4:5 · 800×1000"><img src="img/modulo-11.webp" alt="Capa de módulo do LIFE" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3 class="ph">[módulo 11]</h3><p class="ph">[descrição]</p></article>
+    <article class="mod"><span class="slot" data-hint="img/modulo-12.webp&#10;4:5 · 800×1000"><img src="img/modulo-12.webp" alt="Capa de módulo do LIFE" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3 class="ph">[módulo 12]</h3><p class="ph">[descrição]</p></article>
+    <article class="mod"><span class="slot" data-hint="img/modulo-13.webp&#10;4:5 · 800×1000"><img src="img/modulo-13.webp" alt="Capa do módulo Shape Slim" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Shape Slim</h3><p class="ph">[descrição]</p><span class="exc">exclusivo anual</span></article>
+    <article class="mod"><span class="slot" data-hint="img/modulo-14.webp&#10;4:5 · 800×1000"><img src="img/modulo-14.webp" alt="Capa do módulo de Corrida" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Corrida</h3><p class="ph">[descrição]</p><span class="exc">exclusivo anual</span></article>
+    <article class="mod"><span class="slot" data-hint="img/modulo-15.webp&#10;4:5 · 800×1000"><img src="img/modulo-15.webp" alt="Capa do módulo de Yoga" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Yoga</h3><p class="ph">[descrição]</p><span class="exc">exclusivo anual</span></article>
+    <article class="mod"><span class="slot" data-hint="img/modulo-16.webp&#10;4:5 · 800×1000"><img src="img/modulo-16.webp" alt="Capa do módulo de Pilates" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Pilates</h3><p class="ph">[descrição]</p><span class="exc">exclusivo anual</span></article>
+  </div>
+  <div class="dots" id="modDots" aria-hidden="true"></div>
 </section>
 
 <section class="objs">
@@ -654,6 +834,13 @@ footer a{color:var(--ink-dark-soft)}
       <h2 class="h2 rv">A Paloma vai com você o caminho todo</h2>
       <p class="rv">Nutricionista e criadora do LIFE, a Paloma construiu o Método PLM pra mulheres cansadas de tentar sozinhas. <span class="ph">[confirmar: anos de experiência, formação/CRN e 1 frase da história dela]</span>. Hoje ela guia <strong>mais de 2.600 mulheres</strong> dentro do LIFE, todo dia, com a mesma linguagem próxima e sem neura de sempre.</p>
       <div class="auth-selo rv"><span>nutricionista</span><span>criadora do Método PLM</span><span>+2.600 alunas</span></div>
+      <!-- ===== FOTOS EXTRAS DA PALOMA · img/paloma-02..04.webp (1:1 · 800×800) ===== -->
+      <div class="auth-strip rv">
+        <span class="slot" data-hint="img/paloma-02.webp&#10;1:1"><img src="img/paloma-02.webp" alt="Paloma Moraes gravando conteúdo para o LIFE" loading="lazy" decoding="async" width="800" height="800" onerror="slotVazio(this)"></span>
+        <span class="slot" data-hint="img/paloma-03.webp&#10;1:1"><img src="img/paloma-03.webp" alt="Paloma Moraes em atendimento" loading="lazy" decoding="async" width="800" height="800" onerror="slotVazio(this)"></span>
+        <span class="slot" data-hint="img/paloma-04.webp&#10;1:1"><img src="img/paloma-04.webp" alt="Paloma Moraes com alunas do Time LIFE" loading="lazy" decoding="async" width="800" height="800" onerror="slotVazio(this)"></span>
+      </div>
+      <p class="auth-legenda rv">Bastidores: gravação das aulas, atendimento e encontros com o Time LIFE.</p>
     </div>
   </div>
 </section>
@@ -673,6 +860,24 @@ footer a{color:var(--ink-dark-soft)}
     <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-203.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-203.png'" width="300" height="400" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption><span class="ph">[nome], plano [objetivo], [tempo] de LIFE</span></figcaption></figure>
   </div>
   <div class="dots" id="transfDots" aria-hidden="true"></div>
+
+  <!-- ===== PRINTS DE FEEDBACK · 6 slots (img/print-01..06.webp, 9:16 · 720×1280) =====
+       Print de WhatsApp / comentário do Instagram / mensagem na comunidade.
+       Corte o print só na parte que interessa e apague nome e foto de quem não autorizou. -->
+  <div class="wrap" id="printsHead">
+    <h3 class="h2 rv" style="font-size:clamp(22px,4vw,30px);margin-top:14px">O que elas mandam pra gente</h3>
+    <p class="lead rv">Mensagens reais das alunas dentro da comunidade e no direct.</p>
+  </div>
+  <div class="prints-track" id="printsTrack">
+    <figure class="print"><span class="slot" data-hint="img/print-01.webp&#10;9:16"><img src="img/print-01.webp" alt="Print de mensagem de aluna do LIFE" loading="lazy" decoding="async" width="720" height="1280" onerror="slotVazio(this)"></span><figcaption class="ph">[nome] · [tempo] de LIFE</figcaption></figure>
+    <figure class="print"><span class="slot" data-hint="img/print-02.webp&#10;9:16"><img src="img/print-02.webp" alt="Print de mensagem de aluna do LIFE" loading="lazy" decoding="async" width="720" height="1280" onerror="slotVazio(this)"></span><figcaption class="ph">[nome] · [tempo] de LIFE</figcaption></figure>
+    <figure class="print"><span class="slot" data-hint="img/print-03.webp&#10;9:16"><img src="img/print-03.webp" alt="Print de mensagem de aluna do LIFE" loading="lazy" decoding="async" width="720" height="1280" onerror="slotVazio(this)"></span><figcaption class="ph">[nome] · [tempo] de LIFE</figcaption></figure>
+    <figure class="print"><span class="slot" data-hint="img/print-04.webp&#10;9:16"><img src="img/print-04.webp" alt="Print de mensagem de aluna do LIFE" loading="lazy" decoding="async" width="720" height="1280" onerror="slotVazio(this)"></span><figcaption class="ph">[nome] · [tempo] de LIFE</figcaption></figure>
+    <figure class="print"><span class="slot" data-hint="img/print-05.webp&#10;9:16"><img src="img/print-05.webp" alt="Print de mensagem de aluna do LIFE" loading="lazy" decoding="async" width="720" height="1280" onerror="slotVazio(this)"></span><figcaption class="ph">[nome] · [tempo] de LIFE</figcaption></figure>
+    <figure class="print"><span class="slot" data-hint="img/print-06.webp&#10;9:16"><img src="img/print-06.webp" alt="Print de mensagem de aluna do LIFE" loading="lazy" decoding="async" width="720" height="1280" onerror="slotVazio(this)"></span><figcaption class="ph">[nome] · [tempo] de LIFE</figcaption></figure>
+  </div>
+  <div class="dots" id="printsDots" aria-hidden="true"></div>
+
   <div class="wrap">
     <div class="depoimentos">
       <blockquote class="depo rv"><p class="ph">[depoimento real da aluna aqui, 1 a 2 frases, com autorização]</p><cite class="ph">[nome] · plano [objetivo]</cite></blockquote>
@@ -680,7 +885,7 @@ footer a{color:var(--ink-dark-soft)}
       <blockquote class="depo rv"><p class="ph">[depoimento real da aluna aqui, 1 a 2 frases, com autorização]</p><cite class="ph">[nome] · plano [objetivo]</cite></blockquote>
       <blockquote class="depo rv"><p class="ph">[depoimento real da aluna aqui, 1 a 2 frases, com autorização]</p><cite class="ph">[nome] · plano [objetivo]</cite></blockquote>
     </div>
-    <p class="depo-nota">Dica: print de conversa ou comentário real (WhatsApp/Instagram) converte muito bem aqui.</p>
+    <p class="depo-nota">Depoimentos em texto complementam os prints acima. Use os dois: o print prova, o texto explica.</p>
   </div>
 </section>
 
@@ -838,6 +1043,30 @@ footer a{color:var(--ink-dark-soft)}
   dots('appTrack','appDots');
   dots('objTrack','objDots');
   dots('transfTrack','transfDots');
+  dots('modTrack','modDots');
+  dots('printsTrack','printsDots');
+
+  // No modo "live", se um bloco de fotos ficou 100% vazio, o bloco inteiro some
+  // (em vez de mostrar um título com nada embaixo).
+  window.addEventListener('load',function(){
+    if(document.body.getAttribute('data-modo')!=='live') return;
+    function vazioTotal(box,sel){ return box && box.querySelectorAll(sel+':not([hidden])').length===0; }
+    function some(){ [].slice.call(arguments).forEach(function(el){ if(el) el.setAttribute('hidden',''); }); }
+
+    var mods=document.getElementById('modulos');
+    if(vazioTotal(mods,'.mod')) some(mods);
+
+    var aulas=document.getElementById('aulas');
+    if(vazioTotal(aulas,'.aula')) some(aulas);
+
+    var pt=document.getElementById('printsTrack');
+    if(vazioTotal(pt,'.print')) some(document.getElementById('printsHead'),pt,document.getElementById('printsDots'));
+
+    var strip=document.querySelector('.auth-strip');
+    if(strip && strip.querySelectorAll('.slot:not(.vazio)').length===0){
+      some(strip,document.querySelector('.auth-legenda'));
+    }
+  });
 
   document.querySelectorAll('[data-count]').forEach(function(counter){
     if(reduce) return;
