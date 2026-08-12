@@ -9,7 +9,6 @@
 <link rel="icon" type="image/png" href="https://palomamoraesnutri.com.br/wp-content/uploads/2024/03/cropped-Logotipo-principal-sem-fundo-Life-metodo-plm-192x192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://images.weserv.nl">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400;1,600&family=Figtree:wght@400;700;800&display=swap" rel="stylesheet">
 <!-- Meta Pixel -->
 <script>
@@ -335,7 +334,9 @@ section{padding:60px 0}
   border-radius:var(--radius-card);overflow:hidden;background:var(--surface);
   border:1px solid var(--line);box-shadow:var(--shadow-card);
 }
-.transf img{width:100%;aspect-ratio:9/10;object-fit:cover;background:var(--rose-soft)}
+/* 1:1 porque as colagens de antes e depois sao quadradas: qualquer corte
+   lateral comeria uma das duas fotos */
+.transf img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;background:var(--rose-soft)}
 .transf figcaption{
   display:flex;align-items:center;gap:8px;
   padding:14px 18px;font-size:13.5px;font-weight:700;color:var(--pink-deep);
@@ -482,7 +483,7 @@ footer a{color:var(--ink-dark-soft)}
 .autoridade{background:var(--surface)}
 .auth-grid{display:flex;flex-direction:column;gap:28px}
 .auth-photo{position:relative;flex:0 0 auto;width:100%;max-width:min(80%,300px);margin:0 auto}
-.auth-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px;box-shadow:var(--shadow-card);background:#3D1B2C}
+.auth-photo img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:20px;box-shadow:var(--shadow-card);background:#3D1B2C}
 .auth-photo .tag{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.94);color:var(--pink-deep);font-size:12px;font-weight:800;letter-spacing:.1em;border-radius:999px;padding:8px 16px}
 .auth-copy p{color:var(--ink-soft);margin-bottom:18px}
 .auth-copy p strong{color:var(--ink)}
@@ -801,7 +802,7 @@ footer a{color:var(--ink-dark-soft)}
 <section class="autoridade" id="paloma">
   <div class="wrap auth-grid">
     <div class="auth-photo rv">
-      <img src="img/paloma.webp" alt="Paloma Moraes, nutricionista e criadora do LIFE" loading="lazy" width="300" height="400">
+      <img src="img/paloma.webp" alt="Paloma Moraes, nutricionista e criadora do LIFE" loading="lazy" width="800" height="1000">
       <span class="tag">Paloma Moraes</span>
     </div>
     <div class="auth-copy">
@@ -826,13 +827,14 @@ footer a{color:var(--ink-dark-soft)}
     <h2 class="h2 rv">Elas pararam de tentar sozinhas</h2>
     <p class="lead rv">Mais de 2.600 mulheres construindo resultado há mais de 3 anos, cada uma no seu ritmo.</p>
   </div>
-  <!-- TODO PRODUÇÃO: substituir legendas por nome + plano seguido + 1 frase de cada aluna (com autorização arquivada). -->
   <div class="transf-track" id="transfTrack">
-    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-100.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-100.png'" width="300" height="400" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption><span class="ph">[nome], plano [objetivo], [tempo] de LIFE</span></figcaption></figure>
-    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-200.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-200.png'" width="300" height="400" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption><span class="ph">[nome], plano [objetivo], [tempo] de LIFE</span></figcaption></figure>
-    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-201.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-201.png'" width="300" height="400" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption><span class="ph">[nome], plano [objetivo], [tempo] de LIFE</span></figcaption></figure>
-    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-202.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-202.png'" width="300" height="400" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption><span class="ph">[nome], plano [objetivo], [tempo] de LIFE</span></figcaption></figure>
-    <figure class="transf"><img src="https://images.weserv.nl/?url=palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-203.png&amp;w=720&amp;h=800&amp;fit=cover&amp;output=webp&amp;q=72" onerror="this.onerror=null;this.src='https://palomamoraesnutri.com.br/wp-content/uploads/2025/09/Prancheta-203.png'" width="300" height="400" alt="Antes e depois de aluna do Time LIFE" loading="lazy"><figcaption><span class="ph">[nome], plano [objetivo], [tempo] de LIFE</span></figcaption></figure>
+    <figure class="transf"><img src="img/transf-01.webp" width="900" height="900" alt="Mensagem de aluna do Time LIFE contando o resultado" loading="lazy" decoding="async"><figcaption>BORAAAA!!</figcaption></figure>
+    <figure class="transf"><img src="img/transf-02.webp" width="900" height="900" alt="Mensagem de aluna do Time LIFE contando o resultado" loading="lazy" decoding="async"><figcaption>Tá vendo aí, gata?</figcaption></figure>
+    <figure class="transf"><img src="img/transf-03.webp" width="900" height="900" alt="Mensagem de aluna do Time LIFE contando o resultado" loading="lazy" decoding="async"><figcaption>Você também podeeee!!</figcaption></figure>
+    <figure class="transf"><img src="img/transf-04.webp" width="900" height="900" alt="Mensagem de aluna do Time LIFE contando o resultado" loading="lazy" decoding="async"><figcaption>Começou igualzinho você</figcaption></figure>
+    <figure class="transf"><img src="img/transf-05.webp" width="900" height="900" alt="Mensagem de aluna do Time LIFE contando o resultado" loading="lazy" decoding="async"><figcaption>É constância, não sorte</figcaption></figure>
+    <figure class="transf"><img src="img/transf-06.webp" width="900" height="900" alt="Mensagem de aluna do Time LIFE contando o resultado" loading="lazy" decoding="async"><figcaption>Olha esse resultado!!</figcaption></figure>
+    <figure class="transf"><img src="img/transf-07.webp" width="900" height="900" alt="Mensagem de aluna do Time LIFE contando o resultado" loading="lazy" decoding="async"><figcaption>Bora ser a próxima?</figcaption></figure>
   </div>
   <div class="dots" id="transfDots" aria-hidden="true"></div>
 
