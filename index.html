@@ -144,7 +144,15 @@ h1,h2,h3{font-family:var(--font-d);line-height:1.1;text-wrap:balance;font-weight
 .hero-photo{position:relative;display:none;justify-content:center}
 .hero-photo::after{display:none}
 .hero-media-mobile{display:flex;justify-content:center;margin:22px 0 26px}
-.hero-media-mobile img{display:block;width:auto;max-width:min(92%,380px);height:auto;filter:drop-shadow(0 22px 44px rgba(0,0,0,.5))}
+
+/* ícone animado do hero: quadrado, o Lottie desenha um <svg> dentro do .hero-icon */
+.hero-icon{
+  position:relative;width:min(62%,240px);aspect-ratio:1/1;margin:0 auto;
+  filter:drop-shadow(0 20px 44px rgba(0,0,0,.55));
+}
+.hero-icon svg,.hero-icon img{display:block;width:100%;height:100%}
+.hero-icon-poster{position:absolute;inset:0;transition:opacity .35s var(--ease-out)}
+.hero-icon.rodando .hero-icon-poster{opacity:0;pointer-events:none}
 .hero-copy{padding:6px 0 22px;text-align:center}
 .hero-copy .eyebrow{color:var(--pink-soft)}
 .hero-copy h1{font-size:clamp(37px,9.6vw,64px);color:#fff;margin-bottom:18px;letter-spacing:-.01em}
@@ -178,7 +186,7 @@ h1,h2,h3{font-family:var(--font-d);line-height:1.1;text-wrap:balance;font-weight
   .hero-copy .sub{margin-left:0;margin-right:0}
   .hero-photo{display:flex;flex:1 1 50%;margin:0;order:2}
   .hero-media-mobile{display:none}
-  .hero-photo img{max-width:100%;max-height:88vh;border-radius:0}
+  .hero-photo .hero-icon{width:min(100%,380px)}
   .hero-photo::after{display:none}
   .hero-stats{max-width:520px}
   .hero-stats div{text-align:left}
@@ -593,11 +601,13 @@ footer a{color:var(--ink-dark-soft)}
           <span class="hero-anim d3" style="display:block"><em>sozinha<svg viewBox="0 0 300 24" aria-hidden="true"><path d="M4 16 C 60 6, 150 20, 296 10"/></svg></em>.</span>
           <span class="hero-anim d4" style="display:block">Seu corpo precisa de direção.</span>
         </h1>
+        <!-- Ícone animado do app (Lottie). O <img> é o 1º quadro: pinta na hora,
+             fica no lugar enquanto a animação carrega e é o que aparece pra quem
+             tem "reduzir movimento" ligado ou está sem JavaScript. -->
         <div class="hero-media-mobile hero-anim d4">
-          <picture>
-            <source type="image/webp" srcset="img/mockup-iphone-hero-2.webp">
-            <img src="img/mockup-iphone-hero-2.png" alt="App LIFE aberto no celular" fetchpriority="high" width="2420" height="3000">
-          </picture>
+          <div class="hero-icon" data-lottie="img/hero-icon.json">
+            <img class="hero-icon-poster" src="img/hero-icon-poster.webp" alt="Ícone do app LIFE, por Paloma Moraes" fetchpriority="high" width="600" height="600">
+          </div>
         </div>
         <p class="sub hero-anim d5">Aulas, treinos por nível e <strong>planos alimentares calculados por objetivo</strong>. Um caminho pronto pra você organizar alimentação, treino e rotina, com comunidade e o Time LIFE do seu lado.</p>
         <div class="hero-ctas hero-anim d6">
@@ -612,10 +622,9 @@ footer a{color:var(--ink-dark-soft)}
         </div>
       </div>
       <div class="hero-photo hero-anim d3">
-        <picture>
-          <source type="image/webp" srcset="img/mockup-iphone-hero-2.webp">
-          <img src="img/mockup-iphone-hero-2.png" alt="App LIFE aberto no celular" fetchpriority="high" width="2420" height="3000">
-        </picture>
+        <div class="hero-icon" data-lottie="img/hero-icon.json">
+          <img class="hero-icon-poster" src="img/hero-icon-poster.webp" alt="Ícone do app LIFE, por Paloma Moraes" fetchpriority="high" width="600" height="600">
+        </div>
       </div>
     </div>
   </div>
@@ -1124,6 +1133,57 @@ footer a{color:var(--ink-dark-soft)}
       some(strip,document.querySelector('.auth-legenda'));
     }
   });
+
+  /* ---------- ícone animado do hero (Lottie) ----------
+     Existem dois contêineres (um do layout mobile, outro do desktop) e só um
+     fica visível por vez, então a animação é montada só no que está à vista
+     e remontada se a pessoa girar o celular ou redimensionar a janela.
+     O player só é baixado se a animação for mesmo rodar: quem tem "reduzir
+     movimento" ligado fica com o 1º quadro estático e não paga os 45 KB. */
+  (function iconeHero(){
+    if(reduce) return;
+    var lib = null, atual = null, anim = null;
+
+    function carregarPlayer(){
+      if(lib) return lib;
+      lib = new Promise(function(ok, erro){
+        var s = document.createElement('script');
+        s.src = 'js/lottie_light.min.js';
+        s.onload = ok;
+        s.onerror = erro;          // sem player, o poster simplesmente continua
+        document.head.appendChild(s);
+      });
+      return lib;
+    }
+
+    function aparente(){
+      var todos = document.querySelectorAll('.hero-icon');
+      for(var i=0;i<todos.length;i++){
+        if(todos[i].offsetParent !== null) return todos[i];   // o outro está display:none
+      }
+      return null;
+    }
+
+    function montar(){
+      var alvo = aparente();
+      if(!alvo || alvo === atual) return;
+      if(anim){ anim.destroy(); anim = null; }
+      if(atual) atual.classList.remove('rodando');
+      atual = alvo;
+      carregarPlayer().then(function(){
+        if(atual !== alvo || !window.lottie) return;          // trocou de breakpoint no meio
+        anim = window.lottie.loadAnimation({
+          container: alvo, renderer: 'svg', loop: true, autoplay: true,
+          path: alvo.getAttribute('data-lottie')
+        });
+        // só esconde o poster quando o 1º quadro já está desenhado, senão pisca
+        anim.addEventListener('DOMLoaded', function(){ alvo.classList.add('rodando'); });
+      }).catch(function(){});
+    }
+
+    montar();
+    window.addEventListener('resize', montar);
+  })();
 
   document.querySelectorAll('[data-count]').forEach(function(counter){
     if(reduce) return;
