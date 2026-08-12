@@ -40,7 +40,7 @@ function slotVazio(img){
   var s = img.parentNode;
   s.classList.add('vazio');
   if(document.body && document.body.getAttribute('data-modo') === 'live'){
-    var card = s.closest('.mod,.aula,.print') || s;
+    var card = s.closest('.aula,.print') || s;
     card.setAttribute('hidden','');
   }
 }
@@ -470,7 +470,7 @@ footer a{color:var(--ink-dark-soft)}
 /* autoridade da Paloma */
 .autoridade{background:var(--surface)}
 .auth-grid{display:flex;flex-direction:column;gap:28px}
-.auth-photo{position:relative;flex:0 0 auto;width:100%;max-width:min(58%,240px);margin:0 auto}
+.auth-photo{position:relative;flex:0 0 auto;width:100%;max-width:min(80%,300px);margin:0 auto}
 .auth-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px;box-shadow:var(--shadow-card);background:#3D1B2C}
 .auth-photo .tag{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.94);color:var(--pink-deep);font-size:12px;font-weight:800;letter-spacing:.1em;border-radius:999px;padding:8px 16px}
 .auth-copy p{color:var(--ink-soft);margin-bottom:18px}
@@ -520,44 +520,7 @@ footer a{color:var(--ink-dark-soft)}
   font-size:10.5px;line-height:1.6;color:var(--pink-deep);
   padding:12px;max-width:94%;opacity:.85;
 }
-/* slots sobre fundo escuro */
-.mods .slot{background:rgba(255,255,255,.06)}
-.mods .slot.vazio{
-  border-color:rgba(240,101,149,.42);
-  background:repeating-linear-gradient(45deg,rgba(240,101,149,.07) 0 10px,transparent 10px 20px),rgba(255,255,255,.04);
-}
-.mods .slot.vazio::after{color:var(--pink-soft)}
 
-/* --- capas dos módulos --- */
-.mods{background:var(--plum-dark);position:relative;overflow:hidden;padding-top:0}
-.mods::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(44% 38% at 92% 12%,rgba(214,51,108,.12),transparent 70%);
-}
-.mods>*{position:relative;z-index:2}
-.mods .eyebrow{color:var(--pink-soft)}
-.mods .h2{color:#fff}
-.mods .lead{color:var(--ink-dark-soft)}
-.mod-track{
-  display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
-  padding:30px var(--edge) 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch;
-}
-.mod-track::-webkit-scrollbar{display:none}
-.mod{flex:0 0 158px;scroll-snap-align:start;scroll-margin-left:var(--edge)}
-.mod .slot{aspect-ratio:4/5;border-radius:18px}
-.mod h3{font-family:var(--font-b);font-weight:800;font-size:14.5px;color:#fff;margin-top:12px;line-height:1.25}
-.mod p{font-size:12.5px;color:var(--ink-dark-soft);line-height:1.4;margin-top:3px}
-.mod .exc{
-  display:inline-block;margin-top:8px;font-size:9px;font-weight:800;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--pink-soft);border:1px solid rgba(240,101,149,.4);
-  border-radius:999px;padding:3px 9px;
-}
-@media(min-width:1024px){
-  .mod-track{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));
-    overflow:visible;max-width:1200px;margin:0 auto;padding:34px var(--gutter) 0;gap:18px}
-  .mod{flex:none}
-  #modDots{display:none}
-}
 
 /* --- amostra das aulas (thumbs 16:9) --- */
 .aulas{background:var(--surface)}
@@ -599,6 +562,13 @@ footer a{color:var(--ink-dark-soft)}
 .auth-strip .slot{aspect-ratio:1/1;border-radius:14px}
 .auth-strip .slot.vazio::after{font-size:9px;padding:8px}
 .auth-legenda{font-size:12.5px;color:var(--ink-soft);text-align:center;margin-top:10px;opacity:.85}
+
+/* --- carrossel automático (só no mobile, ligado pelo JS) ---
+   Enquanto anda sozinho o scroll-snap sai do caminho, senão ele puxa
+   os cards de volta e o movimento fica aos trancos. O dedo continua
+   funcionando: ao tocar, o passeio pausa e volta 3s depois. */
+.auto{scroll-snap-type:none!important}
+.auto>*{scroll-snap-align:none}
 </style>
 <noscript><style>.rv{opacity:1;transform:none}.feat .ic{opacity:1;transform:none}</style></noscript>
 </head>
@@ -758,35 +728,6 @@ footer a{color:var(--ink-dark-soft)}
       </div>
     </div>
   </div>
-</section>
-
-<!-- ===== CAPAS DOS MÓDULOS · 16 slots (img/modulo-01..16.webp, 4:5 · 800×1000) ===== -->
-<section class="mods" id="modulos">
-  <div class="wrap">
-    <p class="eyebrow rv">os módulos</p>
-    <h2 class="h2 rv">Cada tema no seu lugar, do jeito que você precisa</h2>
-    <p class="lead rv">São 12 módulos na base do LIFE, mais os exclusivos que entram no plano anual. Você abre o app e já sabe onde clicar.</p>
-    <p class="lead rv" style="margin-top:8px"><span class="ph">[confirmar: nome e descrição exatos de cada módulo, e quais são exclusivos do anual]</span></p>
-  </div>
-  <div class="mod-track" id="modTrack">
-    <article class="mod"><span class="slot" data-hint="img/modulo-01.webp&#10;4:5 · 800×1000"><img src="img/modulo-01.webp" alt="Capa do módulo de Nutrição" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Nutrição</h3><p>Planos por objetivo, cardápios e substituições.</p></article>
-    <article class="mod"><span class="slot" data-hint="img/modulo-02.webp&#10;4:5 · 800×1000"><img src="img/modulo-02.webp" alt="Capa do módulo de Treinos" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Treinos</h3><p>Por nível, em casa ou na academia.</p></article>
-    <article class="mod"><span class="slot" data-hint="img/modulo-03.webp&#10;4:5 · 800×1000"><img src="img/modulo-03.webp" alt="Capa do módulo de Saúde da mulher" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Saúde da mulher</h3><p>Ciclo, hormônios e energia no dia a dia.</p></article>
-    <article class="mod"><span class="slot" data-hint="img/modulo-04.webp&#10;4:5 · 800×1000"><img src="img/modulo-04.webp" alt="Capa do módulo de Gestão de peso" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Gestão de peso</h3><p>O que fazer quando a balança trava.</p></article>
-    <article class="mod"><span class="slot" data-hint="img/modulo-05.webp&#10;4:5 · 800×1000"><img src="img/modulo-05.webp" alt="Capa do módulo de Beleza e autoestima" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Beleza e autoestima</h3><p>Pele, cabelo, unhas e como você se enxerga.</p></article>
-    <article class="mod"><span class="slot" data-hint="img/modulo-06.webp&#10;4:5 · 800×1000"><img src="img/modulo-06.webp" alt="Capa do módulo de Saúde intestinal" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Saúde intestinal</h3><p>Intestino em dia pra destravar o resto.</p></article>
-    <article class="mod"><span class="slot" data-hint="img/modulo-07.webp&#10;4:5 · 800×1000"><img src="img/modulo-07.webp" alt="Capa do módulo de Suplementação" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Suplementação</h3><p>O que serve de verdade e o que é enrolação.</p></article>
-    <article class="mod"><span class="slot" data-hint="img/modulo-08.webp&#10;4:5 · 800×1000"><img src="img/modulo-08.webp" alt="Capa do módulo de Sono e rotina" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Sono e rotina</h3><p>Dormir bem muda todo o resto.</p></article>
-    <article class="mod"><span class="slot" data-hint="img/modulo-09.webp&#10;4:5 · 800×1000"><img src="img/modulo-09.webp" alt="Capa de módulo do LIFE" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3 class="ph">[módulo 09]</h3><p class="ph">[descrição]</p></article>
-    <article class="mod"><span class="slot" data-hint="img/modulo-10.webp&#10;4:5 · 800×1000"><img src="img/modulo-10.webp" alt="Capa de módulo do LIFE" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3 class="ph">[módulo 10]</h3><p class="ph">[descrição]</p></article>
-    <article class="mod"><span class="slot" data-hint="img/modulo-11.webp&#10;4:5 · 800×1000"><img src="img/modulo-11.webp" alt="Capa de módulo do LIFE" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3 class="ph">[módulo 11]</h3><p class="ph">[descrição]</p></article>
-    <article class="mod"><span class="slot" data-hint="img/modulo-12.webp&#10;4:5 · 800×1000"><img src="img/modulo-12.webp" alt="Capa de módulo do LIFE" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3 class="ph">[módulo 12]</h3><p class="ph">[descrição]</p></article>
-    <article class="mod"><span class="slot" data-hint="img/modulo-13.webp&#10;4:5 · 800×1000"><img src="img/modulo-13.webp" alt="Capa do módulo Shape Slim" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Shape Slim</h3><p class="ph">[descrição]</p><span class="exc">exclusivo anual</span></article>
-    <article class="mod"><span class="slot" data-hint="img/modulo-14.webp&#10;4:5 · 800×1000"><img src="img/modulo-14.webp" alt="Capa do módulo de Corrida" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Corrida</h3><p class="ph">[descrição]</p><span class="exc">exclusivo anual</span></article>
-    <article class="mod"><span class="slot" data-hint="img/modulo-15.webp&#10;4:5 · 800×1000"><img src="img/modulo-15.webp" alt="Capa do módulo de Yoga" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Yoga</h3><p class="ph">[descrição]</p><span class="exc">exclusivo anual</span></article>
-    <article class="mod"><span class="slot" data-hint="img/modulo-16.webp&#10;4:5 · 800×1000"><img src="img/modulo-16.webp" alt="Capa do módulo de Pilates" loading="lazy" decoding="async" width="800" height="1000" onerror="slotVazio(this)"></span><h3>Pilates</h3><p class="ph">[descrição]</p><span class="exc">exclusivo anual</span></article>
-  </div>
-  <div class="dots" id="modDots" aria-hidden="true"></div>
 </section>
 
 <section class="objs">
@@ -1042,8 +983,128 @@ footer a{color:var(--ink-dark-soft)}
   dots('appTrack','appDots');
   dots('objTrack','objDots');
   dots('transfTrack','transfDots');
-  dots('modTrack','modDots');
   dots('printsTrack','printsDots');
+
+  /* ---------- carrossel que anda sozinho (SÓ NO MOBILE) ----------
+     Duplica os cards uma vez e desliza devagar. Quando chega no começo
+     da cópia, volta pro início original no mesmo ponto exato: como o
+     conteúdo se repete, o olho não percebe o corte, é um loop infinito.
+     Pausa quando a pessoa toca ou passa o mouse, e retoma 3s depois.
+     No desktop e em quem pediu menos animação, nada disso liga. */
+  var telaMobile = window.matchMedia('(max-width: 899px)');
+
+  function passeio(trackId, dotsId, velocidade){
+    var t = document.getElementById(trackId);
+    if(!t) return;
+    var caixaDots = dotsId ? document.getElementById(dotsId) : null;
+    var copias = [], raf = null, periodo = 0, pos = 0, ultimo = 0;
+    var ligado = false, pausado = false, timer = null;
+
+    function cabe(){
+      if(reduce || !telaMobile.matches) return false;
+      var ox = getComputedStyle(t).overflowX;
+      if(ox !== 'auto' && ox !== 'scroll') return false;
+      return t.scrollWidth > t.clientWidth + 4;
+    }
+
+    function ligar(){
+      if(ligado) return;
+      var originais = [].slice.call(t.children);
+      if(!originais.length) return;
+      originais.forEach(function(item){
+        var c = item.cloneNode(true);
+        c.setAttribute('aria-hidden','true');   // leitor de tela ignora a cópia
+        c.dataset.copia = '1';
+        c.classList.remove('rv');               // cópia já nasce visível
+        t.appendChild(c);
+        copias.push(c);
+      });
+      // itens originais entram revelados: com o trilho andando sozinho
+      // eles não podem depender do scroll da página pra aparecer
+      originais.forEach(function(item){ item.classList.add('in'); });
+
+      // Distância exata de uma volta = do 1º original até a 1ª cópia.
+      // getBoundingClientRect e não offsetLeft: offsetLeft vem arredondado
+      // e as larguras em % dão frações. Um erro de 0,4px por volta viraria
+      // um desalinhamento visível depois de algumas dezenas de voltas.
+      periodo = copias[0].getBoundingClientRect().left
+              - originais[0].getBoundingClientRect().left;
+      if(periodo <= 0){ desligar(); return; }
+
+      t.classList.add('auto');
+      if(caixaDots) caixaDots.hidden = true;    // com movimento contínuo o dot perde o sentido
+      pos = t.scrollLeft;
+      ultimo = 0;
+      ligado = true;
+      raf = requestAnimationFrame(anda);
+    }
+
+    function desligar(){
+      if(!ligado && !copias.length) return;
+      if(raf) cancelAnimationFrame(raf);
+      raf = null;
+      copias.forEach(function(c){ c.remove(); });
+      copias = [];
+      t.classList.remove('auto');
+      if(caixaDots) caixaDots.hidden = false;
+      t.scrollLeft = 0;
+      ligado = false;
+    }
+
+    // velocidade em pixels POR SEGUNDO, não por quadro: celular de 120Hz
+    // desenha o dobro de quadros e andaria o dobro da distância
+    function anda(ts){
+      raf = requestAnimationFrame(anda);
+      if(!ultimo){ ultimo = ts; return; }
+      var dt = (ts - ultimo) / 1000;
+      ultimo = ts;
+      if(dt > 0.05) dt = 0.05;                   // quadro lento avança no máximo 50ms, nunca dá salto
+      if(pausado) return;
+      pos += velocidade * dt;
+      if(pos >= periodo) pos -= periodo;         // o pulo invisível
+      t.scrollLeft = pos;
+    }
+
+    function pausa(){ pausado = true; clearTimeout(timer); }
+    function retoma(){
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+        pos = t.scrollLeft;                      // continua de onde a pessoa parou
+        if(pos >= periodo) pos -= periodo;
+        ultimo = 0;
+        pausado = false;
+      }, 3000);
+    }
+
+    ['pointerdown','touchstart','wheel'].forEach(function(ev){
+      t.addEventListener(ev, pausa, {passive:true});
+    });
+    ['pointerup','touchend','touchcancel'].forEach(function(ev){
+      t.addEventListener(ev, retoma, {passive:true});
+    });
+    t.addEventListener('mouseenter', pausa);
+    t.addEventListener('mouseleave', retoma);
+
+    function avaliar(){ if(cabe()) ligar(); else desligar(); }
+    window.addEventListener('resize', function(){ desligar(); avaliar(); });
+    if(telaMobile.addEventListener) telaMobile.addEventListener('change', function(){ desligar(); avaliar(); });
+
+    // com a aba escondida o navegador segura o rAF; ao voltar, ressincroniza
+    document.addEventListener('visibilitychange', function(){
+      if(!document.hidden && ligado){ pos = t.scrollLeft; ultimo = 0; }
+    });
+
+    avaliar();
+  }
+
+  // pixels por segundo, calibrado pra cada card levar ~8s pra atravessar:
+  // card maior precisa andar mais rápido pra dar a mesma sensação
+  window.addEventListener('load', function(){
+    passeio('appTrack','appDots',30);
+    passeio('objTrack','objDots',34);
+    passeio('transfTrack','transfDots',40);
+    passeio('printsTrack','printsDots',37);
+  });
 
   // No modo "live", se um bloco de fotos ficou 100% vazio, o bloco inteiro some
   // (em vez de mostrar um título com nada embaixo).
@@ -1051,9 +1112,6 @@ footer a{color:var(--ink-dark-soft)}
     if(document.body.getAttribute('data-modo')!=='live') return;
     function vazioTotal(box,sel){ return box && box.querySelectorAll(sel+':not([hidden])').length===0; }
     function some(){ [].slice.call(arguments).forEach(function(el){ if(el) el.setAttribute('hidden',''); }); }
-
-    var mods=document.getElementById('modulos');
-    if(vazioTotal(mods,'.mod')) some(mods);
 
     var aulas=document.getElementById('aulas');
     if(vazioTotal(aulas,'.aula')) some(aulas);
