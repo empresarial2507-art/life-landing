@@ -552,6 +552,29 @@ footer a{color:var(--ink-dark-soft)}
 .auth-strip .slot.vazio::after{font-size:9px;padding:8px}
 .auth-legenda{font-size:12.5px;color:var(--ink-soft);text-align:center;margin-top:10px;opacity:.85}
 
+/* --- vídeo da Paloma (embed da Panda Video) ---
+   A caixa manda no formato: qualquer coisa colada dentro dela (o iframe da
+   Panda, ou a div que a Panda às vezes embrulha junto) é esticada pra
+   preencher os 16:9. Assim o embed entra do jeito que vier, sem ajuste. */
+.video-hero{margin-bottom:36px}
+.video-box{
+  position:relative;width:100%;aspect-ratio:16/9;
+  border-radius:20px;overflow:hidden;background:var(--plum-dark);
+  box-shadow:var(--shadow-card);
+}
+.video-box > *{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0}
+.video-box.vazio{
+  display:flex;align-items:center;justify-content:center;
+  background:repeating-linear-gradient(45deg,rgba(214,51,108,.05) 0 10px,transparent 10px 20px),var(--rose-soft);
+  border:1.5px dashed rgba(214,51,108,.45);
+}
+.video-box.vazio::after{
+  content:"vídeo da Paloma · 16:9\A\A cole aqui o embed da Panda Video\A (no index.html, procure por COLE O EMBED DA PANDA AQUI)";
+  white-space:pre-line;text-align:center;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:11px;line-height:1.7;color:var(--pink-deep);padding:18px;opacity:.85;
+}
+
 /* --- carrossel automático (só no mobile, ligado pelo JS) ---
    Enquanto anda sozinho o scroll-snap sai do caminho, senão ele puxa
    os cards de volta e o movimento fica aos trancos. O dedo continua
@@ -613,6 +636,29 @@ footer a{color:var(--ink-dark-soft)}
 
 <section>
   <div class="wrap narrow">
+
+    <!-- ===================================================================
+         VÍDEO DA PALOMA · embed da Panda Video
+
+         COMO COLOCAR O VÍDEO:
+         1. No painel da Panda, abra o vídeo e copie o código de incorporação
+            (o botão costuma se chamar "Compartilhar" ou "Embed").
+         2. Cole o código EXATAMENTE entre as duas linhas marcadas abaixo.
+         3. Pronto. Não mexa em mais nada.
+
+         O tamanho, o formato 16:9, os cantos arredondados e o comportamento
+         no celular já estão prontos e valem pra qualquer player.
+         Enquanto não houver embed, o espaço aparece tracejado no modo
+         montagem e some sozinho no modo live.
+         =================================================================== -->
+    <div class="video-hero rv">
+      <div class="video-box" id="videoHero">
+<!-- ↓↓↓ COLE O EMBED DA PANDA AQUI ↓↓↓ -->
+
+<!-- ↑↑↑ COLE O EMBED DA PANDA AQUI ↑↑↑ -->
+      </div>
+    </div>
+
     <p class="eyebrow rv">você se reconhece?</p>
     <h2 class="h2 rv">Se você já tentou de tudo, você não falhou. <em style="color:var(--pink)">Faltou um caminho.</em></h2>
     <div class="quotes">
@@ -1082,6 +1128,23 @@ footer a{color:var(--ink-dark-soft)}
       some(strip,document.querySelector('.auth-legenda'));
     }
   });
+
+  /* ---------- espaço do vídeo da Paloma ----------
+     Sem embed colado: mostra o tracejado com a instrução (modo montagem) ou
+     some por completo (modo live), pra ninguém ver um buraco na página.
+     Procura por script também porque a Panda tem uma versão de embed que
+     injeta o iframe depois, via JavaScript. */
+  (function videoDaPaloma(){
+    var caixa = document.getElementById('videoHero');
+    if(!caixa) return;
+    if(caixa.querySelector('iframe,video,script,object,embed')) return;   // já tem vídeo
+    if(document.body.getAttribute('data-modo') === 'live'){
+      var bloco = caixa.closest('.video-hero');
+      if(bloco) bloco.setAttribute('hidden','');
+    } else {
+      caixa.classList.add('vazio');
+    }
+  })();
 
   /* ---------- ícone animado do hero (Lottie) ----------
      Existem dois contêineres (um do layout mobile, outro do desktop) e só um
