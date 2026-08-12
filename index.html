@@ -40,7 +40,7 @@ function slotVazio(img){
   var s = img.parentNode;
   s.classList.add('vazio');
   if(document.body && document.body.getAttribute('data-modo') === 'live'){
-    var card = s.closest('.aula,.print') || s;
+    var card = s.closest('.aula') || s;
     card.setAttribute('hidden','');
   }
 }
@@ -499,7 +499,6 @@ footer a{color:var(--ink-dark-soft)}
 .depo{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow-card)}
 .depo p{font-family:var(--font-d);font-style:italic;font-size:17px;color:var(--ink);margin-bottom:12px;line-height:1.5}
 .depo cite{font-style:normal;font-size:13.5px;font-weight:800;color:var(--pink-deep)}
-.depo-nota{text-align:center;font-size:13px;color:var(--ink-soft);margin-top:18px;opacity:.8}
 @media(min-width:760px){.depoimentos{grid-template-columns:1fr 1fr}}
 
 /* urgência + garantia no card + empurrão do mensal */
@@ -552,21 +551,6 @@ footer a{color:var(--ink-dark-soft)}
 @media(min-width:760px){.aula-grid{grid-template-columns:1fr 1fr}}
 @media(min-width:1100px){.aula-grid{grid-template-columns:repeat(4,1fr);gap:16px}}
 
-/* --- prints de feedback das alunas --- */
-.prints-track{
-  display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
-  padding:26px var(--edge) 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch;
-}
-.prints-track::-webkit-scrollbar{display:none}
-.print{
-  flex:0 0 72%;max-width:300px;scroll-snap-align:start;scroll-margin-left:var(--edge);
-  background:var(--surface);border:1px solid var(--line);border-radius:18px;
-  padding:9px 9px 2px;box-shadow:var(--shadow-card);
-}
-.print .slot{aspect-ratio:9/14;border-radius:11px;background:#F4EAEE}
-.print .slot img{object-fit:contain;background:#fff}
-.print figcaption{font-size:11.5px;font-weight:700;color:var(--ink-soft);text-align:center;padding:11px 4px 10px}
-@media(min-width:900px){.print{flex:0 0 244px}}
 
 /* --- faixa extra de fotos da Paloma --- */
 .auth-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
@@ -812,23 +796,6 @@ footer a{color:var(--ink-dark-soft)}
   </div>
   <div class="dots" id="transfDots" aria-hidden="true"></div>
 
-  <!-- ===== PRINTS DE FEEDBACK · 6 slots (img/print-01..06.webp, 9:16 · 720×1280) =====
-       Print de WhatsApp / comentário do Instagram / mensagem na comunidade.
-       Corte o print só na parte que interessa e apague nome e foto de quem não autorizou. -->
-  <div class="wrap" id="printsHead">
-    <h3 class="h2 rv" style="font-size:clamp(22px,4vw,30px);margin-top:14px">O que elas mandam pra gente</h3>
-    <p class="lead rv">Mensagens reais das alunas dentro da comunidade e no direct.</p>
-  </div>
-  <div class="prints-track" id="printsTrack">
-    <figure class="print"><span class="slot" data-hint="img/print-01.webp&#10;9:16"><img src="img/print-01.webp" alt="Print de mensagem de aluna do LIFE" loading="lazy" decoding="async" width="720" height="1280" onerror="slotVazio(this)"></span><figcaption class="ph">[nome] · [tempo] de LIFE</figcaption></figure>
-    <figure class="print"><span class="slot" data-hint="img/print-02.webp&#10;9:16"><img src="img/print-02.webp" alt="Print de mensagem de aluna do LIFE" loading="lazy" decoding="async" width="720" height="1280" onerror="slotVazio(this)"></span><figcaption class="ph">[nome] · [tempo] de LIFE</figcaption></figure>
-    <figure class="print"><span class="slot" data-hint="img/print-03.webp&#10;9:16"><img src="img/print-03.webp" alt="Print de mensagem de aluna do LIFE" loading="lazy" decoding="async" width="720" height="1280" onerror="slotVazio(this)"></span><figcaption class="ph">[nome] · [tempo] de LIFE</figcaption></figure>
-    <figure class="print"><span class="slot" data-hint="img/print-04.webp&#10;9:16"><img src="img/print-04.webp" alt="Print de mensagem de aluna do LIFE" loading="lazy" decoding="async" width="720" height="1280" onerror="slotVazio(this)"></span><figcaption class="ph">[nome] · [tempo] de LIFE</figcaption></figure>
-    <figure class="print"><span class="slot" data-hint="img/print-05.webp&#10;9:16"><img src="img/print-05.webp" alt="Print de mensagem de aluna do LIFE" loading="lazy" decoding="async" width="720" height="1280" onerror="slotVazio(this)"></span><figcaption class="ph">[nome] · [tempo] de LIFE</figcaption></figure>
-    <figure class="print"><span class="slot" data-hint="img/print-06.webp&#10;9:16"><img src="img/print-06.webp" alt="Print de mensagem de aluna do LIFE" loading="lazy" decoding="async" width="720" height="1280" onerror="slotVazio(this)"></span><figcaption class="ph">[nome] · [tempo] de LIFE</figcaption></figure>
-  </div>
-  <div class="dots" id="printsDots" aria-hidden="true"></div>
-
   <div class="wrap">
     <div class="depoimentos">
       <blockquote class="depo rv"><p class="ph">[depoimento real da aluna aqui, 1 a 2 frases, com autorização]</p><cite class="ph">[nome] · plano [objetivo]</cite></blockquote>
@@ -836,8 +803,7 @@ footer a{color:var(--ink-dark-soft)}
       <blockquote class="depo rv"><p class="ph">[depoimento real da aluna aqui, 1 a 2 frases, com autorização]</p><cite class="ph">[nome] · plano [objetivo]</cite></blockquote>
       <blockquote class="depo rv"><p class="ph">[depoimento real da aluna aqui, 1 a 2 frases, com autorização]</p><cite class="ph">[nome] · plano [objetivo]</cite></blockquote>
     </div>
-    <p class="depo-nota">Depoimentos em texto complementam os prints acima. Use os dois: o print prova, o texto explica.</p>
-  </div>
+      </div>
 </section>
 
 <section class="preco" id="planos">
@@ -994,7 +960,6 @@ footer a{color:var(--ink-dark-soft)}
   dots('appTrack','appDots');
   dots('objTrack','objDots');
   dots('transfTrack','transfDots');
-  dots('printsTrack','printsDots');
 
   /* ---------- carrossel que anda sozinho (SÓ NO MOBILE) ----------
      Duplica os cards uma vez e desliza devagar. Quando chega no começo
@@ -1114,7 +1079,6 @@ footer a{color:var(--ink-dark-soft)}
     passeio('appTrack','appDots',30);
     passeio('objTrack','objDots',34);
     passeio('transfTrack','transfDots',40);
-    passeio('printsTrack','printsDots',37);
   });
 
   // No modo "live", se um bloco de fotos ficou 100% vazio, o bloco inteiro some
@@ -1126,9 +1090,6 @@ footer a{color:var(--ink-dark-soft)}
 
     var aulas=document.getElementById('aulas');
     if(vazioTotal(aulas,'.aula')) some(aulas);
-
-    var pt=document.getElementById('printsTrack');
-    if(vazioTotal(pt,'.print')) some(document.getElementById('printsHead'),pt,document.getElementById('printsDots'));
 
     var strip=document.querySelector('.auth-strip');
     if(strip && strip.querySelectorAll('.slot:not(.vazio)').length===0){
