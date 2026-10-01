@@ -17,11 +17,11 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','4244623215802769');
+fbq('init','1289869655519503');
 fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" alt=""
-src="https://www.facebook.com/tr?id=4244623215802769&ev=PageView&noscript=1"></noscript>
+src="https://www.facebook.com/tr?id=1289869655519503&ev=PageView&noscript=1"></noscript>
 <!-- End Meta Pixel -->
 
 <!-- ===================================================================
@@ -1218,6 +1218,24 @@ footer a{color:var(--ink-dark-soft)}
         window.fbq('track','InitiateCheckout',{content_name:'life-'+a.dataset.cta});
       }
     });
+  });
+})();
+</script>
+<script>
+(function(){
+  try{var q=new URLSearchParams(location.search);if(q.get('fbclid'))sessionStorage.setItem('fbclid',q.get('fbclid'));}catch(e){}
+})();
+(function(){
+  var e;try{e=new URLSearchParams(location.search);}catch(x){return;}
+  try{var g=sessionStorage.getItem('fbclid');if(g&&!e.get('fbclid'))e.set('fbclid',g);}catch(x){}
+  if(!e.get('utm_source')&&!e.get('fbclid'))return;
+  document.querySelectorAll('a[href*="chk.eduzz.com"]').forEach(function(a){
+    try{var u=new URL(a.href);
+      ['utm_source','utm_medium','utm_campaign','utm_term','fbclid','gclid','ttclid'].forEach(function(k){
+        var v=e.get(k); if(v) u.searchParams.set(k,v);
+      });
+      a.href=u.toString();
+    }catch(x){}
   });
 })();
 </script>
