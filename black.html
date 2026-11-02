@@ -585,8 +585,8 @@ footer a{color:var(--ink-dark-soft)}
 .auto{scroll-snap-type:none!important}
 .auto>*{scroll-snap-align:none}
 /* ===== Black Friday (nov/2026) ===== */
-.bf-bar{background:#0B0B0B;color:#FFD400;border-bottom:1.5px solid #FFD400;text-align:center;font-size:13px;font-weight:800;letter-spacing:.06em;padding:10px max(16px,env(safe-area-inset-left,0px));line-height:1.35}
-.bf-bar a{color:#FFD400;text-decoration:underline;text-underline-offset:3px}
+.bf-bar{background:#FFD400;color:#0B0B0B;border-bottom:1.5px solid #0B0B0B;text-align:center;font-size:13px;font-weight:800;letter-spacing:.06em;padding:10px max(16px,env(safe-area-inset-left,0px));line-height:1.35}
+.bf-bar a{color:#0B0B0B;text-decoration:underline;text-underline-offset:3px}
 .bf-bar [data-falta]{white-space:nowrap}
 .hero-bf{display:inline-block;background:rgba(214,51,108,.18);border:1px solid rgba(240,101,149,.5);color:#fff;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;border-radius:999px;padding:7px 16px;margin-bottom:16px}
 .bonus-pill{display:flex;gap:10px;align-items:center;background:#E7F5EF;border:1px solid rgba(43,138,110,.35);color:#1F6B55;border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.4;margin:14px 0 6px}
@@ -597,8 +597,8 @@ footer a{color:var(--ink-dark-soft)}
 .mensal-link{text-align:center;margin-top:26px;font-size:14px;color:var(--ink-dark-soft)}
 .mensal-link a{color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:3px}
 .urgencia [data-falta]{font-weight:800;color:#fff}
-.plan .badge.bf{background:#0B0B0B;color:#FFD400;border:1.5px solid #FFD400;box-shadow:0 6px 18px rgba(255,212,0,.28);letter-spacing:.12em}
-.plan .badge.bf span{color:#FFD400}
+.plan .badge.bf{background:#FFD400;color:#0B0B0B;border:1.5px solid #FFD400;box-shadow:0 6px 18px rgba(255,212,0,.28);letter-spacing:.12em}
+.plan .badge.bf span{color:#0B0B0B}
 
 /* ===== Black Friday · camada premium (preto + amarelo só em cima do preto; botões seguem rosa) ===== */
 :root{--bf-y:#FFD400;--bf-y-soft:#FFF3A6;--bf-k:#0B0B0B}
@@ -617,34 +617,34 @@ footer a{color:var(--ink-dark-soft)}
   filter:drop-shadow(0 10px 22px rgba(0,0,0,.55)) drop-shadow(0 0 18px rgba(255,212,0,.18))}
 .hero-icon .bf-seal svg{width:100%;height:100%}
 .bf-seal .ring{transform-origin:50px 50px;animation:bfSpin 16s linear infinite}
-.bf-seal text{font-family:var(--font-b);font-weight:800;font-size:9.6px;fill:var(--bf-y)}
-.bf-seal .mid{font-family:var(--font-d);font-style:italic;font-weight:600;font-size:27px;fill:var(--bf-y)}
+.bf-seal text{font-family:var(--font-b);font-weight:800;font-size:9.6px;fill:var(--bf-k)}
+.bf-seal .mid{font-family:var(--font-d);font-style:italic;font-weight:600;font-size:27px;fill:var(--bf-k)}
 @keyframes bfSpin{to{transform:rotate(360deg)}}
 
 /* 3 · pílula do hero com ponto "ao vivo" */
-.hero-bf{display:inline-flex;align-items:center;gap:9px;background:var(--bf-k);border-color:rgba(255,212,0,.7);color:var(--bf-y);box-shadow:0 0 0 4px rgba(255,212,0,.06),0 8px 22px rgba(255,212,0,.12)}
-.hero-bf::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--bf-y);box-shadow:0 0 0 0 rgba(255,212,0,.6);animation:bfPing 1.8s ease-out infinite}
-@keyframes bfPing{0%{box-shadow:0 0 0 0 rgba(255,212,0,.6)}80%,100%{box-shadow:0 0 0 9px rgba(255,212,0,0)}}
+.hero-bf{display:inline-flex;align-items:center;gap:9px;background:var(--bf-y);border-color:var(--bf-y);color:var(--bf-k);box-shadow:0 0 0 4px rgba(255,212,0,.06),0 8px 22px rgba(255,212,0,.12)}
+.hero-bf::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--bf-k);box-shadow:0 0 0 0 rgba(11,11,11,.6);animation:bfPing 1.8s ease-out infinite}
+@keyframes bfPing{0%{box-shadow:0 0 0 0 rgba(11,11,11,.55)}80%,100%{box-shadow:0 0 0 8px rgba(11,11,11,0)}}
 
 /* 4 · fita inclinada entre depoimentos e preço */
 .bf-tape-wrap{position:relative;z-index:5;height:72px;margin:-36px 0;overflow:hidden;pointer-events:none}
 .bf-tape{position:absolute;left:-4%;right:-4%;top:50%;transform:translateY(-50%) rotate(-2.2deg);
-  background:var(--bf-k);border-top:1.5px solid var(--bf-y);border-bottom:1.5px solid var(--bf-y);
+  background:var(--bf-y);border-top:1.5px solid var(--bf-k);border-bottom:1.5px solid var(--bf-k);
   box-shadow:0 10px 30px rgba(20,16,20,.35);overflow:hidden;white-space:nowrap}
 .bf-tape .bf-track{display:inline-flex;animation:bfMarquee 30s linear infinite reverse}
 .bf-tape .bf-grp{display:inline-flex;flex:0 0 auto}
-.bf-tape .bf-grp>span{padding:11px 0;color:var(--bf-y);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.bf-tape .bf-grp>span{padding:11px 0;color:var(--bf-k);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
 .bf-tape .bf-grp>span::after{content:"✦";margin:0 20px;opacity:.75}
 
 /* 5 · contagem em placar */
 .bf-clock{display:inline-flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:10px}
 .bf-clock .lbl{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--bf-y)}
 .bf-clock .cells{display:flex;gap:8px}
-.bf-clock .cell{min-width:64px;background:var(--bf-k);border:1px solid rgba(255,212,0,.32);border-radius:14px;
-  padding:10px 8px 8px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 24px rgba(0,0,0,.3);overflow:hidden}
-.bf-clock .cell b{display:block;font-family:var(--font-d);font-weight:600;font-size:30px;line-height:1;color:var(--bf-y);font-variant-numeric:tabular-nums}
+.bf-clock .cell{min-width:64px;background:var(--bf-y);border:1px solid var(--bf-y);border-radius:14px;
+  padding:10px 8px 8px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 10px 24px rgba(255,212,0,.18);overflow:hidden}
+.bf-clock .cell b{display:block;font-family:var(--font-d);font-weight:600;font-size:30px;line-height:1;color:var(--bf-k);font-variant-numeric:tabular-nums}
 .bf-clock .cell b.tick{animation:bfTick .38s var(--ease-out)}
-.bf-clock .cell i{display:block;font-style:normal;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dark-dim);margin-top:6px}
+.bf-clock .cell i{display:block;font-style:normal;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:rgba(11,11,11,.7);margin-top:6px}
 .bf-clock .acabou{display:none;font-weight:800;color:#fff}
 .bf-clock.fim .cells{display:none}
 .bf-clock.fim .acabou{display:block}
@@ -666,9 +666,10 @@ footer a{color:var(--ink-dark-soft)}
 @keyframes bfShine{0%{left:-60%}22%,100%{left:135%}}
 
 /* 7 · barra fixa do celular no preto */
-.sticky-cta{background:rgba(11,11,11,.94);border-top:1.5px solid var(--bf-y)}
-.sticky-cta .p{color:var(--bf-y)}
-.sticky-cta .p b{color:#fff}
+.sticky-cta{background:var(--bf-y);border-top:1.5px solid var(--bf-k)}
+.sticky-cta .p{color:var(--bf-k)}
+.sticky-cta .p b{color:var(--bf-k)}
+.sticky-cta .btn{background:var(--bf-k);color:var(--bf-y)}
 
 @media (prefers-reduced-motion:reduce){
   .bf-bar .bf-track,.bf-tape .bf-track,.bf-seal .ring,.hero-bf::before,.plan.anual::before,.bf-clock .cell b.tick,.rv.in .badge.bf::after{animation:none!important}
@@ -706,7 +707,7 @@ footer a{color:var(--ink-dark-soft)}
         <div class="hero-media-mobile hero-anim d4">
           <div class="hero-icon" data-lottie="img/hero-icon.json">
             <img class="hero-icon-poster" src="img/hero-icon-poster.webp" alt="Ícone do app LIFE, por Paloma Moraes" fetchpriority="high" width="600" height="600">
-            <span class="bf-seal" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#0B0B0B" stroke="#FFD400" stroke-width="1.2"/><circle cx="50" cy="50" r="27" fill="none" stroke="rgba(255,212,0,.35)" stroke-width=".8"/><defs><path id="bfArcM" d="M50 50 m-37 0 a37 37 0 1 1 74 0 a37 37 0 1 1 -74 0"/></defs><g class="ring"><text><textPath href="#bfArcM" textLength="226" lengthAdjust="spacing">BLACK FRIDAY • LIFE 2026 • </textPath></text></g><text class="mid" x="50" y="59" text-anchor="middle">2x</text></svg></span>
+            <span class="bf-seal" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#FFD400" stroke="#0B0B0B" stroke-width="1.2"/><circle cx="50" cy="50" r="27" fill="none" stroke="rgba(11,11,11,.35)" stroke-width=".8"/><defs><path id="bfArcM" d="M50 50 m-37 0 a37 37 0 1 1 74 0 a37 37 0 1 1 -74 0"/></defs><g class="ring"><text><textPath href="#bfArcM" textLength="226" lengthAdjust="spacing">BLACK FRIDAY • LIFE 2026 • </textPath></text></g><text class="mid" x="50" y="59" text-anchor="middle">2x</text></svg></span>
           </div>
         </div>
         <p class="sub hero-anim d5">E pagando no Pix, <strong>mais 3 meses de presente</strong>. São 27 meses de aulas, treinos por nível e planos alimentares calculados por objetivo, com a Paloma e o Time LIFE do seu lado. Pare de tentar sozinha.</p>
@@ -724,7 +725,7 @@ footer a{color:var(--ink-dark-soft)}
       <div class="hero-photo hero-anim d3">
         <div class="hero-icon" data-lottie="img/hero-icon.json">
           <img class="hero-icon-poster" src="img/hero-icon-poster.webp" alt="Ícone do app LIFE, por Paloma Moraes" fetchpriority="high" width="600" height="600">
-          <span class="bf-seal" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#0B0B0B" stroke="#FFD400" stroke-width="1.2"/><circle cx="50" cy="50" r="27" fill="none" stroke="rgba(255,212,0,.35)" stroke-width=".8"/><defs><path id="bfArcD" d="M50 50 m-37 0 a37 37 0 1 1 74 0 a37 37 0 1 1 -74 0"/></defs><g class="ring"><text><textPath href="#bfArcD" textLength="226" lengthAdjust="spacing">BLACK FRIDAY • LIFE 2026 • </textPath></text></g><text class="mid" x="50" y="59" text-anchor="middle">2x</text></svg></span>
+          <span class="bf-seal" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#FFD400" stroke="#0B0B0B" stroke-width="1.2"/><circle cx="50" cy="50" r="27" fill="none" stroke="rgba(11,11,11,.35)" stroke-width=".8"/><defs><path id="bfArcD" d="M50 50 m-37 0 a37 37 0 1 1 74 0 a37 37 0 1 1 -74 0"/></defs><g class="ring"><text><textPath href="#bfArcD" textLength="226" lengthAdjust="spacing">BLACK FRIDAY • LIFE 2026 • </textPath></text></g><text class="mid" x="50" y="59" text-anchor="middle">2x</text></svg></span>
         </div>
       </div>
     </div>
