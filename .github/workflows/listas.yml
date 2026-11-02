@@ -1,0 +1,11 @@
+# Atualiza as listas do time (bônus do Pix e boas-vindas) a cada 30 minutos.
+name: Listas do time
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -fsS -X POST -H "x-chave: ${{ secrets.LISTAS_SECRET }}" https://life-landing-nine.vercel.app/api/listas
