@@ -599,12 +599,89 @@ footer a{color:var(--ink-dark-soft)}
 .urgencia [data-falta]{font-weight:800;color:#fff}
 .plan .badge.bf{background:#0B0B0B;color:#FFD400;border:1.5px solid #FFD400;box-shadow:0 6px 18px rgba(255,212,0,.28);letter-spacing:.12em}
 .plan .badge.bf span{color:#FFD400}
+
+/* ===== Black Friday · camada premium (preto + amarelo só em cima do preto; botões seguem rosa) ===== */
+:root{--bf-y:#FFD400;--bf-y-soft:#FFF3A6;--bf-k:#0B0B0B}
+
+/* 1 · faixa do topo em letreiro */
+.bf-bar{display:block;padding:0;overflow:hidden;white-space:nowrap}
+.bf-bar .bf-track{display:inline-flex;animation:bfMarquee 38s linear infinite}
+.bf-bar .bf-grp{display:inline-flex;flex:0 0 auto}
+.bf-bar .bf-grp>span{padding:10px 0;text-transform:uppercase}
+.bf-bar .bf-grp>span::after{content:"✦";margin:0 18px;opacity:.75}
+.bf-bar:hover .bf-track{animation-play-state:paused}
+@keyframes bfMarquee{to{transform:translateX(-50%)}}
+
+/* 2 · selo giratório no ícone do hero */
+.bf-seal{position:absolute;right:-6%;bottom:-4%;width:42%;aspect-ratio:1/1;z-index:3;pointer-events:none;
+  filter:drop-shadow(0 10px 22px rgba(0,0,0,.55)) drop-shadow(0 0 18px rgba(255,212,0,.18))}
+.hero-icon .bf-seal svg{width:100%;height:100%}
+.bf-seal .ring{transform-origin:50px 50px;animation:bfSpin 16s linear infinite}
+.bf-seal text{font-family:var(--font-b);font-weight:800;font-size:9.6px;fill:var(--bf-y)}
+.bf-seal .mid{font-family:var(--font-d);font-style:italic;font-weight:600;font-size:27px;fill:var(--bf-y)}
+@keyframes bfSpin{to{transform:rotate(360deg)}}
+
+/* 3 · pílula do hero com ponto "ao vivo" */
+.hero-bf{display:inline-flex;align-items:center;gap:9px;background:var(--bf-k);border-color:rgba(255,212,0,.7);color:var(--bf-y);box-shadow:0 0 0 4px rgba(255,212,0,.06),0 8px 22px rgba(255,212,0,.12)}
+.hero-bf::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--bf-y);box-shadow:0 0 0 0 rgba(255,212,0,.6);animation:bfPing 1.8s ease-out infinite}
+@keyframes bfPing{0%{box-shadow:0 0 0 0 rgba(255,212,0,.6)}80%,100%{box-shadow:0 0 0 9px rgba(255,212,0,0)}}
+
+/* 4 · fita inclinada entre depoimentos e preço */
+.bf-tape-wrap{position:relative;z-index:5;height:72px;margin:-36px 0;overflow:hidden;pointer-events:none}
+.bf-tape{position:absolute;left:-4%;right:-4%;top:50%;transform:translateY(-50%) rotate(-2.2deg);
+  background:var(--bf-k);border-top:1.5px solid var(--bf-y);border-bottom:1.5px solid var(--bf-y);
+  box-shadow:0 10px 30px rgba(20,16,20,.35);overflow:hidden;white-space:nowrap}
+.bf-tape .bf-track{display:inline-flex;animation:bfMarquee 30s linear infinite reverse}
+.bf-tape .bf-grp{display:inline-flex;flex:0 0 auto}
+.bf-tape .bf-grp>span{padding:11px 0;color:var(--bf-y);font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.bf-tape .bf-grp>span::after{content:"✦";margin:0 20px;opacity:.75}
+
+/* 5 · contagem em placar */
+.bf-clock{display:inline-flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:10px}
+.bf-clock .lbl{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--bf-y)}
+.bf-clock .cells{display:flex;gap:8px}
+.bf-clock .cell{min-width:64px;background:var(--bf-k);border:1px solid rgba(255,212,0,.32);border-radius:14px;
+  padding:10px 8px 8px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 24px rgba(0,0,0,.3);overflow:hidden}
+.bf-clock .cell b{display:block;font-family:var(--font-d);font-weight:600;font-size:30px;line-height:1;color:var(--bf-y);font-variant-numeric:tabular-nums}
+.bf-clock .cell b.tick{animation:bfTick .38s var(--ease-out)}
+.bf-clock .cell i{display:block;font-style:normal;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dark-dim);margin-top:6px}
+.bf-clock .acabou{display:none;font-weight:800;color:#fff}
+.bf-clock.fim .cells{display:none}
+.bf-clock.fim .acabou{display:block}
+@keyframes bfTick{from{transform:translateY(-35%);opacity:.2}to{transform:none;opacity:1}}
+@media(max-width:380px){.bf-clock .cell{min-width:56px}.bf-clock .cell b{font-size:26px}}
+
+/* 6 · card do Dobro com borda de luz amarela */
+@property --bfa{syntax:"<angle>";inherits:false;initial-value:0deg}
+.plan.anual{border-color:transparent;box-shadow:0 22px 60px -12px rgba(255,212,0,.24),0 18px 48px rgba(0,0,0,.35)}
+.plan.anual::before{
+  content:"";position:absolute;inset:-3px;border-radius:27px;padding:2px;pointer-events:none;
+  background:conic-gradient(from var(--bfa),rgba(255,212,0,.28) 0deg,rgba(255,212,0,.28) 230deg,var(--bf-y) 290deg,var(--bf-y-soft) 315deg,var(--bf-y) 340deg,rgba(255,212,0,.28) 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  animation:bfBeam 5s linear infinite;
+}
+@keyframes bfBeam{to{--bfa:360deg}}
+.rv.in .badge.bf::after{animation:bfShine 6s 1s var(--ease-out) infinite}
+@keyframes bfShine{0%{left:-60%}22%,100%{left:135%}}
+
+/* 7 · barra fixa do celular no preto */
+.sticky-cta{background:rgba(11,11,11,.94);border-top:1.5px solid var(--bf-y)}
+.sticky-cta .p{color:var(--bf-y)}
+.sticky-cta .p b{color:#fff}
+
+@media (prefers-reduced-motion:reduce){
+  .bf-bar .bf-track,.bf-tape .bf-track,.bf-seal .ring,.hero-bf::before,.plan.anual::before,.bf-clock .cell b.tick,.rv.in .badge.bf::after{animation:none!important}
+}
 </style>
 <noscript><style>.rv{opacity:1;transform:none}.feat .ic{opacity:1;transform:none}</style></noscript>
 </head>
 <!-- data-modo: "montagem" mostra os espaços de foto vazios · "live" esconde -->
 <body data-modo="live">
-<div class="bf-bar">BLACK FRIDAY LIFE · 2 anos pelo preço de 1 · <span data-falta>até 30/11</span> · <a href="#planos">ver a oferta</a></div>
+<a class="bf-bar" href="#planos" aria-label="Black Friday LIFE: 2 anos pelo preço de 1, mais 3 meses no Pix. Ver a oferta"><span class="bf-track" aria-hidden="true">
+  <span class="bf-grp"><span>Black Friday LIFE</span><span>2 anos pelo preço de 1</span><span>+3 meses no Pix</span><span data-falta>até 30/11</span><span>Black Friday LIFE</span><span>2 anos pelo preço de 1</span><span>+3 meses no Pix</span><span data-falta>até 30/11</span></span>
+  <span class="bf-grp"><span>Black Friday LIFE</span><span>2 anos pelo preço de 1</span><span>+3 meses no Pix</span><span data-falta>até 30/11</span><span>Black Friday LIFE</span><span>2 anos pelo preço de 1</span><span>+3 meses no Pix</span><span data-falta>até 30/11</span></span>
+</span></a>
 
 <header class="hero">
   <div class="wrap hero-inner">
@@ -629,6 +706,7 @@ footer a{color:var(--ink-dark-soft)}
         <div class="hero-media-mobile hero-anim d4">
           <div class="hero-icon" data-lottie="img/hero-icon.json">
             <img class="hero-icon-poster" src="img/hero-icon-poster.webp" alt="Ícone do app LIFE, por Paloma Moraes" fetchpriority="high" width="600" height="600">
+            <span class="bf-seal" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#0B0B0B" stroke="#FFD400" stroke-width="1.2"/><circle cx="50" cy="50" r="27" fill="none" stroke="rgba(255,212,0,.35)" stroke-width=".8"/><defs><path id="bfArcM" d="M50 50 m-37 0 a37 37 0 1 1 74 0 a37 37 0 1 1 -74 0"/></defs><g class="ring"><text><textPath href="#bfArcM" textLength="226" lengthAdjust="spacing">BLACK FRIDAY • LIFE 2026 • </textPath></text></g><text class="mid" x="50" y="59" text-anchor="middle">2x</text></svg></span>
           </div>
         </div>
         <p class="sub hero-anim d5">E pagando no Pix, <strong>mais 3 meses de presente</strong>. São 27 meses de aulas, treinos por nível e planos alimentares calculados por objetivo, com a Paloma e o Time LIFE do seu lado. Pare de tentar sozinha.</p>
@@ -646,6 +724,7 @@ footer a{color:var(--ink-dark-soft)}
       <div class="hero-photo hero-anim d3">
         <div class="hero-icon" data-lottie="img/hero-icon.json">
           <img class="hero-icon-poster" src="img/hero-icon-poster.webp" alt="Ícone do app LIFE, por Paloma Moraes" fetchpriority="high" width="600" height="600">
+          <span class="bf-seal" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#0B0B0B" stroke="#FFD400" stroke-width="1.2"/><circle cx="50" cy="50" r="27" fill="none" stroke="rgba(255,212,0,.35)" stroke-width=".8"/><defs><path id="bfArcD" d="M50 50 m-37 0 a37 37 0 1 1 74 0 a37 37 0 1 1 -74 0"/></defs><g class="ring"><text><textPath href="#bfArcD" textLength="226" lengthAdjust="spacing">BLACK FRIDAY • LIFE 2026 • </textPath></text></g><text class="mid" x="50" y="59" text-anchor="middle">2x</text></svg></span>
         </div>
       </div>
     </div>
@@ -857,12 +936,18 @@ footer a{color:var(--ink-dark-soft)}
 
 </section>
 
+<div class="bf-tape-wrap" aria-hidden="true"><div class="bf-tape"><span class="bf-track"><span class="bf-grp"><span>Black Friday LIFE</span><span>2 anos pelo preço de 1</span><span>+3 meses no Pix</span><span>Black Friday LIFE</span><span>2 anos pelo preço de 1</span><span>+3 meses no Pix</span></span><span class="bf-grp"><span>Black Friday LIFE</span><span>2 anos pelo preço de 1</span><span>+3 meses no Pix</span><span>Black Friday LIFE</span><span>2 anos pelo preço de 1</span><span>+3 meses no Pix</span></span></span></div></div>
+
 <section class="preco" id="planos">
   <div class="wrap">
     <p class="eyebrow rv">black friday · só até 30/11 às 23h59</p>
     <h2 class="h2 rv">2 anos de LIFE pelo preço de 1</h2>
     <p class="lead rv">O mesmo valor do anual, o dobro do tempo. Pagando no Pix, ainda ganha <strong>3 meses de presente</strong>. E tem 7 dias de garantia incondicional.</p>
-    <p class="urgencia rv">✦ Black Friday do LIFE · <span data-falta>até 30/11 às 23h59</span></p>
+    <div class="bf-clock rv" data-clock role="timer" aria-label="Tempo até o fim da Black Friday, 30/11 às 23h59">
+      <span class="lbl">a Black termina em</span>
+      <div class="cells"><div class="cell"><b data-u="d">--</b><i>dias</i></div><div class="cell"><b data-u="h">--</b><i>horas</i></div><div class="cell"><b data-u="m">--</b><i>min</i></div><div class="cell"><b data-u="s">--</b><i>seg</i></div></div>
+      <span class="acabou">a Black Friday acabou</span>
+    </div>
 
     <div class="plans">
       <div class="plan anual rv">
@@ -1267,6 +1352,15 @@ footer a{color:var(--ink-dark-soft)}
     if(d>=2)return 'faltam '+d+' dias';if(d===1)return 'falta 1 dia e '+h+'h';return 'faltam '+h+'h '+m+'min';}
   function upd(){var t=txt();document.querySelectorAll('[data-falta]').forEach(function(e){e.textContent=t;});}
   upd();setInterval(upd,30000);
+  /* placar da seção de preço: mesmo fim, de segundo em segundo; só anima o número que mudou */
+  var box=document.querySelector('[data-clock]');if(!box)return;
+  var cel={};box.querySelectorAll('[data-u]').forEach(function(b){cel[b.getAttribute('data-u')]=b;});
+  function dd(n){return n<10?'0'+n:''+n;}
+  function placar(){var ms=fim-Date.now();if(ms<=0){box.classList.add('fim');return false;}
+    var v={d:Math.floor(ms/864e5),h:Math.floor(ms%864e5/36e5),m:Math.floor(ms%36e5/6e4),s:Math.floor(ms%6e4/1e3)};
+    Object.keys(v).forEach(function(k){var t=dd(v[k]),b=cel[k];if(b&&b.textContent!==t){b.textContent=t;b.classList.remove('tick');void b.offsetWidth;b.classList.add('tick');}});
+    return true;}
+  if(placar()){var tm=setInterval(function(){if(!placar())clearInterval(tm);},1000);}
 })();
 </script>
 <script>
