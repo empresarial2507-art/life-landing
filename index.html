@@ -1239,5 +1239,19 @@ footer a{color:var(--ink-dark-soft)}
   });
 })();
 </script>
+<script>
+/* Medição própria: cada visita e cada clique de compra vão para a planilha "Landing LIFE · acessos e cliques" (api/v.js). sendBeacon chega mesmo quando a página já trocou para o checkout. */
+(function(){
+  var U='https://life-landing-nine.vercel.app/api/v';
+  function id(k,st){try{var v=st.getItem(k);if(!v){v=Math.random().toString(36).slice(2,10)+Date.now().toString(36);st.setItem(k,v);}return v;}catch(e){return '';}}
+  var q=new URLSearchParams(location.search);
+  var base={vid:id('lf_vid',window.localStorage),sid:id('lf_sid',window.sessionStorage),us:q.get('utm_source')||'',um:q.get('utm_medium')||'',uc:q.get('utm_campaign')||'',ut:q.get('utm_content')||'',fb:q.get('fbclid')?1:0,ref:document.referrer||'',url:location.host+location.pathname};
+  function send(e,b){var d={};for(var k in base)d[k]=base[k];d.e=e;d.b=b||'';var s=JSON.stringify(d);
+    try{if(navigator.sendBeacon&&navigator.sendBeacon(U,new Blob([s],{type:'text/plain'})))return;}catch(x){}
+    try{fetch(U,{method:'POST',body:s,keepalive:true,mode:'no-cors',headers:{'Content-Type':'text/plain'}});}catch(x){}}
+  send('visita');
+  document.addEventListener('click',function(ev){var a=ev.target&&ev.target.closest?ev.target.closest('a[href*="eduzz.com"]'):null;if(!a)return;var c='';try{c=new URL(a.href).searchParams.get('utm_content')||'';}catch(x){}send('clique',c||a.getAttribute('data-cta')||'checkout');},true);
+})();
+</script>
 </body>
 </html>
