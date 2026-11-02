@@ -8,4 +8,5 @@ jobs:
   atualizar:
     runs-on: ubuntu-latest
     steps:
-      - run: curl -fsS -X POST -H "x-chave: ${{ secrets.LISTAS_SECRET }}" https://life-landing-nine.vercel.app/api/listas
+      - run: |
+          curl -fsS -X POST -H "x-chave: ${{ secrets.LISTAS_SECRET }}" https://life-landing-nine.vercel.app/api/listas
