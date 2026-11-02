@@ -2,3 +2,5 @@
 node_modules/
 copy-revisada.md
 guia-imagens.md
+.vercel
+.env*
