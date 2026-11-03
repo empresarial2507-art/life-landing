@@ -102,8 +102,11 @@ h1,h2,h3{font-family:var(--font-d);line-height:1.1;text-wrap:balance;font-weight
 .btn.ghost:hover{background:rgba(243,215,223,.08);color:#fff}
 .btn:focus-visible{outline:3px solid var(--pink-soft);outline-offset:3px}
 
-.rv{opacity:0;transform:translateY(26px);transition:opacity .55s var(--ease-out),transform .55s var(--ease-out)}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .45s var(--ease-out),transform .45s var(--ease-out)}
 .rv.in{opacity:1;transform:none}
+/* texto corrido não espera o scroll: quem rola rápido no celular via buraco em branco.
+   O efeito fica só em título, card e imagem. */
+p.rv{opacity:1;transform:none;transition:none}
 
 /* ---------- microanimações sutis ---------- */
 @keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-7px) rotate(3deg)}}
@@ -112,14 +115,14 @@ h1,h2,h3{font-family:var(--font-d);line-height:1.1;text-wrap:balance;font-weight
 @keyframes breathe{0%,100%{opacity:.8}50%{opacity:1}}
 .hero::after{animation:breathe 9s ease-in-out infinite}
 @keyframes softpulse{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
-.rv.in .dia{animation:softpulse 1s var(--ease-out) .5s 1}
+.dia.vai{animation:softpulse .8s var(--ease-out) 1.3s 1}
 @keyframes shine{to{left:135%}}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{transition:opacity .2s;transform:none}
   .hero-anim{animation:none!important;opacity:1!important;transform:none!important}
-  .brand img,.final img.bfly,.hero::after,.rv.in .dia{animation:none!important}
+  .brand img,.final img.bfly,.hero::after,.dia.vai{animation:none!important}
   .rv.in .badge::after{animation:none!important;display:none}
   .feat .ic{transform:none;opacity:1;transition:none}
 }
@@ -599,6 +602,7 @@ footer a{color:var(--ink-dark-soft)}
 .urgencia [data-falta]{font-weight:800;color:#fff}
 .plan .badge.bf{background:#FFD400;color:#0B0B0B;border:1.5px solid #FFD400;box-shadow:0 6px 18px rgba(255,212,0,.28);letter-spacing:.12em}
 .plan .badge.bf span{color:#0B0B0B}
+@media(max-width:400px){.plan .badge.bf{white-space:nowrap;font-size:10.5px;letter-spacing:.08em;padding:7px 13px;left:20px}}
 
 /* ===== Black Friday · camada premium (preto + amarelo só em cima do preto; botões seguem rosa) ===== */
 :root{--bf-y:#FFD400;--bf-y-soft:#FFF3A6;--bf-k:#0B0B0B}
@@ -662,7 +666,8 @@ footer a{color:var(--ink-dark-soft)}
   animation:bfBeam 5s linear infinite;
 }
 @keyframes bfBeam{to{--bfa:360deg}}
-.rv.in .badge.bf::after{animation:bfShine 6s 1s var(--ease-out) infinite}
+/* um brilho só: a borda de luz já é o movimento contínuo do card */
+.rv.in .badge.bf::after{animation:bfShine 6s 1s var(--ease-out) 1}
 @keyframes bfShine{0%{left:-60%}22%,100%{left:135%}}
 
 /* 7 · barra fixa do celular no preto */
@@ -671,8 +676,48 @@ footer a{color:var(--ink-dark-soft)}
 .sticky-cta .p b{color:var(--bf-k)}
 .sticky-cta .btn{background:var(--bf-k);color:var(--bf-y)}
 
+/* 8 · "1 vira 2" no card do Dobro. O JS arma (.armado) e dispara (.vai) quando o card está à vista;
+   sem JS a barra já aparece completa */
+.dobro-meter{margin:18px 0 4px}
+.dm-bar{display:flex;gap:4px;height:32px}
+.dm-seg{display:flex;align-items:center;justify-content:center;border-radius:9px;overflow:hidden;transform-origin:left center}
+.dm-seg.a{flex:12;background:var(--rose-soft);color:var(--pink-deep)}
+.dm-seg.b{flex:12;background:var(--pink);color:#fff}
+.dm-seg.c{flex:3;min-width:38px;background:var(--bf-y);color:var(--bf-k);border:1.5px solid var(--bf-k);transform-origin:center}
+.dm-seg i{font-style:normal;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.dm-legend{margin-top:9px;font-size:13.5px;color:var(--ink-soft)}
+.dm-n{display:inline-block;font-family:var(--font-d);font-size:21px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;margin-right:2px}
+.dm-n.tick{animation:bfTick .38s var(--ease-out)}
+.dobro-meter.armado .dm-seg{transform:scaleX(0)}
+.dobro-meter.armado .dm-seg i{opacity:0}
+.dobro-meter.vai .dm-seg.a{animation:dmGrow .55s var(--ease-out) .3s both}
+.dobro-meter.vai .dm-seg.b{animation:dmGrow .55s var(--ease-out) .95s both}
+.dobro-meter.vai .dm-seg.c{animation:dmPop .55s cubic-bezier(.34,1.56,.64,1) 1.65s both}
+.dobro-meter.vai .dm-seg.a i{animation:dmFade .3s ease-out .75s both}
+.dobro-meter.vai .dm-seg.b i{animation:dmFade .3s ease-out 1.4s both}
+.dobro-meter.vai .dm-seg.c i{animation:dmFade .3s ease-out 1.95s both}
+@keyframes dmGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dmPop{from{transform:scale(0) rotate(-14deg)}to{transform:none}}
+@keyframes dmFade{from{opacity:0}to{opacity:1}}
+
+/* 9 · o "por dia" aparece como resultado da conta */
+.plan .dia{border-radius:14px}
+.dia-conta{font-weight:600;opacity:.72}
+.dia.armado .dia-conta,.dia.armado .dia-res{opacity:0}
+.dia.vai .dia-conta{animation:dmFade .35s ease-out .15s both}
+.dia.vai .dia-res{display:inline-block;animation:diaRes .5s var(--ease-out) .7s both}
+@keyframes diaRes{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+
+/* 10 · depoimentos chegando como notificação, uma vez, quando a seção aparece */
+.transf-track.armado .transf:not([data-copia]){opacity:0}
+.transf-track.vai .transf:not([data-copia]){animation:chega .7s cubic-bezier(.34,1.56,.64,1) both;animation-delay:calc(var(--i,0) * .12s)}
+@keyframes chega{from{opacity:0;transform:translateY(42px) scale(.94) rotate(-2deg)}to{opacity:1;transform:none}}
+
+/* 11 · loop fora da tela fica parado (bateria e fluidez no celular) */
+.fora,.fora *,.fora::before,.fora *::before,.fora *::after{animation-play-state:paused!important}
+
 @media (prefers-reduced-motion:reduce){
-  .bf-bar .bf-track,.bf-tape .bf-track,.bf-seal .ring,.hero-bf::before,.plan.anual::before,.bf-clock .cell b.tick,.rv.in .badge.bf::after{animation:none!important}
+  .bf-bar .bf-track,.bf-tape .bf-track,.bf-seal .ring,.hero-bf::before,.plan.anual::before,.bf-clock .cell b.tick,.rv.in .badge.bf::after,.dm-n.tick{animation:none!important}
 }
 </style>
 <noscript><style>.rv{opacity:1;transform:none}.feat .ic{opacity:1;transform:none}</style></noscript>
@@ -956,8 +1001,14 @@ footer a{color:var(--ink-dark-soft)}
         <p class="tipo">Anual em Dobro · 2 anos de acesso</p>
         <p class="preco-num">R$ 598,80</p>
         <p class="preco-sub">à vista no Pix</p>
-        <div class="bonus-pill"><span class="gift" aria-hidden="true">🎁</span><span><b>+3 meses de bônus no Pix.</b> São 27 meses de LIFE no total.</span></div>
-        <span class="dia">sai R$ 0,73 por dia</span>
+        <!-- "1 vira 2": a barra do ano 1 se duplica no ano 2 e o +3 do Pix encaixa no fim.
+             Sem JS ou com movimento reduzido, já aparece pronta em 27. -->
+        <div class="dobro-meter" data-meter>
+          <div class="dm-bar" aria-hidden="true"><span class="dm-seg a"><i>ano 1</i></span><span class="dm-seg b"><i>ano 2</i></span><span class="dm-seg c"><i>+3</i></span></div>
+          <p class="dm-legend"><b class="dm-n">27</b> meses de LIFE pelo preço de 1 ano</p>
+        </div>
+        <div class="bonus-pill"><span class="gift" aria-hidden="true">🎁</span><span><b>+3 meses de bônus no Pix.</b> Entram no seu acesso em até 1 dia útil.</span></div>
+        <span class="dia"><span class="dia-conta">R$ 598,80 ÷ 820 dias</span> <span class="dia-res">= R$ 0,73 por dia</span></span>
         <ul>
           <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Tudo do LIFE por 2 anos:</strong> aulas semanais, +100 gravadas, 12 módulos, planos alimentares, receitas e comunidade</span></li>
           <li class="grupo" style="list-style:none">exclusivo do anual</li>
@@ -1054,11 +1105,55 @@ footer a{color:var(--ink-dark-soft)}
 
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  },{threshold:.15, rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.rv').forEach(function(el,i){
-    el.style.transitionDelay = (i%6)*0.06+'s';
+  },{threshold:.1, rootMargin:'0px 0px -4% 0px'});
+  // escalonamento entre irmãos do mesmo bloco, não pela posição na página inteira
+  // (antes um título podia herdar 0,3s de atraso só por cair no 6º lugar da contagem)
+  document.querySelectorAll('.rv').forEach(function(el){
+    var irmaos = [].filter.call(el.parentNode.children, function(c){ return c.classList.contains('rv') && c.tagName !== 'P'; });
+    var i = irmaos.indexOf(el);
+    el.style.transitionDelay = (i > 0 ? Math.min(i,5)*0.06 : 0)+'s';
     io.observe(el);
   });
+
+  // animações de uma vez só (card do Dobro, conta do "por dia", depoimentos):
+  // .armado esconde o estado inicial, .vai dispara quando a pessoa está olhando
+  if(!reduce){
+    var umaVez = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        umaVez.unobserve(e.target);
+        e.target.classList.add('vai');
+        if(e.target.hasAttribute('data-meter')) contaMeses(e.target);
+      });
+    },{threshold:.6});
+    document.querySelectorAll('[data-meter], .plan .dia').forEach(function(el){
+      el.classList.add('armado'); umaVez.observe(el);
+      if(el.hasAttribute('data-meter')) el.querySelector('.dm-n').textContent = '12';
+    });
+    var transf = document.getElementById('transfTrack');
+    if(transf){
+      [].forEach.call(transf.children, function(c,i){ if(!c.dataset.copia) c.style.setProperty('--i', i); });
+      transf.classList.add('armado');
+      new IntersectionObserver(function(es,obs){
+        if(!es[0].isIntersecting) return;
+        obs.disconnect(); transf.classList.add('vai');
+      },{threshold:.25}).observe(transf);
+    }
+  }
+  // 12 quando o ano 1 enche, 24 quando duplica, 27 quando o +3 encaixa
+  function contaMeses(box){
+    var n = box.querySelector('.dm-n');
+    n.textContent = '12';
+    [[1550,'24'],[2150,'27']].forEach(function(p){
+      setTimeout(function(){ n.textContent = p[1]; n.classList.remove('tick'); void n.offsetWidth; n.classList.add('tick'); }, p[0]);
+    });
+  }
+
+  // loop que saiu da tela para de rodar
+  var foraIO = new IntersectionObserver(function(es){
+    es.forEach(function(e){ e.target.classList.toggle('fora', !e.isIntersecting); });
+  });
+  document.querySelectorAll('.bf-bar, .bf-tape-wrap, .bf-seal, .plan.anual, .hero-bf').forEach(function(el){ foraIO.observe(el); });
 
   var sticky = document.getElementById('stickyCta');
   var hero = document.querySelector('.hero');
