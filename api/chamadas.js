@@ -26,20 +26,22 @@ const COMO = {
   'WhatsApp': 'Entradas = o time conta as conversas com a frase (escrever à mão). Caixa = vendas do Pedro e da Giulia no dia e no seguinte, acima da média dos 7 dias anteriores.',
   'Aula aberta': 'Entradas = cadastros na página da aula. Vendas e caixa = compras dessas pessoas em 7 dias.',
 };
-// Plano de 03/11/2026 (relatorios/2026-11-03_plano-chamadas-novembro.md no life-growth-os).
+// Plano de 03/11/2026, revisto no mesmo dia: a Paloma faz no mínimo 2 chamadas por semana (8 no mês) (relatorios/2026-11-03_plano-chamadas-novembro.md no life-growth-os).
 const PLANO = [
   ['Out', '31/10/2026', 'Referência', 'Mapa LIFE', 'Lançamento do Mapa: "fiz um presente pra você descobrir onde o seu corpo tá pedindo atenção"', 'sem etiqueta própria (utm_source=stories)', MAPA_LINK.replace('&utm_medium=instagram&utm_campaign=', ''), 'Feita', '', '', 1013, 17, 4232, 3000, '', 'Medido à mão em 03/11: 1.013 cadastros, 17 compraram depois de fazer o Mapa, R$ 4.232 de caixa em 4 dias (mais parcelas a receber)'],
-  ['S1', '05/11/2026', 'Extra', 'Landing', 'Black: 2 anos pelo preço de 1, e quem paga no Pix ganha +3 meses', 'chamada-0511', LANDING + 'chamada-0511', 'Planejada', '', '', '', '', '', 3000, 6000, ''],
-  ['S2', '09/11/2026', 'Obrigatória', 'WhatsApp', 'Black das Alunas: a Black chegou primeiro pra quem me acompanha, e quem já é aluna troca o plano pelo Dobro', 'Paloma, quero minha Black!! 🖤💛', 'ManyChat → WhatsApp do time, com a frase pronta', 'Planejada', '', '', '', '', '', 3500, 10000, 'Dia do salário (5º dia útil). Pedro e Giulia até as 22h nos dias 09 e 10'],
-  ['S2', '13/11/2026', 'Extra', 'Mapa LIFE', 'Resultado coletivo: "X musas fizeram o Mapa e a área que mais apareceu foi Y" (número real da planilha do Mapa)', 'chamada-1311', MAPA_LINK + 'chamada-1311', 'Planejada', '', '', '', '', '', 1500, 3000, '2ª chamada do Mapa: quem já fez não refaz, por isso o piso é a metade'],
-  ['S3', '18/11/2026', 'Extra', 'Aula aberta', 'Liberei uma aula do LIFE de graça por 48 h', 'chamada-1811', 'a construir (página da aula)', 'Depende', '', '', '', '', '', 1500, 3000, 'A Paloma escolhe a aula até 07/11; a página fica pronta até 10/11'],
-  ['S4', '24/11/2026', 'Extra', 'WhatsApp', 'Abriu a Black: 2 anos pelo preço de 1, termina dia 30', 'QUERO A BLACK', 'ManyChat → WhatsApp do time, com a frase pronta', 'Planejada', '', '', '', '', '', 3500, 8000, ''],
-  ['S4', '27/11/2026', 'Obrigatória', 'Landing', 'Dia da Black: termina 30/11 às 23h59', 'chamada-2711', LANDING + 'chamada-2711', 'Planejada', '', '', '', '', '', 5000, 12000, 'Time até as 23h para dúvidas'],
-  ['S5', '30/11/2026', 'Extra', 'Landing', 'Último dia: termina hoje às 23h59', 'chamada-3011', LANDING + 'chamada-3011', 'Planejada', '', '', '', '', '', 4000, 8000, ''],
+  ['S1', '05/11/2026', 'Mínima', 'Landing', 'Black: 2 anos pelo preço de 1, e quem paga no Pix ganha +3 meses', 'chamada-0511', LANDING + 'chamada-0511', 'Planejada', '', '', '', '', '', 3000, 6000, ''],
+  ['S1', '07/11/2026', 'Mínima', 'Mapa LIFE', 'Resultado coletivo: "X musas fizeram o Mapa e a área que mais apareceu foi Y" (número real da planilha do Mapa). Ainda não fez? Link aqui', 'chamada-0711', MAPA_LINK + 'chamada-0711', 'Planejada', '', '', '', '', '', 1500, 3000, '2ª chamada do Mapa: quem já fez não refaz, por isso o piso é a metade'],
+  ['S2', '09/11/2026', 'Mínima', 'WhatsApp', 'Black das Alunas: a Black chegou primeiro pra quem me acompanha, e quem já é aluna troca o plano pelo Dobro', 'Paloma, quero minha Black!! 🖤💛', 'ManyChat → WhatsApp do time, com a frase pronta', 'Planejada', '', '', '', '', '', 3500, 10000, 'Dia do salário (5º dia útil). Pedro e Giulia até as 22h nos dias 09 e 10'],
+  ['S2', '13/11/2026', 'Mínima', 'Aula aberta', 'Liberei uma aula do LIFE de graça até domingo', 'chamada-1311', 'a construir (página da aula)', 'Depende', '', '', '', '', '', 1500, 3000, 'A Paloma escolhe a aula até 07/11; a página fica pronta até 10/11'],
+  ['S3', '17/11/2026', 'Mínima', 'Landing', 'Quem já entrou na Black: prints e depoimentos de alunas (sem antes e depois), e o link', 'chamada-1711', LANDING + 'chamada-1711', 'Planejada', '', '', '', '', '', 3000, 6000, ''],
+  ['S3', '19/11/2026', 'Mínima', 'WhatsApp', 'Dúvida sobre a Black? Manda a frase que o time te explica', 'QUERO A BLACK', 'ManyChat → WhatsApp do time, com a frase pronta', 'Planejada', '', '', '', '', '', 3500, 8000, 'Véspera do feriado de 20/11'],
+  ['S4', '24/11/2026', 'Mínima', 'WhatsApp', 'Começou a semana da Black: termina dia 30', 'Paloma, quero a Black!! 🖤💛', 'ManyChat → WhatsApp do time, com a frase pronta', 'Planejada', '', '', '', '', '', 3500, 8000, 'Frase diferente da de 19/11 para separar as conversas'],
+  ['S4', '27/11/2026', 'Mínima', 'Landing', 'Dia da Black: termina 30/11 às 23h59', 'chamada-2711', LANDING + 'chamada-2711', 'Planejada', '', '', '', '', '', 5000, 12000, 'Time até as 23h para dúvidas'],
+  ['S4', '30/11/2026', 'Extra', 'Landing', 'Último dia: termina hoje às 23h59', 'chamada-3011', LANDING + 'chamada-3011', 'Planejada', '', '', '', '', '', 4000, 8000, 'A 9ª chamada: o último dia é o que mais rende depois do dia da Black'],
 ];
 const SEMANAS = [
   ['S1', '01/11/2026', '08/11/2026'], ['S2', '09/11/2026', '15/11/2026'], ['S3', '16/11/2026', '22/11/2026'],
-  ['S4', '23/11/2026', '29/11/2026'], ['S5', '30/11/2026', '30/11/2026'],
+  ['S4', '23/11/2026', '30/11/2026'],
 ];
 const CAB_SEM = ['Semana', 'De', 'Até', 'Dias', 'Meta (R$)', 'Piso sem chamada (R$)', 'Caixa real (R$)', 'Chamadas planejadas',
   'Chamadas feitas', 'Caixa das chamadas (R$)', 'Falta para a meta (R$)', 'Situação'];
@@ -63,6 +65,14 @@ const valor = (i) => Number(i.total?.value || 0);
 const fatia = (vendas, de, ate) => vendas.filter((i) => i.paidAt.slice(0, 10) >= de && i.paidAt.slice(0, 10) <= ate);
 const soma = (l) => l.reduce((t, i) => t + valor(i), 0);
 
+function linhasDoPlano() {
+  return PLANO.map((l, k) => {
+    const r = k + 2;
+    const c = l.slice(0, 15).map((v, j) => (j === 1 ? "'" + v : v));
+    return [...c, `=IF(M${r}="";"";IF(M${r}>=N${r};"acima do piso";"abaixo do piso"))`, COMO[l[3]] || '', l[15] || ''];
+  });
+}
+
 async function prepararAbas() {
   const meta = await sheets(ID(), '?fields=sheets.properties');
   const tem = (t) => meta.sheets.some((s) => s.properties.title === t);
@@ -70,14 +80,7 @@ async function prepararAbas() {
   if (!novas.length) return;
   await sheets(ID(), ':batchUpdate', { method: 'POST', body: JSON.stringify({ requests: novas.map((title) => ({ addSheet: { properties: { title, gridProperties: { frozenRowCount: 1 } } } })) }) });
   const put = (faixa, values) => sheets(ID(), `/values/${encodeURIComponent(faixa)}?valueInputOption=USER_ENTERED`, { method: 'PUT', body: JSON.stringify({ values }) });
-  if (novas.includes('Chamadas')) {
-    const linhas = PLANO.map((l, k) => {
-      const r = k + 2;
-      const c = l.slice(0, 15).map((v, j) => (j === 1 ? "'" + v : v));
-      return [...c, `=IF(M${r}="";"";IF(M${r}>=N${r};"acima do piso";"abaixo do piso"))`, COMO[l[3]] || '', l[15] || ''];
-    });
-    await put('Chamadas!A1', [CAB, ...linhas]);
-  }
+  if (novas.includes('Chamadas')) await put('Chamadas!A1', [CAB, ...linhasDoPlano()]);
   if (novas.includes('Semanas')) {
     const linhas = SEMANAS.map(([s, de, ate], k) => {
       const r = k + 2;
@@ -173,7 +176,7 @@ module.exports = async function handler(req, res) {
       escritas.push({ range: `Semanas!G${k + 2}`, values: [[caixa]] });
       escritas.push({ range: `Semanas!L${k + 2}`, values: [[fr < 1 ? `${situacao} (parcial)` : situacao]] });
     });
-    escritas.push({ range: 'Semanas!A9', values: [[`Atualizado em ${hoje.slice(8, 10)}/${hoje.slice(5, 7)} às ${new Date(Date.now() - 3 * 3600e3).toISOString().slice(11, 16)}`]] });
+    escritas.push({ range: `Semanas!A${SEMANAS.length + 4}`, values: [[`Atualizado em ${hoje.slice(8, 10)}/${hoje.slice(5, 7)} às ${new Date(Date.now() - 3 * 3600e3).toISOString().slice(11, 16)}`]] });
     await sheets(ID(), '/values:batchUpdate', { method: 'POST', body: JSON.stringify({ valueInputOption: 'USER_ENTERED', data: escritas }) });
     return res.status(200).json({ ok: true, chamadas: linhas.length, escritas: escritas.length });
   } catch (e) {
@@ -183,3 +186,6 @@ module.exports = async function handler(req, res) {
 };
 
 module.exports.config = { maxDuration: 60 };
+// Para regravar o plano à mão (apaga as linhas da aba Chamadas e escreve o PLANO de novo).
+module.exports.linhasDoPlano = linhasDoPlano;
+module.exports.CAB = CAB;
