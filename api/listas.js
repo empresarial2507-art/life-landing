@@ -4,6 +4,7 @@
 //   Aba "Boas-vindas": toda compra feita pela landing (bio ou cópia X do anúncio). O time chama no WhatsApp.
 // Env: EDUZZ_API_KEY, GOOGLE_SA_JSON, LISTAS_SHEET_ID, LISTAS_SECRET.
 const { sheets } = require('../lib/google');
+const { eduzz, vendasPagas, dia } = require('../lib/eduzz');
 
 const INICIO_BONUS = '2026-11-01';
 const INICIO_BOAS_VINDAS = '2026-11-02';
@@ -19,7 +20,6 @@ const ABAS = {
 };
 
 const ID = () => process.env.LISTAS_SHEET_ID;
-const dia = (d) => d.toISOString().slice(0, 10);
 // A Eduzz manda o horário de Brasília com "Z" no fim: a parte da data e da hora já é a de Brasília.
 const quando = (s) => `${s.slice(8, 10)}/${s.slice(5, 7)}/${s.slice(0, 4)} ${s.slice(11, 16)}`;
 function somaMeses(s, meses) {
@@ -28,25 +28,6 @@ function somaMeses(s, meses) {
 }
 const digitos = (t) => String(t || '').replace(/\D/g, '');
 const primeiroNome = (n) => String(n || '').trim().split(/\s+/)[0] || '';
-
-async function eduzz(caminho, q = {}) {
-  const u = new URL('https://api.eduzz.com' + caminho);
-  for (const [k, v] of Object.entries(q)) u.searchParams.set(k, v);
-  const r = await fetch(u, { headers: { authorization: 'Bearer ' + process.env.EDUZZ_API_KEY, accept: 'application/json' } });
-  if (!r.ok) throw new Error(`eduzz ${r.status} ${caminho}`);
-  return r.json();
-}
-
-async function vendasPagas(desde) {
-  const fim = dia(new Date(Date.now() - 3 * 3600e3));
-  let itens = [];
-  for (let pg = 1; pg <= 20; pg++) {
-    const d = await eduzz('/myeduzz/v1/sales', { startDate: desde, endDate: fim, referenceDate: 'paidAt', status: 'paid', itemsPerPage: '100', page: String(pg) });
-    itens = itens.concat(d.items || []);
-    if (pg >= (d.pages || 1)) break;
-  }
-  return itens.filter((i) => i.paidAt);
-}
 
 async function prepararAbas() {
   const meta = await sheets(ID(), '?fields=sheets.properties');

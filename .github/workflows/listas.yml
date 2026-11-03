@@ -1,4 +1,4 @@
-# Atualiza as listas do time (bônus do Pix e boas-vindas) a cada 30 minutos.
+# A cada 30 minutos: listas do time (bônus do Pix e boas-vindas) e o controle das chamadas da Paloma.
 name: Listas do time
 on:
   schedule:
@@ -10,3 +10,4 @@ jobs:
     steps:
       - run: |
           curl -fsS -X POST -H "x-chave: ${{ secrets.LISTAS_SECRET }}" https://life-landing-nine.vercel.app/api/listas
+          curl -fsS -X POST -H "x-chave: ${{ secrets.LISTAS_SECRET }}" https://life-landing-nine.vercel.app/api/chamadas
