@@ -3,6 +3,7 @@
 //   Chamadas: uma linha por chamada. A equipe da Paloma marca o status, as visualizações e os toques; este endpoint
 //   preenche entradas, vendas e caixa pela etiqueta (utm_campaign) ou, no WhatsApp, pela janela de 48 h do time.
 //   Semanas: caixa real da Eduzz por semana contra a meta (R$ 4 mil por dia).
+//   Teste: as 4 chamadas de teste (uma por destino) ordenadas por R$ por mil visualizações em 48 h.
 // A planilha está em pt_BR: nas fórmulas, o separador é ponto e vírgula.
 // Na primeira chamada, cria as abas com o plano de novembro. Depois disso, a planilha manda: o endpoint só
 // escreve as colunas automáticas (K, L e M) e a coluna de caixa real das semanas.
@@ -19,25 +20,27 @@ const MAPA_LINK = 'https://mapa-life.vercel.app/?utm_source=stories&utm_medium=i
 
 const CAB = ['Semana', 'Data', 'Tipo', 'Destino', 'O que a Paloma fala', 'Frase ou etiqueta', 'Link do sticker', 'Status',
   'Visualizações (equipe da Paloma)', 'Toques no link (equipe da Paloma)', 'Entradas', 'Vendas', 'Caixa (R$)',
-  'Piso (R$)', 'Provável (R$)', 'Resultado', 'Como conta', 'Observação'];
+  'Piso (R$)', 'Provável (R$)', 'Resultado', 'Como conta', 'Observação', 'Caixa em 48 h (R$)', 'R$ por mil visualizações (48 h)'];
 const COMO = {
   'Landing': 'Entradas = visitas com a etiqueta. Vendas e caixa = compras pagas com a etiqueta em 7 dias.',
   'Mapa LIFE': 'Entradas = cadastros com a etiqueta. Vendas e caixa = compras dessas pessoas em 7 dias, por qualquer canal.',
   'WhatsApp': 'Entradas = o time conta as conversas com a frase (escrever à mão). Caixa = vendas do Pedro e da Giulia no dia e no seguinte, acima da média dos 7 dias anteriores.',
   'Aula aberta': 'Entradas = cadastros na página da aula. Vendas e caixa = compras dessas pessoas em 7 dias.',
 };
-// Plano de 03/11/2026, revisto no mesmo dia: a Paloma faz no mínimo 2 chamadas por semana (8 no mês) (relatorios/2026-11-03_plano-chamadas-novembro.md no life-growth-os).
+// Plano de 03/11/2026, revisto no mesmo dia: no mínimo 2 chamadas por semana. Fase de teste (05 a 13/11): um destino
+// por chamada, comparados por R$ por mil visualizações em 48 h (aba Teste). Fase de repetição (17 a 30/11): o destino
+// das linhas é provisório até a leitura de 15/11 (relatorios/2026-11-03_plano-chamadas-novembro.md no life-growth-os).
 const PLANO = [
   ['Out', '31/10/2026', 'Referência', 'Mapa LIFE', 'Lançamento do Mapa: "fiz um presente pra você descobrir onde o seu corpo tá pedindo atenção"', 'sem etiqueta própria (utm_source=stories)', MAPA_LINK.replace('&utm_medium=instagram&utm_campaign=', ''), 'Feita', '', '', 1013, 17, 4232, 3000, '', 'Medido à mão em 03/11: 1.013 cadastros, 17 compraram depois de fazer o Mapa, R$ 4.232 de caixa em 4 dias (mais parcelas a receber)'],
-  ['S1', '05/11/2026', 'Mínima', 'Landing', 'Black: 2 anos pelo preço de 1, e quem paga no Pix ganha +3 meses', 'chamada-0511', LANDING + 'chamada-0511', 'Planejada', '', '', '', '', '', 3000, 6000, ''],
-  ['S1', '07/11/2026', 'Mínima', 'Mapa LIFE', 'Resultado coletivo: "X musas fizeram o Mapa e a área que mais apareceu foi Y" (número real da planilha do Mapa). Ainda não fez? Link aqui', 'chamada-0711', MAPA_LINK + 'chamada-0711', 'Planejada', '', '', '', '', '', 1500, 3000, '2ª chamada do Mapa: quem já fez não refaz, por isso o piso é a metade'],
-  ['S2', '09/11/2026', 'Mínima', 'WhatsApp', 'Black das Alunas: a Black chegou primeiro pra quem me acompanha, e quem já é aluna troca o plano pelo Dobro', 'Paloma, quero minha Black!! 🖤💛', 'ManyChat → WhatsApp do time, com a frase pronta', 'Planejada', '', '', '', '', '', 3500, 10000, 'Dia do salário (5º dia útil). Pedro e Giulia até as 22h nos dias 09 e 10'],
-  ['S2', '13/11/2026', 'Mínima', 'Aula aberta', 'Liberei uma aula do LIFE de graça até domingo', 'chamada-1311', 'a construir (página da aula)', 'Depende', '', '', '', '', '', 1500, 3000, 'A Paloma escolhe a aula até 07/11; a página fica pronta até 10/11'],
-  ['S3', '17/11/2026', 'Mínima', 'Landing', 'Quem já entrou na Black: prints e depoimentos de alunas (sem antes e depois), e o link', 'chamada-1711', LANDING + 'chamada-1711', 'Planejada', '', '', '', '', '', 3000, 6000, ''],
-  ['S3', '19/11/2026', 'Mínima', 'WhatsApp', 'Dúvida sobre a Black? Manda a frase que o time te explica', 'QUERO A BLACK', 'ManyChat → WhatsApp do time, com a frase pronta', 'Planejada', '', '', '', '', '', 3500, 8000, 'Véspera do feriado de 20/11'],
-  ['S4', '24/11/2026', 'Mínima', 'WhatsApp', 'Começou a semana da Black: termina dia 30', 'Paloma, quero a Black!! 🖤💛', 'ManyChat → WhatsApp do time, com a frase pronta', 'Planejada', '', '', '', '', '', 3500, 8000, 'Frase diferente da de 19/11 para separar as conversas'],
-  ['S4', '27/11/2026', 'Mínima', 'Landing', 'Dia da Black: termina 30/11 às 23h59', 'chamada-2711', LANDING + 'chamada-2711', 'Planejada', '', '', '', '', '', 5000, 12000, 'Time até as 23h para dúvidas'],
-  ['S4', '30/11/2026', 'Extra', 'Landing', 'Último dia: termina hoje às 23h59', 'chamada-3011', LANDING + 'chamada-3011', 'Planejada', '', '', '', '', '', 4000, 8000, 'A 9ª chamada: o último dia é o que mais rende depois do dia da Black'],
+  ['S1', '05/11/2026', 'Teste', 'Landing', 'Faltam 8 semanas pro ano acabar: dá pra chegar em dezembro diferente. A Black chegou antes: 2 anos pelo preço de 1, e no Pix ganha +3 meses', 'chamada-0511', LANDING + 'chamada-0511', 'Planejada', '', '', '', '', '', 3000, 6000, 'Teste 1 de 4: landing (venda sem atendimento)'],
+  ['S1', '07/11/2026', 'Teste', 'Mapa LIFE', 'Resultado coletivo: "X musas fizeram o Mapa e a área que mais apareceu foi Y" (número real da planilha do Mapa). Ainda não fez? Link aqui', 'chamada-0711', MAPA_LINK + 'chamada-0711', 'Planejada', '', '', '', '', '', 1500, 3000, 'Teste 2 de 4. 2ª chamada do Mapa: quem já fez não refaz, por isso o piso é a metade'],
+  ['S2', '09/11/2026', 'Teste', 'WhatsApp', 'Dia do salário + Black das Alunas: a Black chegou primeiro pra quem me acompanha, e quem já é aluna troca o plano pelo Dobro', 'Paloma, quero minha Black!! 🖤💛', 'ManyChat → WhatsApp do time, com a frase pronta', 'Planejada', '', '', '', '', '', 3500, 10000, 'Teste 3 de 4. Pedro e Giulia até as 22h nos dias 09 e 10'],
+  ['S2', '13/11/2026', 'Teste', 'Aula aberta', 'Sexta-feira 13: o único medo que eu quero tirar de você é o de começar. Liberei uma aula do LIFE de graça até domingo', 'chamada-1311', 'a construir (página da aula)', 'Depende', '', '', '', '', '', 1500, 3000, 'Teste 4 de 4. A Paloma escolhe a aula até 07/11; a página fica pronta até 10/11'],
+  ['S3', '17/11/2026', 'Repetição', 'Landing', 'Prova social: quem entrou na Black semana passada já tá na comunidade (prints de alunas, sem antes e depois), e ainda dá tempo', 'chamada-1711', LANDING + 'chamada-1711', 'Planejada', '', '', '', '', '', 3000, 6000, 'Destino provisório: em 15/11 vira o 1º do teste. Se virar WhatsApp, frase "Paloma, entrei na Black?"'],
+  ['S3', '19/11/2026', 'Repetição', 'WhatsApp', 'Véspera do feriadão: feriado não é motivo pra largar tudo, é o melhor dia pra começar com calma. Dúvida sobre a Black? Manda a frase', 'QUERO A BLACK', 'ManyChat → WhatsApp do time, com a frase pronta', 'Planejada', '', '', '', '', '', 3500, 8000, 'Destino provisório: em 15/11 vira o 2º do teste (ou o 1º, se ele ganhou com folga). Se virar landing, etiqueta chamada-1911'],
+  ['S4', '24/11/2026', 'Repetição', 'WhatsApp', 'Abriu a semana da Black: termina segunda, dia 30. Menos de R$ 1 por dia por 2 anos de LIFE', 'Paloma, quero a Black!! 🖤💛', 'ManyChat → WhatsApp do time, com a frase pronta', 'Planejada', '', '', '', '', '', 3500, 8000, 'Destino provisório: em 15/11 vira o 1º do teste. Se virar landing, etiqueta chamada-2411'],
+  ['S4', '27/11/2026', 'Repetição', 'Landing', 'Black Friday: hoje todo mundo compra coisa que nem vai usar. Compra uma que você vai usar por 2 anos. Termina 30/11 às 23h59', 'chamada-2711', LANDING + 'chamada-2711', 'Planejada', '', '', '', '', '', 5000, 12000, 'Destino provisório: em 15/11 vira o 1º do teste. Time até as 23h para dúvidas. Se virar WhatsApp, frase "BLACK FRIDAY"'],
+  ['S4', '30/11/2026', 'Repetição (extra)', 'Landing', 'Último dia: termina hoje às 23h59. Depois disso, só no preço normal', 'chamada-3011', LANDING + 'chamada-3011', 'Planejada', '', '', '', '', '', 4000, 8000, 'A 9ª chamada. Destino provisório: em 15/11 vira o 1º do teste. Se virar WhatsApp, frase "ÚLTIMO DIA"'],
 ];
 const SEMANAS = [
   ['S1', '01/11/2026', '08/11/2026'], ['S2', '09/11/2026', '15/11/2026'], ['S3', '16/11/2026', '22/11/2026'],
@@ -58,6 +61,13 @@ const REGUA = [
   ['Regra', 'Chamada abaixo do piso: a próxima do mesmo destino troca o motivo ou o destino. Duas acima do provável: o destino ganha mais uma chamada.'],
 ];
 
+const TESTE_CAB = ['Destino', 'Data', 'Visualizações', 'Caixa em 48 h (R$)', 'R$ por mil visualizações (48 h)', 'Posição', 'Caixa em 7 dias (R$)'];
+const TESTE_REGRA = [
+  [],
+  ['Regra', 'Leitura em 15/11. O 1º colocado fica com as chamadas de 17, 24, 27 e 30/11; o 2º fica com a de 19/11. Se o 2º ficar a menos de 20% do 1º, os dois se alternam (17 e 24 para o 1º, 19 e 27 para o 2º, 30 para o 1º).'],
+  ['Limites', 'Mapa LIFE repete no máximo uma vez (quem já fez não refaz). Aula aberta só repete com outra aula. Uma chamada abaixo do piso na fase de repetição: a próxima troca o motivo, não o destino.'],
+];
+
 const ID = () => process.env.SHEET_ID;
 const iso = (br) => `${br.slice(6, 10)}-${br.slice(3, 5)}-${br.slice(0, 2)}`;
 const maisDias = (s, n) => dia(new Date(Date.parse(s + 'T12:00:00Z') + n * 864e5));
@@ -69,14 +79,15 @@ function linhasDoPlano() {
   return PLANO.map((l, k) => {
     const r = k + 2;
     const c = l.slice(0, 15).map((v, j) => (j === 1 ? "'" + v : v));
-    return [...c, `=IF(M${r}="";"";IF(M${r}>=N${r};"acima do piso";"abaixo do piso"))`, COMO[l[3]] || '', l[15] || ''];
+    return [...c, `=IF(M${r}="";"";IF(M${r}>=N${r};"acima do piso";"abaixo do piso"))`, COMO[l[3]] || '', l[15] || '', '',
+      `=IF(OR(I${r}="";S${r}="");"";ROUND(S${r}/I${r}*1000))`];
   });
 }
 
 async function prepararAbas() {
   const meta = await sheets(ID(), '?fields=sheets.properties');
   const tem = (t) => meta.sheets.some((s) => s.properties.title === t);
-  const novas = ['Chamadas', 'Semanas', 'Régua'].filter((t) => !tem(t));
+  const novas = ['Chamadas', 'Semanas', 'Régua', 'Teste'].filter((t) => !tem(t));
   if (!novas.length) return;
   await sheets(ID(), ':batchUpdate', { method: 'POST', body: JSON.stringify({ requests: novas.map((title) => ({ addSheet: { properties: { title, gridProperties: { frozenRowCount: 1 } } } })) }) });
   const put = (faixa, values) => sheets(ID(), `/values/${encodeURIComponent(faixa)}?valueInputOption=USER_ENTERED`, { method: 'PUT', body: JSON.stringify({ values }) });
@@ -95,6 +106,13 @@ async function prepararAbas() {
     await put('Semanas!A1', [CAB_SEM, ...linhas]);
   }
   if (novas.includes('Régua')) await put('Régua!A1', REGUA);
+  if (novas.includes('Teste')) {
+    const testes = PLANO.map((l, k) => [l, k + 2]).filter(([l]) => l[2] === 'Teste');
+    const fim = testes.length + 1;
+    const linhas = testes.map(([, c], k) => [`=Chamadas!D${c}`, `=Chamadas!B${c}`, `=Chamadas!I${c}`, `=Chamadas!S${c}`, `=Chamadas!T${c}`,
+      `=IF(E${k + 2}="";"";RANK(E${k + 2};E$2:E$${fim}))`, `=Chamadas!M${c}`]);
+    await put('Teste!A1', [TESTE_CAB, ...linhas, ...TESTE_REGRA]);
+  }
 }
 
 // Cadastros do Mapa: Data (0), Comprou (12), Valor (14), Data da compra (15, gravada 3 h antes do horário de
@@ -131,16 +149,20 @@ function medir(linha, hoje, vendas, mapa, visitas) {
     const doTime = vendas.filter((i) => TIME.includes(String(i.utm?.source || '').toLowerCase()));
     const janela = fatia(doTime, d, maisDias(d, 1));
     const normal = soma(fatia(doTime, maisDias(d, -7), maisDias(d, -1))) / 7 * 2;
-    return { entradas: null, vendas: janela.length, caixa: Math.round(soma(janela) - normal) };
+    const caixa = Math.round(soma(janela) - normal);
+    return { entradas: null, vendas: janela.length, caixa, caixa48: caixa };
   }
   const fim = maisDias(d, 7);
+  const fim48 = maisDias(d, 2);
   if (destino === 'Mapa LIFE' || destino === 'Aula aberta') {
     const cad = mapa.filter((c) => c.campanha === etiqueta);
     const compras = cad.filter((c) => c.comprou && c.compraEm > c.em && c.compraEm.slice(0, 10) < fim);
-    return { entradas: cad.length, vendas: compras.length, caixa: Math.round(compras.reduce((t, c) => t + c.valor, 0)) };
+    const valorDe = (l) => Math.round(l.reduce((t, c) => t + c.valor, 0));
+    return { entradas: cad.length, vendas: compras.length, caixa: valorDe(compras), caixa48: valorDe(compras.filter((c) => c.compraEm.slice(0, 10) < fim48)) };
   }
   const pagas = vendas.filter((i) => String(i.utm?.campaign || '') === etiqueta && i.paidAt.slice(0, 10) >= d && i.paidAt.slice(0, 10) < fim);
-  return { entradas: visitas[etiqueta] ? visitas[etiqueta].size : 0, vendas: pagas.length, caixa: Math.round(soma(pagas)) };
+  return { entradas: visitas[etiqueta] ? visitas[etiqueta].size : 0, vendas: pagas.length, caixa: Math.round(soma(pagas)),
+    caixa48: Math.round(soma(pagas.filter((i) => i.paidAt.slice(0, 10) < fim48))) };
 }
 
 module.exports = async function handler(req, res) {
@@ -161,6 +183,7 @@ module.exports = async function handler(req, res) {
       const r = k + 2;
       if (m.entradas !== null) escritas.push({ range: `Chamadas!K${r}`, values: [[m.entradas]] });
       escritas.push({ range: `Chamadas!L${r}:M${r}`, values: [[m.vendas, m.caixa]] });
+      escritas.push({ range: `Chamadas!S${r}`, values: [[m.caixa48]] });
     });
     // Situação contra o esperado até agora (meta e piso proporcionais aos dias corridos da semana).
     const agora = new Date(Date.now() - 3 * 3600e3);
